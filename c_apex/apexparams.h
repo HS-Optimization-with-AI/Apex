@@ -13,8 +13,25 @@
 
 #include <limits.h>
 #include <stdio.h>
+#include <glib.h>
 
 struct apex_data{
+
+    int MIN_PARAM;
+    int MAX_PARAM;
+
+    // int width;
+    // int height;
+
+    double mem_util;
+
+    int lambda, sigma, rho, mu;
+
+    // Array of blocks
+    Garray *blocks;
+
+    
+
     // This will contain the used, unused hastables
     // Block params and factors and their calculations,
     // Master file table, list etc

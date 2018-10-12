@@ -19,6 +19,7 @@
 #include "config.h"
 #include "apexparams.h"
 #include "apexopt.h"
+#include "log.h"
 
 
 struct fuse_operations apex_oper = {
