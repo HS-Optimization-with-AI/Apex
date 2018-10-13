@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+}
+
+group 'com.github.hsil'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'com.github.serceman:jnr-fuse:0.5.2.1'
+}
