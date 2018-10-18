@@ -74,8 +74,8 @@ public class ApexFS extends FuseStubFS {
     class ApexDir extends ApexPath{
         public
         //How will this directory's sub(path's) will be stored ?
-        // As a list for now // ApexPaths has both dir and files
-        List<ApexPath> contents = new ArrayList<>();
+                // As a list for now // ApexPaths has both dir and files
+                List<ApexPath> contents = new ArrayList<>();
 
         ApexDir(String name){ super(name);}
         ApexDir(String name, ApexDir parent){super(name, parent);}
@@ -146,9 +146,93 @@ public class ApexFS extends FuseStubFS {
         // could be used to change factors or deal with indivisual blocks etc
     }
 
-    class ApexFS extends ApexPath{
+
+    // this in place of file
+    class ApexFile extends ApexPath{
+        ArrayList<Block> blocks;
+
+        ApexFile(String name){ super(name); }
+
+        public ApexFile(String name, String text) {
+            super(name);
+
+            // todo SPLIT THE TEXT INTO BYTES/ CHUNKS and request and store them in the
+            //  'unused' blocks from the heap
+            // save into bytes by the Pointer/Memory class
+            try {
+                byte[] contentBytes = text.getBytes("UTF-8");
+                contents = ByteBuffer.wrap(contentBytes);
+            } catch (UnsupportedEncodingException e) {
+                // Not going to happen
+            }
+        }
+
+        // IDK yet what exactly is this doing ..
+        @Override
+        protected void getattr(FileStat stat) {
+            // todo increase usage, history factor etc if required
+            stat.st_mode.set(FileStat.S_IFREG | 0777);
+
+            // size might be the Total number of bytes and that can be taken from number of chunks into size of each chunk
+            stat.st_size.set(contents.capacity());
+            stat.st_uid.set(getContext().uid.get());
+            stat.st_gid.set(getContext().gid.get());
+        }
+
+        private int read(Pointer buffer, long size, long offset) {
+            // change factors of the blocks and the sourrounding blocks too ?
+
+            int bytesToRead = (int) Math.min(contents.capacity() - offset, size);
+            byte[] bytesRead = new byte[bytesToRead];
+            synchronized (this) {
+                contents.position((int) offset);
+                contents.get(bytesRead, 0, bytesToRead);
+                buffer.put(0, bytesRead, 0, bytesToRead);
+                contents.position(0); // Rewind
+            }
+            return bytesToRead;
+        }
+
+        // I'm not exactly sure about it's workings but we need to put the contents in/out the buffer as required
+        synchronized void truncate(long size) {
+            // todo to change the factors here too
+            if (size < contents.capacity()) {
+                // Need to create a new, smaller buffer
+                ByteBuffer newContents = ByteBuffer.allocate((int) size);
+                byte[] bytesRead = new byte[(int) size];
+                contents.get(bytesRead);
+                newContents.put(bytesRead);
+                contents = newContents;
+            }
+        }
+
+
+        int write(Pointer buffer, long bufSize, long writeOffset) {
+            //todo change the factors, split and write properly into bytes by the Pointer/Memory class..
+            int maxWriteIndex = (int) (writeOffset + bufSize);
+            byte[] bytesToWrite = new byte[(int) bufSize];
+            synchronized (this) {
+                if (maxWriteIndex > contents.capacity()) {
+                    // Need to create a new, larger buffer
+                    ByteBuffer newContents = ByteBuffer.allocate(maxWriteIndex);
+                    newContents.put(contents);
+                    contents = newContents;
+                }
+                buffer.get(0, bytesToWrite, 0, (int) bufSize);
+                contents.position((int) writeOffset);
+                contents.put(bytesToWrite);
+                contents.position(0); // Rewind
+            }
+            return (int) bufSize;
+        }
 
     }
 
-    Memory a = Memory(5);
+//    ApexBlock class is the Block class in the same folder
+//    class ApexBlock{
+//        int offset;
+//
+//    }
+
+//    Memory a = Memory(5);
 }
