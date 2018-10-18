@@ -3,6 +3,9 @@ import jnr.ffi.Pointer;
 import jnr.ffi.types.mode_t;
 import jnr.ffi.types.off_t;
 import jnr.ffi.types.size_t;
+
+import jnr.ffi.Memory;
+
 import ru.serce.jnrfuse.ErrorCodes;
 import ru.serce.jnrfuse.FuseFillDir;
 import ru.serce.jnrfuse.FuseStubFS;
@@ -18,7 +21,7 @@ import java.util.List;
 
 import static jnr.ffi.Platform.OS.LINUX;
 
-public class Apex extends FuseStubFS {
+public class ApexFS extends FuseStubFS {
 
     // A class which has the common features of dir's and files
     abstract class ApexPath {
@@ -142,4 +145,10 @@ public class Apex extends FuseStubFS {
         // Delete method was already in the abstract class,
         // could be used to change factors or deal with indivisual blocks etc
     }
+
+    class ApexFS extends ApexPath{
+
+    }
+
+    Memory a = Memory(5);
 }

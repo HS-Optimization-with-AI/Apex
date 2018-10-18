@@ -28,24 +28,26 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="class" value="1" />
           <entry key="gradle" value="3" />
-          <entry key="java" value="8" />
+          <entry key="java" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="CLASS" value="1" />
           <entry key="Groovy" value="3" />
-          <entry key="JAVA" value="8" />
+          <entry key="JAVA" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="2128" />
+          <entry key="java" value="2212" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2128" />
+          <entry key="JAVA" value="2212" />
         </counts>
       </usages-collector>
     </session>
@@ -69,30 +71,15 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/test/java/MemoryFS.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="763">
-                  <caret line="89" column="5" lean-forward="true" selection-start-line="89" selection-start-column="5" selection-end-line="89" selection-end-column="5" />
+                <state relative-caret-position="-143">
+                  <caret line="124" column="28" selection-start-line="124" selection-start-column="28" selection-end-line="124" selection-end-column="28" />
                   <folding>
                     <element signature="imports" expanded="true" />
+                    <element signature="class#MemoryDirectory#0;class#MemoryFS#0" />
                     <element signature="class#MemoryPath#0;class#MemoryFS#0" />
+                    <element signature="e#9073#9074#0" expanded="true" />
+                    <element signature="e#9120#9121#0" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/nio/ByteBuffer.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="48">
-                  <caret line="334" column="23" selection-start-line="334" selection-start-column="23" selection-end-line="334" selection-end-column="23" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/nio/HeapByteBuffer.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="213">
-                  <caret line="54" column="4" selection-start-line="54" selection-start-column="4" selection-end-line="54" selection-end-column="4" />
                 </state>
               </provider>
             </entry>
@@ -104,8 +91,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/Apex.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-526">
-                  <caret line="69" column="76" selection-start-line="69" selection-start-column="76" selection-end-line="69" selection-end-column="76" />
+                <state relative-caret-position="524">
+                  <caret line="152" column="16" selection-start-line="152" selection-start-column="16" selection-end-line="152" selection-end-column="16" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#743#744#0" expanded="true" />
@@ -113,6 +100,15 @@
                     <element signature="e#3921#3922#0" expanded="true" />
                     <element signature="e#3999#4000#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-ffi/2.1.7/fcfbbd43511d5db516c84d49ba1d2983ba84f04b/jnr-ffi-2.1.7-sources.jar!/jnr/ffi/Memory.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="84">
+                  <caret line="23" column="19" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
                 </state>
               </provider>
             </entry>
@@ -131,6 +127,8 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>main</find>
+      <find>size</find>
+      <find>size_t</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -536,6 +534,17 @@
             <path>
               <item name="apex" type="b2602c69:ProjectViewProjectNode" />
               <item name="j_apex" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="bin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="apex" type="b2602c69:ProjectViewProjectNode" />
+              <item name="j_apex" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="bin" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="apex" type="b2602c69:ProjectViewProjectNode" />
+              <item name="j_apex" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -574,7 +583,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539868631383" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539881952357" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Disk-Simulator" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -593,7 +602,14 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.MemoryFS">
+    <configuration name="MemoryFS" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MemoryFS" />
+      <module name="apex" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="All Features in: bin" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
       <option name="CUCUMBER_CORE_VERSION" value="3" />
       <option name="FILE_PATH" value="$PROJECT_DIR$/bin" />
@@ -611,8 +627,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Cucumber java.All Features in: bin" />
+      <item itemvalue="Application.MemoryFS" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MemoryFS" />
         <item itemvalue="Cucumber java.All Features in: bin" />
       </list>
     </recent_temporary>
@@ -627,7 +648,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1539865511809</updated>
-      <workItem from="1539865513237" duration="4769000" />
+      <workItem from="1539865513237" duration="7616000" />
     </task>
     <servers />
   </component>
@@ -637,7 +658,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4769000" />
+    <option name="totallyTimeSpent" value="7616000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -725,27 +746,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/MemoryFS.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-ffi/2.1.7/fcfbbd43511d5db516c84d49ba1d2983ba84f04b/jnr-ffi-2.1.7-sources.jar!/jnr/ffi/Pointer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="763">
-          <caret line="89" column="5" lean-forward="true" selection-start-line="89" selection-start-column="5" selection-end-line="89" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="class#MemoryPath#0;class#MemoryFS#0" />
-          </folding>
+        <state relative-caret-position="168">
+          <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-ffi/2.1.7/fcfbbd43511d5db516c84d49ba1d2983ba84f04b/jnr-ffi-2.1.7-sources.jar!/jnr/ffi/Memory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="23" column="19" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Apex.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-526">
-          <caret line="69" column="76" selection-start-line="69" selection-start-column="76" selection-end-line="69" selection-end-column="76" />
+        <state relative-caret-position="524">
+          <caret line="152" column="16" selection-start-line="152" selection-start-column="16" selection-end-line="152" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#743#744#0" expanded="true" />
             <element signature="e#778#779#0" expanded="true" />
             <element signature="e#3921#3922#0" expanded="true" />
             <element signature="e#3999#4000#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/test/MemoryFS.class">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/MemoryFS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-143">
+          <caret line="124" column="28" selection-start-line="124" selection-start-column="28" selection-end-line="124" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="class#MemoryDirectory#0;class#MemoryFS#0" />
+            <element signature="class#MemoryPath#0;class#MemoryFS#0" />
+            <element signature="e#9073#9074#0" expanded="true" />
+            <element signature="e#9120#9121#0" expanded="true" />
           </folding>
         </state>
       </provider>
