@@ -268,6 +268,26 @@ public class ApexFS extends FuseStubFS {
     // MEMBERS OF THE FILESYSTEM ITSELF
     //
 
+    ApexDir rootDir = new ApexDir("");
+
+    //constructor
+    ApexFS(){
+        // make some new files and diretories
+    }
+
+    @Override
+    public int create(String path, @mode_t long mode, FuseFileInfo fi) {
+        if (getPath(path) != null) {
+            return -ErrorCodes.EEXIST();
+        }
+        ApexPath parent = getParentPath(path);
+        if (parent instanceof ApexDir) {
+            ((ApexDir) parent).mkfile(getLastComponent(path));
+            return 0;
+        }
+        return -ErrorCodes.ENOENT();
+    }
+
 
 
 }
