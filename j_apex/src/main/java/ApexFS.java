@@ -17,12 +17,14 @@ import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import static jnr.ffi.Platform.OS.LINUX;
 
 public class ApexFS extends FuseStubFS {
 
+    public
     // A class which has the common features of dir's and files
     abstract class ApexPath {
         public
@@ -147,13 +149,41 @@ public class ApexFS extends FuseStubFS {
     }
 
 
-    // this in place of file
+    // this a file
     class ApexFile extends ApexPath{
-        ArrayList<Block> blocks;
+        public
 
+        final int CHUNK_SIZE = 1; //size of the chunk in number of bytes
+
+        final int lf_max = 10;
+        final int lf_min = 0;
+
+        int original_size;// requrired in prev code, don't know the exact pourpose
+
+        // Block list
+        HashSet<Block> blockList ;//= new ArrayList<>();
+
+        int uf = 0;
+
+        enum STATE{
+            USED,  //Currently allocated blocks
+            DELETED, // File deleted and blocks can be overwritten
+            OBSOLETE; // No blocks allocated, file ignored
+        }
+        STATE fileState;
+
+        //only 0 or 10
+        int linking_factor;
+
+        double slm;
+
+        ArrayList<Block> blocks;//manage this list properly
+
+
+        //Constructors and methods
         ApexFile(String name){ super(name); }
 
-        public ApexFile(String name, String text) {
+        ApexFile(String name, String text) {
             super(name);
 
             // todo SPLIT THE TEXT INTO BYTES/ CHUNKS and request and store them in the
@@ -233,6 +263,11 @@ public class ApexFS extends FuseStubFS {
 //        int offset;
 //
 //    }
-
 //    Memory a = Memory(5);
+
+    // MEMBERS OF THE FILESYSTEM ITSELF
+    //
+
+
+
 }
