@@ -1,3 +1,4 @@
+import javafx.util.Pair;
 import jnr.ffi.Platform;
 import jnr.ffi.Pointer;
 import jnr.ffi.types.mode_t;
@@ -19,8 +20,11 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.PriorityQueue;
 
 import static jnr.ffi.Platform.OS.LINUX;
+import static jnr.ffi.Platform.OS.WINDOWS;
+
 
 public class ApexFS extends FuseStubFS {
 
@@ -77,7 +81,7 @@ public class ApexFS extends FuseStubFS {
         public
         //How will this directory's sub(path's) will be stored ?
                 // As a list for now // ApexPaths has both dir and files
-                List<ApexPath> contents = new ArrayList<>();
+        List<ApexPath> contents = new ArrayList<>();
 
         ApexDir(String name){ super(name);}
         ApexDir(String name, ApexDir parent){super(name, parent);}
@@ -148,44 +152,33 @@ public class ApexFS extends FuseStubFS {
         // could be used to change factors or deal with indivisual blocks etc
     }
 
-
+    enum STATE{
+        USED,  //Currently allocated blocks
+        DELETED, // File deleted and blocks can be overwritten
+        OBSOLETE; // No blocks allocated, file ignored
+    }
     // this a file
+
     class ApexFile extends ApexPath{
         public
-
         final int CHUNK_SIZE = 1; //size of the chunk in number of bytes
 
         final int lf_max = 10;
         final int lf_min = 0;
-
         int original_size;// requrired in prev code, don't know the exact pourpose
-
         // Block list
         HashSet<Block> blockList ;//= new ArrayList<>();
-
         int uf = 0;
-
-        enum STATE{
-            USED,  //Currently allocated blocks
-            DELETED, // File deleted and blocks can be overwritten
-            OBSOLETE; // No blocks allocated, file ignored
-        }
         STATE fileState;
-
         //only 0 or 10
         int linking_factor;
-
         double slm;
-
         ArrayList<Block> blocks;//manage this list properly
-
 
         //Constructors and methods
         ApexFile(String name){ super(name); }
-
         ApexFile(String name, String text) {
             super(name);
-
             // todo SPLIT THE TEXT INTO BYTES/ CHUNKS and request and store them in the
             //  'unused' blocks from the heap
             // save into bytes by the Pointer/Memory class
@@ -236,7 +229,6 @@ public class ApexFS extends FuseStubFS {
             }
         }
 
-
         int write(Pointer buffer, long bufSize, long writeOffset) {
             //todo change the factors, split and write properly into bytes by the Pointer/Memory class..
             int maxWriteIndex = (int) (writeOffset + bufSize);
@@ -269,7 +261,23 @@ public class ApexFS extends FuseStubFS {
     //
 
     ApexDir rootDir = new ApexDir("");
+    static int MAX_PARAM = 9;
+    static int MIN_PARAM = 0;
 
+    int size;
+    double mem_util;
+    int lambda, sigma, rho, mu;
+    //blocks
+    Block[] blocks;
+    // Block heap
+    PriorityQueue<Block> unusedBlocks;
+    HashSet<Block> usedBlocks;
+//    PriorityQueue<Block> usedBlocks;
+    //List of all files
+    ArrayList<ApexFile> currentFileList;
+    ArrayList<ApexFile> deletedFileList;
+    ArrayList<Pair<Integer, Integer>> directions = new ArrayList<Pair<Integer, Integer>>(8);
+    int totalCreatedFiles;
     //constructor
     ApexFS(){
         // make some new files and diretories
@@ -288,6 +296,159 @@ public class ApexFS extends FuseStubFS {
         return -ErrorCodes.ENOENT();
     }
 
+    @Override
+    public int getattr(String path, FileStat stat) {
+        ApexPath p = getPath(path);
+        if (p != null) {
+            p.getattr(stat);
+            return 0;
+        }
+        return -ErrorCodes.ENOENT();
+    }
 
+    String getLastComponent(String path) {
+        while (path.substring(path.length() - 1).equals("/")) {
+            path = path.substring(0, path.length() - 1);
+        }
+        if (path.isEmpty()) {
+            return "";
+        }
+        return path.substring(path.lastIndexOf("/") + 1);
+    }
 
+    ApexPath getParentPath(String path) {
+        return rootDir.find(path.substring(0, path.lastIndexOf("/")));
+    }
+
+    ApexPath getPath(String path) {
+        return rootDir.find(path);
+    }
+
+    @Override
+    public int mkdir(String path, @mode_t long mode) {
+        if (getPath(path) != null) {
+            return -ErrorCodes.EEXIST();
+        }
+        ApexPath parent = getParentPath(path);
+        if (parent instanceof ApexDir) {
+            ((ApexDir) parent).mkdir(getLastComponent(path));
+            return 0;
+        }
+        return -ErrorCodes.ENOENT();
+    }
+
+    @Override
+    public int read(String path, Pointer buf, @size_t long size, @off_t long offset, FuseFileInfo fi) {
+        ApexPath p = getPath(path);
+        if (p == null) {
+            return -ErrorCodes.ENOENT();
+        }
+        if (!(p instanceof ApexFile)) {
+            return -ErrorCodes.EISDIR();
+        }
+        return ((ApexFile) p).read(buf, size, offset);
+    }
+
+    @Override
+    public int readdir(String path, Pointer buf, FuseFillDir filter, @off_t long offset, FuseFileInfo fi) {
+        ApexPath p = getPath(path);
+        if (p == null) {
+            return -ErrorCodes.ENOENT();
+        }
+        if (!(p instanceof ApexDir)) {
+            return -ErrorCodes.ENOTDIR();
+        }
+        filter.apply(buf, ".", null, 0);
+        filter.apply(buf, "..", null, 0);
+        ((ApexDir) p).read(buf, filter);
+        return 0;
+    }
+
+    @Override
+    public int statfs(String path, Statvfs stbuf) {
+        if (Platform.getNativePlatform().getOS() == WINDOWS) {
+            // statfs needs to be implemented on Windows in order to allow for copying
+            // data from other devices because winfsp calculates the volume size based
+            // on the statvfs call.
+            // see https://github.com/billziss-gh/winfsp/blob/14e6b402fe3360fdebcc78868de8df27622b565f/src/dll/fuse/fuse_intf.c#L654
+            if ("/".equals(path)) {
+                stbuf.f_blocks.set(1024 * 1024); // total data blocks in file system
+                stbuf.f_frsize.set(1024);        // fs block size
+                stbuf.f_bfree.set(1024 * 1024);  // free blocks in fs
+            }
+        }
+        return super.statfs(path, stbuf);
+    }
+
+    @Override
+    public int rename(String path, String newName) {
+        ApexPath p = getPath(path);
+        if (p == null) {
+            return -ErrorCodes.ENOENT();
+        }
+        ApexPath newParent = getParentPath(newName);
+        if (newParent == null) {
+            return -ErrorCodes.ENOENT();
+        }
+        if (!(newParent instanceof ApexDir)) {
+            return -ErrorCodes.ENOTDIR();
+        }
+        p.delete();
+        p.rename(newName.substring(newName.lastIndexOf("/")));
+        ((ApexDir) newParent).add(p);
+        return 0;
+    }
+
+    @Override
+    public int rmdir(String path) {
+        ApexPath p = getPath(path);
+        if (p == null) {
+            return -ErrorCodes.ENOENT();
+        }
+        if (!(p instanceof ApexDir)) {
+            return -ErrorCodes.ENOTDIR();
+        }
+        p.delete();
+        return 0;
+    }
+
+    @Override
+    public int truncate(String path, long offset) {
+        ApexPath p = getPath(path);
+        if (p == null) {
+            return -ErrorCodes.ENOENT();
+        }
+        if (!(p instanceof ApexFile)) {
+            return -ErrorCodes.EISDIR();
+        }
+        ((ApexFile) p).truncate(offset);
+        return 0;
+    }
+
+    @Override
+    public int unlink(String path) {
+        ApexPath p = getPath(path);
+        if (p == null) {
+            return -ErrorCodes.ENOENT();
+        }
+        p.delete();
+        return 0;
+    }
+
+    @Override
+    public int open(String path, FuseFileInfo fi) {
+        return 0;
+    }
+
+    @Override
+    public int write(String path, Pointer buf, @size_t long size, @off_t long offset, FuseFileInfo fi) {
+        ApexPath p = getPath(path);
+        if (p == null) {
+            return -ErrorCodes.ENOENT();
+        }
+        if (!(p instanceof ApexFile)) {
+            return -ErrorCodes.EISDIR();
+        }
+        return ((ApexFile) p).write(buf, size, offset);
+    }
 }

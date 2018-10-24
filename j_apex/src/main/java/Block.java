@@ -23,10 +23,11 @@ public class Block {
     // Priority Score
     int pf ;
 
-    int offset
+    //single index of blocks
+    int offset;
 
     // Pointer to file
-    ApexFile parentFile ;
+    ApexFS.ApexFile parentFile ;
 
     Block(){
         this.hf = 0; // History Factor
@@ -44,7 +45,7 @@ public class Block {
     }
 
     //allocate this block to a file (UNUSED TO USED TRANSITION)
-    void allocate(File parent_file, int link_factor){
+    void allocate(ApexFS.ApexFile parent_file, int link_factor){
         assert this.used == false;
 
         //delete the block from parent file
