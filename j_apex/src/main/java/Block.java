@@ -29,7 +29,11 @@ public class Block {
     // Pointer to file
     ApexFS.ApexFile parentFile ;
 
-    Block(){
+    int blockSize; //This will be the CHUNK size
+
+    Block(int size){
+        this.blockSize = size;
+
         this.hf = 0; // History Factor
         this.uf = 1; // Usage Factor
         this.sf = 0; // Spatial Factor

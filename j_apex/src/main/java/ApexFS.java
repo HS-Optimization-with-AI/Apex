@@ -158,10 +158,10 @@ public class ApexFS extends FuseStubFS {
         OBSOLETE; // No blocks allocated, file ignored
     }
     // this a file
+    final int CHUNK_SIZE = 1; //size of the chunk in number of bytes
 
     class ApexFile extends ApexPath{
         public
-        final int CHUNK_SIZE = 1; //size of the chunk in number of bytes
 
         final int lf_max = 10;
         final int lf_min = 0;
@@ -173,10 +173,11 @@ public class ApexFS extends FuseStubFS {
         //only 0 or 10
         int linking_factor;
         double slm;
-        ArrayList<Block> blocks;//manage this list properly
+        ArrayList<Block> blocklist;//manage this list properly
 
         //Constructors and methods
         ApexFile(String name){ super(name); }
+        private ApexFile(String name, ApexDir parent) { super(name, parent); }
         ApexFile(String name, String text) {
             super(name);
             // todo SPLIT THE TEXT INTO BYTES/ CHUNKS and request and store them in the
@@ -250,11 +251,6 @@ public class ApexFS extends FuseStubFS {
 
     }
 
-//    ApexBlock class is the Block class in the same folder
-//    class ApexBlock{
-//        int offset;
-//
-//    }
 //    Memory a = Memory(5);
 
     // MEMBERS OF THE FILESYSTEM ITSELF
