@@ -1,3 +1,5 @@
+import com.sun.xml.internal.fastinfoset.util.CharArray;
+
 import java.util.*;
 
 
@@ -24,12 +26,13 @@ public class Block {
     int pf ;
 
     //single index of blocks
-    int offset;
+    int index;
 
     // Pointer to file
     ApexFS.ApexFile parentFile ;
 
     int blockSize; //This will be the CHUNK size
+
 
     Block(int size){
         this.blockSize = size;
@@ -48,6 +51,25 @@ public class Block {
 //        this.j = j_;
     }
 
+    void write(String str){
+        int start = index * blockSize;
+        ApexFS.memory.position(start);
+        for(int i = 0 ; (i < str.length()) && (i < (int)(blockSize/2)) ; i++){
+            ApexFS.memory.putChar(str.charAt(i));
+        }
+    }
+    void write(byte[] b){
+        int start = index * blockSize;
+        ApexFS.memory.position(start);
+        ApexFS.memory.put(b, 0, b.length);
+    }
+
+    byte[] read(){
+        int start = index * blockSize;
+        byte[] b = new byte[(int) blockSize];
+        ApexFS.memory.get(b, start, blockSize);
+        return b;
+    }
     //allocate this block to a file (UNUSED TO USED TRANSITION)
     void allocate(ApexFS.ApexFile parent_file, int link_factor){
         assert this.used == false;
@@ -119,19 +141,11 @@ class BlockComparator implements Comparator<Block>{
             return 1;
         }
         else if(b1.pf == b2.pf){
-            if(b1.j < b2.j){
+            if(b1.index < b2.index){
                 return 1;
             }
-            else if(b1.j == b2.j){
-                if(b1.i < b2.i){
-                    return 1;
-                }
-                else if(b1.i == b2.i){
-                    return 0;
-                }
-                else{
-                    return -1;
-                }
+            else if(b1.index == b2.index){
+                return 0;
             }
             else{
                 return -1;

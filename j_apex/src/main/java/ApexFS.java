@@ -166,8 +166,6 @@ public class ApexFS extends FuseStubFS {
         final int lf_max = 10;
         final int lf_min = 0;
         int original_size;// requrired in prev code, don't know the exact pourpose
-        // Block list
-        HashSet<Block> blockList ;//= new ArrayList<>();
         int uf = 0;
         STATE fileState;
         //only 0 or 10
@@ -177,7 +175,22 @@ public class ApexFS extends FuseStubFS {
 
         //Constructors and methods
         ApexFile(String name){ super(name); }
-        private ApexFile(String name, ApexDir parent) { super(name, parent); }
+        ApexFile(String name, ApexDir parent) { super(name, parent); }
+        ApexFile(String name, ApexDir parent, Block b, int linking_factor) {
+            super(name, parent);
+            assert(b.used == false);
+            b.allocate(this, linking_factor);
+            this.blocklist.add(b);
+            this.fileState = STATE.USED;
+            this.linking_factor = linking_factor;
+//            this.computeSlm();
+            this.uf = 0;
+            this.original_size = 1;
+
+            //Todo : Write FIILENAME ON THIS 1 BLOCK
+            b.write(this.name + " " + this.parent.name);
+//            ApexFS.memory.putChar()
+        }
         ApexFile(String name, String text) {
             super(name);
             // todo SPLIT THE TEXT INTO BYTES/ CHUNKS and request and store them in the
@@ -191,6 +204,33 @@ public class ApexFS extends FuseStubFS {
             }
         }
 
+        void deleteFile(){
+            if(!(this.fileState == STATE.USED)){
+                System.out.println("Trying to Delete an existing or obsolete file!"); exit();
+            }
+
+            this.fileState = STATE.DELETED;
+            //deallocate file
+            for (Block b : this.blocklist){
+                //deallocate not delete because, deleteBlock if final delete
+                // doesn't change parent file pointer of this block
+                b.setUnused();
+            }
+        }
+
+        void deleteBlock(Block b){
+            assert this.blocklist.contains(b);
+
+            this.blocklist.remove(b);
+
+            for (Block block: this.blocklist){
+                block.increaseHF();
+            }
+
+            if (this.blocklist.size() == 0){
+                this.fileState = STATE.OBSOLETE;
+            }
+        }
         // IDK yet what exactly is this doing ..
         @Override
         protected void getattr(FileStat stat) {
@@ -198,7 +238,7 @@ public class ApexFS extends FuseStubFS {
             stat.st_mode.set(FileStat.S_IFREG | 0777);
 
             // size might be the Total number of bytes and that can be taken from number of chunks into size of each chunk
-            stat.st_size.set(contents.capacity());
+            stat.st_size.set(memSize);
             stat.st_uid.set(getContext().uid.get());
             stat.st_gid.set(getContext().gid.get());
         }
@@ -206,14 +246,22 @@ public class ApexFS extends FuseStubFS {
         private int read(Pointer buffer, long size, long offset) {
             // change factors of the blocks and the sourrounding blocks too ?
 
-            int bytesToRead = (int) Math.min(contents.capacity() - offset, size);
-            byte[] bytesRead = new byte[bytesToRead];
+            long capacity = this.blocklist.size() * CHUNK_SIZE;
+            int bytesToRead = (int) Math.min(capacity - offset, size);
+//            byte[] bytesRead = new byte[bytesToRead];
+            int maxIdx = (int)size/CHUNK_SIZE;
+
             synchronized (this) {
-                contents.position((int) offset);
-                contents.get(bytesRead, 0, bytesToRead);
-                buffer.put(0, bytesRead, 0, bytesToRead);
-                contents.position(0); // Rewind
+//                contents.position((int) offset);
+//                contents.get(bytesRead, 0, bytesToRead);
+//                buffer.put(0, bytesRead, 0, bytesToRead);
+//                contents.position(0); // Rewind
+                for(int i = 0; (i < this.blocklist.size()) && (i < maxIdx); i++){
+                    byte[] nb = this.blocklist.get(i).read();
+                    buffer.put(offset+i*CHUNK_SIZE, nb, 0, CHUNK_SIZE);
+                }
             }
+
             return bytesToRead;
         }
 
@@ -233,18 +281,39 @@ public class ApexFS extends FuseStubFS {
         int write(Pointer buffer, long bufSize, long writeOffset) {
             //todo change the factors, split and write properly into bytes by the Pointer/Memory class..
             int maxWriteIndex = (int) (writeOffset + bufSize);
-            byte[] bytesToWrite = new byte[(int) bufSize];
+
             synchronized (this) {
-                if (maxWriteIndex > contents.capacity()) {
-                    // Need to create a new, larger buffer
-                    ByteBuffer newContents = ByteBuffer.allocate(maxWriteIndex);
-                    newContents.put(contents);
-                    contents = newContents;
+                long numBlocks = bufSize/CHUNK_SIZE;
+
+                for(long i = 0 ; i < numBlocks; i++){
+                    //get a block from unused blocks
+                    Block b;
+                    try{
+                        b = ApexFS.unusedBlocks.poll();
+                    }
+                    catch (){
+                        System.out.println("Memory full, no more unused blocks");
+                        return -1;
+                    }
+                    byte[] bytesToWrite = new byte[(int) CHUNK_SIZE];
+                    buffer.get((i*CHUNK_SIZE), bytesToWrite, 0, CHUNK_SIZE);
+                    b.write(bytesToWrite);
+//                    for(int j = 0; j < CHUNK_SIZE; j++){
+//                        b.write();
+//                    }
+                    this.blocklist.add(b);
+                    b.allocate(this, this.linking_factor);
                 }
-                buffer.get(0, bytesToWrite, 0, (int) bufSize);
-                contents.position((int) writeOffset);
-                contents.put(bytesToWrite);
-                contents.position(0); // Rewind
+//                if (maxWriteIndex > contents.capacity()) {
+//                    // Need to create a new, larger buffer
+//                    ByteBuffer newContents = ByteBuffer.allocate(maxWriteIndex);
+//                    newContents.put(contents);
+//                    contents = newContents;
+//                }
+//                buffer.get(0, bytesToWrite, 0, (int) bufSize);
+//                contents.position((int) writeOffset);
+//                contents.put(bytesToWrite);
+//                contents.position(0); // Rewind
             }
             return (int) bufSize;
         }
@@ -260,20 +329,25 @@ public class ApexFS extends FuseStubFS {
     static int MAX_PARAM = 9;
     static int MIN_PARAM = 0;
 
-    int memSize;
-    double mem_util;
-    int lambda, sigma, rho, mu;
-    ArrayList<Block> blocks;
+    static int memSize;
+    static double mem_util;
+    static int lambda, sigma, rho, mu;
+    static ArrayList<Block> blocks;
     // Block heap
-    PriorityQueue<Block> unusedBlocks;
-    HashSet<Block> usedBlocks;
+    static PriorityQueue<Block> unusedBlocks;
+    static HashSet<Block> usedBlocks;
 //    PriorityQueue<Block> usedBlocks;
     //List of all files
-    ArrayList<ApexFile> currentFileList;
-    ArrayList<ApexFile> deletedFileList;
-    ArrayList<Pair<Integer, Integer>> directions = new ArrayList<Pair<Integer, Integer>>(8);
-    int totalCreatedFiles;
+    static ArrayList<ApexFile> currentFileList;
+    static ArrayList<ApexFile> deletedFileList;
+//    ArrayList<Pair<Integer, Integer>> directions = new ArrayList<Pair<Integer, Integer>>(8);
+    static int totalCreatedFiles;
+
+    static ByteBuffer memory;
+
     //constructor
+
+
     ApexFS(){
         // make some new files and diretories
     }
@@ -286,6 +360,12 @@ public class ApexFS extends FuseStubFS {
         ApexPath parent = getParentPath(path);
 
         if (parent instanceof ApexDir) {
+            Block b = this.unusedBlocks.poll();
+
+            //Compute lf by fileinfo
+
+            ApexFile af = new ApexFile(path, (ApexDir) parent, b, lf);
+
 //            //num blocks is calculated by the text, but at time of creation there is no text
 //            HashSet<Block> block_list = new HashSet<>(num_blocks);
 //
@@ -300,12 +380,12 @@ public class ApexFS extends FuseStubFS {
 //
 //            //if enough blocks
 //            File f = new File(block_list, link_factor);
-//            this.currentFileList.add(f);
-//            this.totalCreatedFiles++;
+            this.currentFileList.add(af);
+            this.totalCreatedFiles++;
 //            //Refresh the memory pf, sf etc;
-//            this.refresh();
+            this.refresh();
 
-            //This just adds, file to the directory 
+            //This just adds, file to the directory
             ((ApexDir) parent).mkfile(getLastComponent(path));
             return 0;
         }

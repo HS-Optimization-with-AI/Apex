@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="56c7735c-edb1-4611-a3e6-91091137485a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/ApexFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ApexFS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Block.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -31,24 +32,24 @@
         <counts>
           <entry key="class" value="1" />
           <entry key="gradle" value="3" />
-          <entry key="java" value="16" />
+          <entry key="java" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="1" />
           <entry key="Groovy" value="3" />
-          <entry key="JAVA" value="16" />
+          <entry key="JAVA" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="4372" />
+          <entry key="java" value="6294" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="4372" />
+          <entry key="JAVA" value="6294" />
         </counts>
       </usages-collector>
     </session>
@@ -70,10 +71,29 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/ApexFS.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="570">
+                  <caret line="285" column="24" selection-start-line="285" selection-start-column="24" selection-end-line="285" selection-end-column="24" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="method#find#0;class#ApexDir#0;class#ApexFS#0" />
+                    <element signature="method#getattr#0;class#ApexDir#0;class#ApexFS#0" />
+                    <element signature="method#ApexFile#2;class#ApexFile#0;class#ApexFS#0" />
+                    <element signature="method#ApexFile#2;class#ApexFile#0;class#ApexFS#0" />
+                    <element signature="method#deleteFile#0;class#ApexFile#0;class#ApexFS#0" />
+                    <element signature="method#deleteBlock#0;class#ApexFile#0;class#ApexFS#0" />
+                    <element signature="method#getattr#0;class#ApexFile#0;class#ApexFS#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/test/java/MemoryFS.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="156">
-                  <caret line="13" column="27" lean-forward="true" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
+                <state relative-caret-position="-36">
+                  <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
                   <folding>
                     <element signature="class#MemoryDirectory#0;class#MemoryFS#0" />
                     <element signature="e#2559#2560#0" expanded="true" />
@@ -92,11 +112,14 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="225">
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/Block.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="408">
-                  <caret line="34" column="19" lean-forward="true" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
+                <state relative-caret-position="364">
+                  <caret line="70" column="17" selection-start-line="70" selection-start-column="17" selection-end-line="70" selection-end-column="17" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -110,17 +133,19 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/ApexFS.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-666">
-                  <caret line="307" column="52" selection-start-line="307" selection-start-column="52" selection-end-line="307" selection-end-column="52" />
+                <state relative-caret-position="374">
+                  <caret line="343" column="4" selection-start-line="343" selection-start-column="4" selection-end-line="343" selection-end-column="4" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="class#ApexPath#0;class#ApexFS#0" />
+                    <element signature="class#ApexDir#0;class#ApexFS#0" />
                     <element signature="method#find#0;class#ApexDir#0;class#ApexFS#0" />
                     <element signature="method#getattr#0;class#ApexDir#0;class#ApexFS#0" />
                     <element signature="e#4809#5004#0" />
+                    <element signature="class#ApexFile#0;class#ApexFS#0" />
                     <element signature="e#9988#9989#0" expanded="true" />
                     <element signature="e#10071#10072#0" expanded="true" />
                     <element signature="e#10132#10133#0" expanded="true" />
@@ -148,10 +173,10 @@
       <find>size_t</find>
       <find>.find</find>
       <find>getPath</find>
-      <find>mkfile</find>
       <find>MemoryFile</find>
-      <find>contents</find>
       <find>write</find>
+      <find>contents</find>
+      <find>mkfile</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -576,14 +601,6 @@
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="apex" type="b2602c69:ProjectViewProjectNode" />
-              <item name="j_apex" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="Block.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -593,7 +610,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540358623219" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540370468427" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Disk-Simulator" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -659,7 +676,7 @@
       <option name="presentableId" value="Default" />
       <updated>1539865511809</updated>
       <workItem from="1539865513237" duration="7616000" />
-      <workItem from="1540355581302" duration="3520000" />
+      <workItem from="1540355581302" duration="8863000" />
     </task>
     <servers />
   </component>
@@ -669,7 +686,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17163000" />
+    <option name="totallyTimeSpent" value="22506000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -772,17 +789,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-ffi/2.1.7/fcfbbd43511d5db516c84d49ba1d2983ba84f04b/jnr-ffi-2.1.7-sources.jar!/jnr/ffi/Memory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/MemoryFS.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="13" column="27" lean-forward="true" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
+        <state relative-caret-position="-36">
+          <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
           <folding>
             <element signature="class#MemoryDirectory#0;class#MemoryFS#0" />
             <element signature="e#2559#2560#0" expanded="true" />
@@ -796,27 +806,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-ffi/2.1.7/fcfbbd43511d5db516c84d49ba1d2983ba84f04b/jnr-ffi-2.1.7-sources.jar!/jnr/ffi/Memory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Block.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="34" column="19" lean-forward="true" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
+        <state relative-caret-position="364">
+          <caret line="70" column="17" selection-start-line="70" selection-start-column="17" selection-end-line="70" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ApexFS.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-666">
-          <caret line="307" column="52" selection-start-line="307" selection-start-column="52" selection-end-line="307" selection-end-column="52" />
+        <state relative-caret-position="570">
+          <caret line="285" column="24" selection-start-line="285" selection-start-column="24" selection-end-line="285" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="class#ApexPath#0;class#ApexFS#0" />
             <element signature="method#find#0;class#ApexDir#0;class#ApexFS#0" />
             <element signature="method#getattr#0;class#ApexDir#0;class#ApexFS#0" />
-            <element signature="e#4809#5004#0" />
-            <element signature="e#9988#9989#0" expanded="true" />
-            <element signature="e#10071#10072#0" expanded="true" />
-            <element signature="e#10132#10133#0" expanded="true" />
-            <element signature="e#10179#10180#0" expanded="true" />
+            <element signature="method#ApexFile#2;class#ApexFile#0;class#ApexFS#0" />
+            <element signature="method#ApexFile#2;class#ApexFile#0;class#ApexFS#0" />
+            <element signature="method#deleteFile#0;class#ApexFile#0;class#ApexFS#0" />
+            <element signature="method#deleteBlock#0;class#ApexFile#0;class#ApexFS#0" />
+            <element signature="method#getattr#0;class#ApexFile#0;class#ApexFS#0" />
           </folding>
         </state>
       </provider>
