@@ -260,11 +260,10 @@ public class ApexFS extends FuseStubFS {
     static int MAX_PARAM = 9;
     static int MIN_PARAM = 0;
 
-    int size;
+    int memSize;
     double mem_util;
     int lambda, sigma, rho, mu;
-    //blocks
-    Block[] blocks;
+    ArrayList<Block> blocks;
     // Block heap
     PriorityQueue<Block> unusedBlocks;
     HashSet<Block> usedBlocks;
@@ -285,7 +284,28 @@ public class ApexFS extends FuseStubFS {
             return -ErrorCodes.EEXIST();
         }
         ApexPath parent = getParentPath(path);
+
         if (parent instanceof ApexDir) {
+//            //num blocks is calculated by the text, but at time of creation there is no text
+//            HashSet<Block> block_list = new HashSet<>(num_blocks);
+//
+//            for (int i = 0; i < num_blocks; i++) {
+//                Block b = this.unusedBlocks.poll();
+//                if (b == null) {
+//                    throw new java.lang.RuntimeException("Memory Full!");
+//                }
+//                block_list.add(b);
+//                this.usedBlocks.add(b);
+//            }
+//
+//            //if enough blocks
+//            File f = new File(block_list, link_factor);
+//            this.currentFileList.add(f);
+//            this.totalCreatedFiles++;
+//            //Refresh the memory pf, sf etc;
+//            this.refresh();
+
+            //This just adds, file to the directory 
             ((ApexDir) parent).mkfile(getLastComponent(path));
             return 0;
         }
