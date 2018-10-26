@@ -25,6 +25,8 @@ public class ApexBlock implements java.io.Serializable{
 
     int i, j;
 
+    byte[] bytes;
+
     // Pointer to file
     ApexFile parentFile ;
 
@@ -38,9 +40,17 @@ public class ApexBlock implements java.io.Serializable{
         this.pf = 0;
         this.parentFile = null ;
 
+        this.bytes = new byte[1024*1024];
+
         //we'll change mannually i, j after init
 //        this.i = i_;
 //        this.j = j_;
+    }
+
+    void setBytes(byte[] data){
+        assert data.length <= ApexMemory.mega;
+        for(int i = 0; i < data.length; i++)
+            this.bytes[i] = data[i];
     }
 
     //allocate this block to a file (UNUSED TO USED TRANSITION)

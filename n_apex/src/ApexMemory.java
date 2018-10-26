@@ -10,6 +10,8 @@ public class ApexMemory implements java.io.Serializable{
     static int MAX_PARAM = 9;
     static int MIN_PARAM = 0;
 
+    static int mega = 1024 * 1024;
+
     int width;
     int height;
 
@@ -80,9 +82,12 @@ public class ApexMemory implements java.io.Serializable{
         this.totalCreatedFiles = 0;
     }
 
-    void createFile(String filename, int link_factor, int num_blocks) {
+    void createFile(String filename, int link_factor, byte[] bytes) {
 
+        int num_blocks = (int) Math.ceil((double)bytes.length / mega);
         HashSet<ApexBlock> block_list = new HashSet<>(num_blocks);
+        int start = 0;
+        int end = mega;
 
         for (int i = 0; i < num_blocks; i++) {
             ApexBlock b = this.unusedApexBlocks.poll();
@@ -91,8 +96,12 @@ public class ApexMemory implements java.io.Serializable{
                 throw new java.lang.RuntimeException("Memory Full!");
             }
 
+            byte[] slice = Arrays.copyOfRange(bytes, start, end);
+            b.setBytes(slice);
             block_list.add(b);
             this.usedApexBlocks.add(b);
+            start = start + mega;
+            end = Math.min(end + mega, bytes.length);
         }
 
         //if enough blocks
@@ -106,11 +115,18 @@ public class ApexMemory implements java.io.Serializable{
         this.refresh();
     }
 
-    void deleteFile(int fileIndex) {
-        ApexFile cf = this.currentFileList.get(fileIndex);
+    void deleteFile(String name) {
+        ApexFile cf = new ApexFile("", new HashSet<>(), 0);
+        int fileIndex = 0;
+        for(ApexFile f : this.currentFileList){
+            if(f.filename.equals(name)){
+                cf = f;
+            }
+            fileIndex++;
+        }
+        assert !cf.filename.equals("");
         this.deletedFileList.add(cf);
         this.currentFileList.remove(fileIndex);
-        assert cf != null;
         cf.deleteFile();
         for (ApexBlock b : cf.blockList) {
             this.usedApexBlocks.remove(b);
@@ -121,9 +137,41 @@ public class ApexMemory implements java.io.Serializable{
 
     // Update factors of all blocks per transaction
 
-    void readWriteFile(int fileIndex) {
-        this.currentFileList.get(fileIndex).readWriteFile();
+    void readWriteFile(String name) {
+        for(ApexFile f : this.currentFileList){
+            if(f.filename.equals(name)){
+                f.readWriteFile();
+            }
+        }
         this.refresh();
+    }
+
+    void printCurFiles(){
+        for (ApexFile f : this.currentFileList){
+            System.out.println(f.filename);
+        }
+    }
+
+    void printDelFile(){
+        for (ApexFile f : this.deletedFileList){
+            if(f.fileState != ApexFile.STATE.OBSOLETE)
+                System.out.println(f.filename);
+        }
+    }
+
+    void printObsFile(){
+        for (ApexFile f : this.deletedFileList){
+            if(f.fileState == ApexFile.STATE.OBSOLETE)
+                System.out.println(f.filename);
+        }
+    }
+
+    boolean checkFile(String name){
+        for(ApexFile f : this.currentFileList){
+            if(f.filename == name)
+                return true;
+        }
+        return false;
     }
 
     void updateSF() {
