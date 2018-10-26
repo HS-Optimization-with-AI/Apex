@@ -18,13 +18,13 @@ public class ApexMemory {
     int lambda, sigma, rho, mu;
 
     //blocks
-    Block[][] blocks;
+    ApexBlock[][] blocks;
 
-    // Block heap
-    PriorityQueue<Block> unusedBlocks;
+    // ApexBlock heap
+    PriorityQueue<ApexBlock> unusedApexBlocks;
 
-    HashSet<Block> usedBlocks;
-//    PriorityQueue<Block> usedBlocks;
+    HashSet<ApexBlock> usedApexBlocks;
+//    PriorityQueue<ApexBlock> usedApexBlocks;
 
     //List of all files
     ArrayList<ApexFile> currentFileList;
@@ -37,7 +37,7 @@ public class ApexMemory {
     ApexMemory(int w, int h) {
         this.width = w;
         this.height = h;
-        this.blocks = new Block[w][h];
+        this.blocks = new ApexBlock[w][h];
 
         this.mem_util = 0.0;
 
@@ -48,7 +48,7 @@ public class ApexMemory {
 
         for (int i = 0; i < w; i++) {
             for (int j = 0; j < h; j++) {
-                this.blocks[i][j] = new Block();
+                this.blocks[i][j] = new ApexBlock();
                 this.blocks[i][j].i = i;
                 this.blocks[i][j].j = j;
             }
@@ -57,13 +57,13 @@ public class ApexMemory {
         this.currentFileList = new ArrayList<>();
         this.deletedFileList = new ArrayList<>();
         //put all blocks in unused heap now
-        this.usedBlocks = new HashSet<>(w * h);
+        this.usedApexBlocks = new HashSet<>(w * h);
 
-        this.unusedBlocks = new PriorityQueue<>(w * h, new BlockComparator());
+        this.unusedApexBlocks = new PriorityQueue<>(w * h, new ApexBlockComparator());
 //        for ()
         for (int i = 0; i < w; i++) {
             for (int j = 0; j < h; j++) {
-                this.unusedBlocks.add(this.blocks[i][j]);
+                this.unusedApexBlocks.add(this.blocks[i][j]);
             }
         }
 
@@ -82,17 +82,17 @@ public class ApexMemory {
 
     void createFile(int link_factor, int num_blocks) {
 
-        HashSet<Block> block_list = new HashSet<>(num_blocks);
+        HashSet<ApexBlock> block_list = new HashSet<>(num_blocks);
 
         for (int i = 0; i < num_blocks; i++) {
-            Block b = this.unusedBlocks.poll();
+            ApexBlock b = this.unusedApexBlocks.poll();
 
             if (b == null) {
                 throw new java.lang.RuntimeException("Memory Full!");
             }
 
             block_list.add(b);
-            this.usedBlocks.add(b);
+            this.usedApexBlocks.add(b);
         }
 
         //if enough blocks
@@ -112,9 +112,9 @@ public class ApexMemory {
         this.currentFileList.remove(fileIndex);
         assert cf != null;
         cf.deleteFile();
-        for (Block b : cf.blockList) {
-            this.usedBlocks.remove(b);
-            this.unusedBlocks.add(b);
+        for (ApexBlock b : cf.blockList) {
+            this.usedApexBlocks.remove(b);
+            this.unusedApexBlocks.add(b);
         }
         this.refresh();
     }
@@ -161,7 +161,7 @@ public class ApexMemory {
 
         for (int i = 0; i < this.width; i++) {
             for (int j = 0; j < this.height; j++) {
-                Block b = this.blocks[i][j];
+                ApexBlock b = this.blocks[i][j];
                 if (!b.used) {
                     System.out.print("(-,");
                 }
@@ -195,11 +195,11 @@ public class ApexMemory {
     void refresh() {
         this.updateSF();
 
-        PriorityQueue<Block> newHeap = new PriorityQueue<>(this.width * this.height, new BlockComparator());
+        PriorityQueue<ApexBlock> newHeap = new PriorityQueue<>(this.width * this.height, new ApexBlockComparator());
 
         for (int i = 0; i < this.width; i++) {
             for (int j = 0; j < this.height; j++) {
-                Block b = this.blocks[i][j];
+                ApexBlock b = this.blocks[i][j];
                 b.updatepf(this.lambda, this.sigma, this.rho, this.mu);
                 if (b.used == false) {
                     newHeap.add(this.blocks[i][j]);
@@ -207,9 +207,9 @@ public class ApexMemory {
             }
         }
 
-        this.unusedBlocks = newHeap;
+        this.unusedApexBlocks = newHeap;
 
-        this.mem_util = ((double) (this.usedBlocks.size())) * 100 / (this.width * this.height);
+        this.mem_util = ((double) (this.usedApexBlocks.size())) * 100 / (this.width * this.height);
 
     }
 
@@ -227,7 +227,7 @@ public class ApexMemory {
     }
 
     // Give block with maximum priority score
-//    Block giveMaxPriority(){
+//    ApexBlock giveMaxPriority(){
 //
 //    }
 

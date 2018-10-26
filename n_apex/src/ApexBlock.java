@@ -107,8 +107,7 @@ public class ApexBlock {
 
 
 }
-
-class AlexBlockComparator implements Comparator<ApexBlock>{
+class ApexBlockComparator implements Comparator<ApexBlock> {
     public int compare(ApexBlock b1, ApexBlock b2){
         if(b1.pf < b2.pf){
             return 1;
@@ -138,3 +137,4 @@ class AlexBlockComparator implements Comparator<ApexBlock>{
 
     }
 }
+
