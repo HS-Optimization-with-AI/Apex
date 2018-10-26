@@ -3,7 +3,7 @@ import javafx.util.Pair;
 import java.lang.reflect.Array;
 import java.util.*;
 
-public class ApexMemory {
+public class ApexMemory implements java.io.Serializable{
 
     // Memory size parameters
 
@@ -80,7 +80,7 @@ public class ApexMemory {
         this.totalCreatedFiles = 0;
     }
 
-    void createFile(int link_factor, int num_blocks) {
+    void createFile(String filename, int link_factor, int num_blocks) {
 
         HashSet<ApexBlock> block_list = new HashSet<>(num_blocks);
 
@@ -96,7 +96,7 @@ public class ApexMemory {
         }
 
         //if enough blocks
-        ApexFile f = new ApexFile(block_list, link_factor);
+        ApexFile f = new ApexFile(filename, block_list, link_factor);
 
         this.currentFileList.add(f);
 

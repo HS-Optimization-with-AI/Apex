@@ -1,7 +1,7 @@
 import java.math.BigInteger;
 import java.util.*;
 
-public class ApexBlock {
+public class ApexBlock implements java.io.Serializable{
 
     public
     static int MAX_PF = 1000 ;
@@ -107,7 +107,7 @@ public class ApexBlock {
 
 
 }
-class ApexBlockComparator implements Comparator<ApexBlock> {
+class ApexBlockComparator implements Comparator<ApexBlock>,java.io.Serializable {
     public int compare(ApexBlock b1, ApexBlock b2){
         if(b1.pf < b2.pf){
             return 1;

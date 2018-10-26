@@ -5,10 +5,17 @@ import java.io.File;
 
 public class Apex {
 
-    // Block size in KB
-    static int blockSize = 4;
+    // Block size in MB
+    static int blockSize = 1;
 
     static File mount = new File("../ApexMountDir");
+
+    // File Streams for ApexMemory
+    static FileOutputStream oDir;
+    static FileInputStream iDir;
+
+    // ApexMemory
+    static ApexMemory memory;
 
     public static void reset(){
         if (!mount.exists()) {
@@ -27,24 +34,56 @@ public class Apex {
         }
     }
 
+    public static void dumpMemory() throws Exception{
+        // Delete old Apex directory
+        File oldDir = new File("../ApexDir.ser");
+        oldDir.delete();
+
+        FileOutputStream fos = new FileOutputStream("../ApexDir.ser");
+        ObjectOutputStream out = new ObjectOutputStream(fos);
+        out.writeObject(memory);
+        out.close();
+        fos.close();
+    }
+
+    public static void loadMemory()throws Exception{
+        ApexMemory temp;
+        FileInputStream fis = new FileInputStream("../ApexDir.ser");
+        ObjectInputStream in = new ObjectInputStream(fis);
+        temp = (ApexMemory) in.readObject();
+        in.close();
+        fis.close();
+        memory = temp;
+    }
+
     public static void main (String[] args) throws Exception{
-
-        // Input scanner for operations
-        Scanner input = new Scanner(System.in);
-
-        // File Streams for blocks
-        FileOutputStream oDir = new FileOutputStream("ApexDir.ser");
-        FileInputStream iDir = new FileInputStream("ApexDir.ser");
-
-        // File Streams for FAT
-        FileOutputStream oMft = new FileOutputStream("AFAT.ser");
-        FileInputStream iMft = new FileInputStream("AFAT.ser");
 
         // Reset Apex mount directory
         reset();
 
-        // Initializing 256 MB memory
-        ApexMemory memory = new ApexMemory(16, 16);
+        // Input scanner for operations
+        Scanner input = new Scanner(System.in);
+
+        // User response - integer
+        int response;
+
+        System.out.print("Welcome to Apex File System\nApex is an adaptive FS optimized for data recovery.\n\n");
+        System.out.print("Would you like to start a new disk (1) or resume from earlier (2) ? : ");
+
+        response = input.nextInt();
+
+        if(response == 1){
+            // Initializing 4GB memory
+             memory = new ApexMemory(64  , 64);
+             dumpMemory();
+        }
+        else{
+            // Load memory from binary
+            loadMemory();
+        }
+
+
+
 
     }
 }

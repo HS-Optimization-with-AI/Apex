@@ -5,7 +5,7 @@ import java.util.List;
 
 import static javafx.application.Platform.exit;
 
-public class ApexFile {
+public class ApexFile implements java.io.Serializable{
 
     public
 
@@ -32,8 +32,11 @@ public class ApexFile {
 
     double slm;
 
+    String filename;
 
-    ApexFile(HashSet<ApexBlock> block_list, int lf){
+    ApexFile(String name, HashSet<ApexBlock> block_list, int lf){
+
+        this.filename = name;
 
         for (ApexBlock b: block_list){
             assert (b.used == false);

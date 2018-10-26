@@ -110,7 +110,7 @@ public class ApexIO {
                 numBlocks = rand.nextInt(FILE_SIZE_LIMIT) + 10; //10;
                 lf = (rand.nextInt(100/PERCENTAGE_LINKED_FILES) > 0) ? 0: 1; //(counter == 0) ? 1 : 0;
                 //counter = (counter +1)%5;
-                ApexMemory.createFile(lf, numBlocks);
+                ApexMemory.createFile("", lf, numBlocks);
                 //System.out.println("Action : Create file, Num Blocks : " + numBlocks + ", LF : " + lf);
                 break;
             case 2 :
