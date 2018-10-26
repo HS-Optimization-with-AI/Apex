@@ -5,7 +5,7 @@ import java.util.List;
 
 import static javafx.application.Platform.exit;
 
-public class File {
+public class ApexFile {
 
     public
 
@@ -15,8 +15,8 @@ public class File {
     //doesn't change after file's initial allocation
     int original_size;
 
-    // Block list
-    HashSet<Block> blockList ;//= new ArrayList<>();
+    // ApexBlock list
+    HashSet<ApexBlock> blockList ;//= new ArrayList<>();
 
     int uf = 0;
 
@@ -33,9 +33,9 @@ public class File {
     double slm;
 
 
-    File(HashSet<Block> block_list, int lf){
+    ApexFile(HashSet<ApexBlock> block_list, int lf){
 
-        for (Block b: block_list){
+        for (ApexBlock b: block_list){
             assert (b.used == false);
             b.allocate(this, lf);
         }
@@ -50,7 +50,7 @@ public class File {
         this.computeSlm();
         this.uf = 1;
 
-        for (Block block: this.blockList){
+        for (ApexBlock block: this.blockList){
             block.increaseUF();
         }
 
@@ -63,20 +63,20 @@ public class File {
 
         this.fileState = STATE.DELETED;
         //deallocate file
-        for (Block b : this.blockList){
-            //deallocate not delete because, deleteBlock if final delete
+        for (ApexBlock b : this.blockList){
+            //deallocate not delete because, deleteApexBlock if final delete
             // doesn't change parent file pointer of this block
             b.setUnused();
         }
     }
 
-    //delete this block from me becuase, allocating to someone else
-    void deleteBlock(Block b){
+    //delete this block from me because, allocating to someone else
+    void deleteBlock(ApexBlock b){
         assert this.blockList.contains(b);
 
         this.blockList.remove(b);
 
-        for (Block block: this.blockList){
+        for (ApexBlock block: this.blockList){
             block.increaseHF();
         }
 
@@ -86,7 +86,7 @@ public class File {
     }
 
     void readWriteFile(){
-        for (Block block: this.blockList) {
+        for (ApexBlock block: this.blockList) {
             block.increaseUF();
         }
     }
@@ -106,7 +106,7 @@ public class File {
         }
 
         this.uf = 0;
-        for (Block b: this.blockList){
+        for (ApexBlock b: this.blockList){
             this.uf += b.uf;
             break;
         }
@@ -117,7 +117,7 @@ public class File {
     void computeSlm(){
         double ui = 0.0, uj = 0.0;
 
-        for (Block b: this.blockList){
+        for (ApexBlock b: this.blockList){
             ui += b.i; uj += b.j;
         }
 
@@ -127,7 +127,7 @@ public class File {
 
         double varTotal = 0.0;
 
-        for (Block b: this.blockList){
+        for (ApexBlock b: this.blockList){
             varTotal += Math.pow(b.i - ui, 2) + Math.pow(b.j - uj, 2);
         }
 

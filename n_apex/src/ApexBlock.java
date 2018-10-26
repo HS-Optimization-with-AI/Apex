@@ -1,7 +1,7 @@
 import java.math.BigInteger;
 import java.util.*;
 
-public class Block {
+public class ApexBlock {
 
     public
     static int MAX_PF = 1000 ;
@@ -26,9 +26,9 @@ public class Block {
     int i, j;
 
     // Pointer to file
-    File parentFile ;
+    ApexFile parentFile ;
 
-    Block(){
+    ApexBlock(){
         this.hf = 0; // History Factor
         this.uf = 1; // Usage Factor
         this.sf = 0; // Spatial Factor
@@ -44,7 +44,7 @@ public class Block {
     }
 
     //allocate this block to a file (UNUSED TO USED TRANSITION)
-    void allocate(File parent_file, int link_factor){
+    void allocate(ApexFile parent_file, int link_factor){
         assert this.used == false;
 
         //delete the block from parent file
@@ -108,8 +108,8 @@ public class Block {
 
 }
 
-class BlockComparator implements Comparator<Block>{
-    public int compare(Block b1, Block b2){
+class AlexBlockComparator implements Comparator<ApexBlock>{
+    public int compare(ApexBlock b1, ApexBlock b2){
         if(b1.pf < b2.pf){
             return 1;
         }

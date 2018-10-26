@@ -3,7 +3,7 @@ import javafx.util.Pair;
 import java.lang.reflect.Array;
 import java.util.*;
 
-public class Memory {
+public class ApexMemory {
 
     // Memory size parameters
 
@@ -27,14 +27,14 @@ public class Memory {
 //    PriorityQueue<Block> usedBlocks;
 
     //List of all files
-    ArrayList<File> currentFileList;
-    ArrayList<File> deletedFileList;
+    ArrayList<ApexFile> currentFileList;
+    ArrayList<ApexFile> deletedFileList;
 
     ArrayList<Pair<Integer, Integer>> directions = new ArrayList<Pair<Integer, Integer>>(8);
 
     int totalCreatedFiles;
 
-    Memory(int w, int h) {
+    ApexMemory(int w, int h) {
         this.width = w;
         this.height = h;
         this.blocks = new Block[w][h];
@@ -96,7 +96,7 @@ public class Memory {
         }
 
         //if enough blocks
-        File f = new File(block_list, link_factor);
+        ApexFile f = new ApexFile(block_list, link_factor);
 
         this.currentFileList.add(f);
 
@@ -107,7 +107,7 @@ public class Memory {
     }
 
     void deleteFile(int fileIndex) {
-        File cf = this.currentFileList.get(fileIndex);
+        ApexFile cf = this.currentFileList.get(fileIndex);
         this.deletedFileList.add(cf);
         this.currentFileList.remove(fileIndex);
         assert cf != null;
@@ -176,8 +176,8 @@ public class Memory {
         System.out.println("Number of current files : " + this.currentFileList.size());
         System.out.println("Number of deleted files : " + this.deletedFileList.size());
         int obsolete = 0;
-        for(File file : this.deletedFileList){
-            if (file.fileState == File.STATE.OBSOLETE){
+        for(ApexFile file : this.deletedFileList){
+            if (file.fileState == ApexFile.STATE.OBSOLETE){
                 obsolete+=1;
             }
         }
