@@ -26,6 +26,7 @@ public class ApexBlock implements java.io.Serializable{
     int i, j;
 
     byte[] bytes;
+    int size;
 
     // Pointer to file
     ApexFile parentFile ;
@@ -35,6 +36,7 @@ public class ApexBlock implements java.io.Serializable{
         this.uf = 1; // Usage Factor
         this.sf = 0; // Spatial Factor
         this.lf = 1; // Linking Factor
+        this.size = 0;
 
         this.used = false;
         this.pf = 0;
@@ -48,6 +50,7 @@ public class ApexBlock implements java.io.Serializable{
     }
 
     void setBytes(byte[] data){
+        this.size = data.length;
         assert data.length <= ApexMemory.mega;
         for(int i = 0; i < data.length; i++)
             this.bytes[i] = data[i];

@@ -65,7 +65,7 @@ public class ApexFile implements java.io.Serializable{
         int size = 0;
         for(ApexBlock b : this.blockList){
             if(b.parentFile == this){
-                size += b.bytes.length;
+                size += b.size;
             }
         }
         return size;

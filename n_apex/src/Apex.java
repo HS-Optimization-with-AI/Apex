@@ -4,6 +4,8 @@ import java.util.*;
 import java.io.*;
 import java.io.File;
 
+import static javafx.application.Platform.exit;
+
 public class Apex {
 
     // Block size in MB
@@ -87,7 +89,7 @@ public class Apex {
     }
 
     private static int getResponse(){
-        System.out.print("\n\nEnter the following options :\n1 = create file\n2 = delete file\n3 = read file\n4 = list mount dir files\n5 = list Apex dir files\n6 = list deleted files\n7 = recover deleted file\n8 = flush\noption : ");
+        System.out.print("\n\nEnter the following options :\n1 = create file\n2 = delete file\n3 = read file\n4 = list mount dir files\n5 = list Apex dir files\n6 = list deleted files\n7 = recover deleted file\n8 = flush\n9 = exit\noption : ");
         int a = input.nextInt();
         System.out.println();
         return a;
@@ -214,11 +216,14 @@ public class Apex {
             else if(response == 6){
                 printDelMemFiles();
             }
-            else if(response == 7){
+            else if(response == 7) {
                 recover();
             }
-            else{
+            else if(response == 8){
                 dumpMemory();
+            }
+            else{
+                exit();
             }
         }
     }

@@ -205,12 +205,16 @@ public class ApexMemory implements java.io.Serializable{
 
     byte[] recoverFile(String name){
         byte[] bytes = new byte[0];
+        int num_blocks = 0;
         for(ApexFile f : this.currentFileList){
             if(f.filename.equals(name)){
                 assert f.fileState == ApexFile.STATE.DELETED;
-                return f.getBytes();
+                bytes = f.getBytes();
+                num_blocks = f.blockList.size();
+                break;
             }
         }
+        System.out.println("recovered file with " + bytes.length + " bytes and " + num_blocks + " blocks");
         assert bytes.length != 0;
         return bytes;
     }
