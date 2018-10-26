@@ -33,10 +33,12 @@ public class ApexFile implements java.io.Serializable{
     double slm;
 
     String filename;
+    int byteLen;
 
-    ApexFile(String name, HashSet<ApexBlock> block_list, int lf){
+    ApexFile(String name, HashSet<ApexBlock> block_list, int lf, int bl){
 
         this.filename = name;
+        this.byteLen = bl;
 
         for (ApexBlock b: block_list){
             assert (b.used == false);
@@ -57,6 +59,27 @@ public class ApexFile implements java.io.Serializable{
             block.increaseUF();
         }
 
+    }
+
+    int fileSize(){
+        int size = 0;
+        for(ApexBlock b : this.blockList){
+            if(b.parentFile == this){
+                size += b.bytes.length;
+            }
+        }
+        return size;
+    }
+
+    byte[] getBytes(){
+        byte[] bytes = new byte[this.fileSize()];
+        int j = 0;
+        for(ApexBlock b : this.blockList){
+            for(int i = 0; i <= b.bytes.length; i++){
+                bytes[j++] = b.bytes[i];
+            }
+        }
+        return bytes;
     }
 
     void deleteFile(){

@@ -105,7 +105,7 @@ public class ApexMemory implements java.io.Serializable{
         }
 
         //if enough blocks
-        ApexFile f = new ApexFile(filename, block_list, link_factor);
+        ApexFile f = new ApexFile(filename, block_list, link_factor, bytes.length);
 
         this.currentFileList.add(f);
 
@@ -116,7 +116,7 @@ public class ApexMemory implements java.io.Serializable{
     }
 
     void deleteFile(String name) {
-        ApexFile cf = new ApexFile("", new HashSet<>(), 0);
+        ApexFile cf = new ApexFile("", new HashSet<>(), 0, 0);
         int fileIndex = 0;
         for(ApexFile f : this.currentFileList){
             if(f.filename.equals(name)){
@@ -168,11 +168,51 @@ public class ApexMemory implements java.io.Serializable{
 
     boolean checkFile(String name){
         for(ApexFile f : this.currentFileList){
-            if(f.filename == name)
+            if(f.filename.equals(name))
                 return true;
         }
         return false;
     }
+
+    boolean checkDelFile(String name){
+        for(ApexFile f : this.deletedFileList){
+            if(f.filename.equals(name))
+                return true;
+        }
+        return false;
+    }
+
+    int getFileLength(String name){
+        for(ApexFile f : this.currentFileList){
+            if(f.filename.equals(name))
+                return f.fileSize();
+        }
+        return -1;
+    }
+
+    byte[] getFileBytes(String name){
+        byte[] bytes = new byte[0];
+        for(ApexFile f : this.currentFileList){
+            if(f.filename.equals(name)){
+                return f.getBytes();
+            }
+        }
+        assert bytes.length != 0;
+        return bytes;
+    }
+
+    byte[] recoverFile(String name){
+        byte[] bytes = new byte[0];
+        for(ApexFile f : this.currentFileList){
+            if(f.filename.equals(name)){
+                assert f.fileState == ApexFile.STATE.DELETED;
+                return f.getBytes();
+            }
+        }
+        assert bytes.length != 0;
+        return bytes;
+    }
+
 
     void updateSF() {
         // neighbouring blocks's pf's avg in sf of this block

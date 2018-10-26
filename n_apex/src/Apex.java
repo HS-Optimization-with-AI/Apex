@@ -32,10 +32,6 @@ public class Apex {
                 File currentFile = new File(mount.getPath(),s);
                 currentFile.delete();
             }
-            mount.delete();
-            if (!mount.exists()) {
-                mount.mkdir();
-            }
         }
     }
 
@@ -64,7 +60,7 @@ public class Apex {
     private static boolean checkFile(String filename){
         String[]entries = mount.list();
         for(String s: entries){
-            if (s.equals(filename))
+            if (filename.equals(mount.getPath() + "\\" + s))
                 return true;
         }
         return false;
@@ -91,12 +87,13 @@ public class Apex {
     }
 
     private static int getResponse(){
-        System.out.print("Enter the following options :\n1 = create file\n2 = delete file\n3 = read file\n4 = list mount dir files\n5 = list Apex dir files\n6 = list deleted files\noption : ");
+        System.out.print("\n\nEnter the following options :\n1 = create file\n2 = delete file\n3 = read file\n4 = list mount dir files\n5 = list Apex dir files\n6 = list deleted files\n7 = recover deleted file\n8 = flush\noption : ");
         return input.nextInt();
     }
     private static void create() throws Exception{
         System.out.println("Enter name of file : ");
         String name = input.next();
+        name = mount.getPath() + "\\" + name;
         if(!checkFile(name)){
             System.out.println("No such file in mount dir!");
         }
@@ -104,37 +101,64 @@ public class Apex {
             System.out.println("File already in Apex dir!");
         }
         else{
-            File file = new File("myFile");
+            File file = new File(name);
             byte[] fileData = new byte[(int) file.length()];
             DataInputStream dis = new DataInputStream(new FileInputStream(file));
             dis.readFully(fileData);
             dis.close();
             memory.createFile(name, 0, fileData);
-            dumpMemory();
         }
     }
 
     private static void delete() throws Exception{
         System.out.println("Enter name of file : ");
         String name = input.next();
+        name = mount.getPath() + "\\" + name;
         if(!memory.checkFile(name)){
             System.out.println("No such file in Apex dir!");
         }
         else{
             memory.deleteFile(name);
-            dumpMemory();
         }
     }
 
     private static void read() throws Exception{
         System.out.println("Enter name of file : ");
         String name = input.next();
+        name = mount.getPath() + "\\" + name;
         if(!memory.checkFile(name)){
             System.out.println("No such file in Apex dir!");
         }
+        else if(checkFile(name)){
+            System.out.println("First delete file from mount dir!");
+        }
         else{
             memory.readWriteFile(name);
-            dumpMemory();
+            byte[] fileData = memory.getFileBytes(name);
+            File file = new File(name);
+            DataOutputStream dos = new DataOutputStream(new FileOutputStream(file));
+            dos.write(fileData);
+            dos.close();
+        }
+    }
+
+    private static void recover() throws Exception{
+        System.out.println("Enter name of file : ");
+        String name = input.next();
+        name = mount.getPath() + "\\" + name;
+        if(!memory.checkDelFile(name)){
+            System.out.println("No such deleted file in Apex dir!");
+        }
+        else if(checkFile(name)){
+            System.out.println("First delete file from mount dir!");
+        }
+        else{
+            memory.recoverFile(name);
+            byte[] fileData = memory.getFileBytes(name);
+            File file = new File(name);
+            DataOutputStream dos = new DataOutputStream(new FileOutputStream(file));
+            dos.write(fileData);
+            dos.close();
         }
     }
 
@@ -153,13 +177,17 @@ public class Apex {
 
         if(response == 1){
             // Initializing 4GB memory
+             System.out.println("Initialising 4GB contiguous space on disk...\n");
              memory = new ApexMemory(64  , 64);
              memory.updateParams(4, 7, 1, 9);
              dumpMemory();
+             System.out.println("Formatting complete.");
         }
         else{
             // Load memory from binary
+            System.out.println("Loading disk...\n");
             loadMemory();
+            System.out.println("Disk load successful.");
         }
 
         while(true){
@@ -182,6 +210,12 @@ public class Apex {
             }
             else if(response == 6){
                 printDelMemFiles();
+            }
+            else if(response == 7){
+                recover();
+            }
+            else{
+                dumpMemory();
             }
         }
     }
