@@ -75,7 +75,7 @@ public class ApexFile implements java.io.Serializable{
         byte[] bytes = new byte[this.fileSize()];
         int j = 0;
         for(ApexBlock b : this.blockList){
-            for(int i = 0; i <= b.bytes.length; i++){
+            for(int i = 0; i < b.bytes.length; i++){
                 bytes[j++] = b.bytes[i];
             }
         }

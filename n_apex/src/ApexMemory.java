@@ -88,6 +88,7 @@ public class ApexMemory implements java.io.Serializable{
         HashSet<ApexBlock> block_list = new HashSet<>(num_blocks);
         int start = 0;
         int end = mega;
+        this.mem_util = this.mem_util += bytes.length;
 
         for (int i = 0; i < num_blocks; i++) {
             ApexBlock b = this.unusedApexBlocks.poll();
@@ -120,10 +121,11 @@ public class ApexMemory implements java.io.Serializable{
         int fileIndex = 0;
         for(ApexFile f : this.currentFileList){
             if(f.filename.equals(name)){
-                cf = f;
+                cf = f; break;
             }
             fileIndex++;
         }
+        this.mem_util = this.mem_util -= cf.fileSize();
         assert !cf.filename.equals("");
         this.deletedFileList.add(cf);
         this.currentFileList.remove(fileIndex);
@@ -321,7 +323,7 @@ public class ApexMemory implements java.io.Serializable{
 
     // Memory Usage percentage
     double memUsage() {
-        return mem_util;
+        return this.mem_util / (4* 1024 * mega);
     }
 
 }

@@ -88,7 +88,9 @@ public class Apex {
 
     private static int getResponse(){
         System.out.print("\n\nEnter the following options :\n1 = create file\n2 = delete file\n3 = read file\n4 = list mount dir files\n5 = list Apex dir files\n6 = list deleted files\n7 = recover deleted file\n8 = flush\noption : ");
-        return input.nextInt();
+        int a = input.nextInt();
+        System.out.println();
+        return a;
     }
     private static void create() throws Exception{
         System.out.println("Enter name of file : ");
@@ -107,6 +109,7 @@ public class Apex {
             dis.readFully(fileData);
             dis.close();
             memory.createFile(name, 0, fileData);
+            System.out.println("Memory Utilization = " + memory.memUsage());
         }
     }
 
