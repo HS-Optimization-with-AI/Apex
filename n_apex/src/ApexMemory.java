@@ -15,7 +15,7 @@ public class ApexMemory implements java.io.Serializable{
     int width;
     int height;
 
-    double mem_util;
+    double mem_util = 0.0;
 
     int lambda, sigma, rho, mu;
 
@@ -85,7 +85,7 @@ public class ApexMemory implements java.io.Serializable{
     void createFile(String filename, int link_factor, byte[] bytes) {
 
         int num_blocks = (int) Math.ceil((double)bytes.length / mega);
-        HashSet<ApexBlock> block_list = new HashSet<>(num_blocks);
+        ArrayList<ApexBlock> block_list = new ArrayList<>(num_blocks);
         int start = 0;
         int end = mega;
         this.mem_util = this.mem_util += bytes.length;
@@ -117,7 +117,7 @@ public class ApexMemory implements java.io.Serializable{
     }
 
     void deleteFile(String name) {
-        ApexFile cf = new ApexFile("", new HashSet<>(), 0, 0);
+        ApexFile cf = new ApexFile("", new ArrayList(), 0, 0);
         int fileIndex = 0;
         for(ApexFile f : this.currentFileList){
             if(f.filename.equals(name)){
@@ -206,7 +206,7 @@ public class ApexMemory implements java.io.Serializable{
     byte[] recoverFile(String name){
         byte[] bytes = new byte[0];
         int num_blocks = 0;
-        for(ApexFile f : this.currentFileList){
+        for(ApexFile f : this.deletedFileList){
             if(f.filename.equals(name)){
                 assert f.fileState == ApexFile.STATE.DELETED;
                 bytes = f.getBytes();

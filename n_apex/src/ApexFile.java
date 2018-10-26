@@ -16,7 +16,7 @@ public class ApexFile implements java.io.Serializable{
     int original_size;
 
     // ApexBlock list
-    HashSet<ApexBlock> blockList ;//= new ArrayList<>();
+    ArrayList<ApexBlock> blockList ;//= new ArrayList<>();
 
     int uf = 0;
 
@@ -35,7 +35,7 @@ public class ApexFile implements java.io.Serializable{
     String filename;
     int byteLen;
 
-    ApexFile(String name, HashSet<ApexBlock> block_list, int lf, int bl){
+    ApexFile(String name, ArrayList<ApexBlock> block_list, int lf, int bl){
 
         this.filename = name;
         this.byteLen = bl;
@@ -75,7 +75,7 @@ public class ApexFile implements java.io.Serializable{
         byte[] bytes = new byte[this.fileSize()];
         int j = 0;
         for(ApexBlock b : this.blockList){
-            for(int i = 0; i < b.bytes.length; i++){
+            for(int i = 0; i < b.size; i++){
                 bytes[j++] = b.bytes[i];
             }
         }

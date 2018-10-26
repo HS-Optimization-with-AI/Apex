@@ -32,7 +32,7 @@ public class Apex {
             String[]entries = mount.list();
             for(String s: entries){
                 File currentFile = new File(mount.getPath(),s);
-                currentFile.delete();
+//                currentFile.delete();
             }
         }
     }
@@ -158,8 +158,7 @@ public class Apex {
             System.out.println("First delete file from mount dir!");
         }
         else{
-            memory.recoverFile(name);
-            byte[] fileData = memory.getFileBytes(name);
+            byte[] fileData = memory.recoverFile(name);
             File file = new File(name);
             DataOutputStream dos = new DataOutputStream(new FileOutputStream(file));
             dos.write(fileData);
