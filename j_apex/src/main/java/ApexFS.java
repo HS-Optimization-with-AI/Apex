@@ -184,11 +184,12 @@ public class ApexFS extends FuseStubFS {
             this.fileState = STATE.USED;
             this.linking_factor = linking_factor;
 //            this.computeSlm();
-            this.uf = 0;
+            this.uf = 1;
             this.original_size = 1;
 
             //Todo : Write FIILENAME ON THIS 1 BLOCK
             b.write(this.name + " " + this.parent.name);
+            // increase block's usage factor
 //            ApexFS.memory.putChar()
         }
         ApexFile(String name, String text) {
@@ -245,37 +246,75 @@ public class ApexFS extends FuseStubFS {
 
         private int read(Pointer buffer, long size, long offset) {
             // change factors of the blocks and the sourrounding blocks too ?
-
+            // ONLY INCREASE USAGE FACTOR OF THE FILE
             long capacity = this.blocklist.size() * CHUNK_SIZE;
             int bytesToRead = (int) Math.min(capacity - offset, size);
 //            byte[] bytesRead = new byte[bytesToRead];
             int maxIdx = (int)size/CHUNK_SIZE;
+            int rem = (int)size - maxIdx*CHUNK_SIZE;
 
             synchronized (this) {
 //                contents.position((int) offset);
 //                contents.get(bytesRead, 0, bytesToRead);
 //                buffer.put(0, bytesRead, 0, bytesToRead);
 //                contents.position(0); // Rewind
-                for(int i = 0; (i < this.blocklist.size()) && (i < maxIdx); i++){
-                    byte[] nb = this.blocklist.get(i).read();
+                int i = 0;
+                for(i = 0; (i < this.blocklist.size()) && (i < maxIdx); i++){
+                    Block b_ = this.blocklist.get(i);
+                    byte[] nb = b_.read();
+//                    b_.increaseUF();
                     buffer.put(offset+i*CHUNK_SIZE, nb, 0, CHUNK_SIZE);
                 }
+
+                //Getting the first 'rem' bytes of next block
+                if (rem > 0){
+                    Block b_ = this.blocklist.get(i);
+                    byte[] nb = b_.read();
+//                    b_.increaseUF();
+                    //get first rem bytes of nb
+                    byte[] nbf = new byte[rem];
+                    for(int k = 0; k < rem; k++) {
+                        nbf[k] = nb[k];
+                    }
+                    buffer.put(offset+i*CHUNK_SIZE, nbf, 0, rem);
+                }
+
+            }
+
+            //Don't increase usage factor of all blocks just the ones which were read
+            // Increase USAGE FACTOR OF ALL BLOCKS BECAUSE file level concept
+            for (Block block: this.blocklist) {
+                block.increaseUF();
             }
 
             return bytesToRead;
         }
 
-        // I'm not exactly sure about it's workings but we need to put the contents in/out the buffer as required
+        // IDK about it's workings but we need to put the contents in/out the buffer as required
         synchronized void truncate(long size) {
+            //TRUNCATE THE file to the requird size
+
             // todo to change the factors here too
-            if (size < contents.capacity()) {
-                // Need to create a new, smaller buffer
-                ByteBuffer newContents = ByteBuffer.allocate((int) size);
-                byte[] bytesRead = new byte[(int) size];
-                contents.get(bytesRead);
-                newContents.put(bytesRead);
-                contents = newContents;
+            long numBlocks = (size/CHUNK_SIZE);
+            int rem = (int)(size - numBlocks*CHUNK_SIZE);
+
+            if (rem == 0){
+                if (numBlocks < this.blocklist.size()){
+
+                }
             }
+            else{ // non zero remainder
+                
+            }
+
+//            if (size < contents.capacity()) {
+//                // Need to create a new, smaller buffer
+//                ByteBuffer newContents = ByteBuffer.allocate((int) size);
+//                byte[] bytesRead = new byte[(int) size];
+//                contents.get(bytesRead);
+//                newContents.put(bytesRead);
+//                contents = newContents;
+//            }
         }
 
         int write(Pointer buffer, long bufSize, long writeOffset) {
@@ -284,8 +323,9 @@ public class ApexFS extends FuseStubFS {
 
             synchronized (this) {
                 long numBlocks = bufSize/CHUNK_SIZE;
-
-                for(long i = 0 ; i < numBlocks; i++){
+                int rem = (int)(bufSize - numBlocks * CHUNK_SIZE);
+                long i;
+                for(i = 0 ; i < numBlocks; i++){
                     //get a block from unused blocks
                     Block b;
                     try{
@@ -304,6 +344,21 @@ public class ApexFS extends FuseStubFS {
                     this.blocklist.add(b);
                     b.allocate(this, this.linking_factor);
                 }
+                if(rem>0){
+                    Block b;
+                    try{
+                        b = ApexFS.unusedBlocks.poll();
+                    }
+                    catch (){
+                        System.out.println("Memory full, no more unused blocks");
+                        return -1;
+                    }
+                    byte[] bytesToWrite = new byte[rem];
+                    buffer.get((i*CHUNK_SIZE), bytesToWrite, 0, rem);
+                    b.write(bytesToWrite);
+                    this.blocklist.add(b);
+                    b.allocate(this, this.linking_factor);
+                }
 //                if (maxWriteIndex > contents.capacity()) {
 //                    // Need to create a new, larger buffer
 //                    ByteBuffer newContents = ByteBuffer.allocate(maxWriteIndex);
@@ -314,6 +369,10 @@ public class ApexFS extends FuseStubFS {
 //                contents.position((int) writeOffset);
 //                contents.put(bytesToWrite);
 //                contents.position(0); // Rewind
+            }
+
+            for (Block block: this.blocklist) {
+                block.increaseUF();
             }
             return (int) bufSize;
         }
