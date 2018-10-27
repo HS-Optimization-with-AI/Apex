@@ -223,7 +223,7 @@ public class ApexFS extends FuseStubFS {
             assert this.blocklist.contains(b);
 
             this.blocklist.remove(b);
-
+            // increasing HF of all the other blocks ?
             for (Block block: this.blocklist){
                 block.increaseHF();
             }
@@ -295,17 +295,47 @@ public class ApexFS extends FuseStubFS {
             //TRUNCATE THE file to the requird size
 
             // todo to change the factors here too
+
+            // 10 orig, trunc to 20, inc usage factor factor of all 10
+            // 10 orig, trunc to 5, inc usage factor of first 5 and inc HF of last 5, and deallocate them
+
+
             long numBlocks = (size/CHUNK_SIZE);
             int rem = (int)(size - numBlocks*CHUNK_SIZE);
+            //ceiling of size/chunk_size
+            long num = rem == 0 ? numBlocks : numBlocks + 1 ;
 
-            if (rem == 0){
-                if (numBlocks < this.blocklist.size()){
-
+            if (num >= this.blocklist.size()){
+                for(Block b: this.blocklist){
+                    b.increaseUF();
                 }
             }
-            else{ // non zero remainder
-                
+            else{
+                int i = 0;
+                for(i = 0; i < num; i++){
+                    Block b_ = this.blocklist.get(i);
+                    b_.increaseUF();
+                }
+                for( ; i < this.blocklist.size(); i++){
+                    Block b_ = this.blocklist.get(i);
+                    b_.setUnused();
+                }
+                // TODO: CALL THE DEALLOCATE BLOCK FUNCTION IN FILE BUT ThAT' does many things
+
             }
+
+            // Write this case
+            if (size == 0){
+
+            }
+//            if (rem == 0){
+//                if (numBlocks < this.blocklist.size()){
+//
+//                }
+//            }
+//            else{ // non zero remainder
+//
+//            }
 
 //            if (size < contents.capacity()) {
 //                // Need to create a new, smaller buffer
@@ -318,7 +348,6 @@ public class ApexFS extends FuseStubFS {
         }
 
         int write(Pointer buffer, long bufSize, long writeOffset) {
-            //todo change the factors, split and write properly into bytes by the Pointer/Memory class..
             int maxWriteIndex = (int) (writeOffset + bufSize);
 
             synchronized (this) {
