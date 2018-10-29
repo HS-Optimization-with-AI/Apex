@@ -297,7 +297,7 @@ public class ApexFS extends FuseStubFS {
             // todo to change the factors here too
 
             // 10 orig, trunc to 20, inc usage factor factor of all 10
-            // 10 orig, trunc to 5, inc usage factor of first 5 and inc HF of last 5, and deallocate them
+            // 10 orig, trunc to 5, inc usage factor of first 5 and inc HF of last 5 (5 times, 1 each time any  block is deleted), and deallocate them
 
 
             long numBlocks = (size/CHUNK_SIZE);
@@ -318,13 +318,14 @@ public class ApexFS extends FuseStubFS {
                 }
                 for( ; i < this.blocklist.size(); i++){
                     Block b_ = this.blocklist.get(i);
-                    b_.setUnused();
+                    this.deleteBlock(b_);
+//                    b_.setUnused();
                 }
-                // TODO: CALL THE DEALLOCATE BLOCK FUNCTION IN FILE BUT ThAT' does many things
+                // Done: CALL THE DEALLOCATE BLOCK FUNCTION IN FILE BUT ThAT' does many things
 
             }
 
-            // Write this case
+            // Write this case ?
             if (size == 0){
 
             }
