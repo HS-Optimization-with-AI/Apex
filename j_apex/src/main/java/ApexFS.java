@@ -22,6 +22,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.PriorityQueue;
 
+import static javafx.application.Platform.exit;
 import static jnr.ffi.Platform.OS.LINUX;
 import static jnr.ffi.Platform.OS.WINDOWS;
 
@@ -191,18 +192,18 @@ public class ApexFS extends FuseStubFS {
             // increase block's usage factor
 //            ApexFS.memory.putChar()
         }
-        ApexFile(String name, String text) {
-            super(name);
-            // todo SPLIT THE TEXT INTO BYTES/ CHUNKS and request and store them in the
-            //  'unused' blocks from the heap
-            // save into bytes by the Pointer/Memory class
-            try {
-                byte[] contentBytes = text.getBytes("UTF-8");
-                contents = ByteBuffer.wrap(contentBytes);
-            } catch (UnsupportedEncodingException e) {
-                // Not going to happen
-            }
-        }
+//        ApexFile(String name, String text) {
+//            super(name);
+//            // todo SPLIT THE TEXT INTO BYTES/ CHUNKS and request and store them in the
+//            //  'unused' blocks from the heap
+//            // save into bytes by the Pointer/Memory class
+//            try {
+//                byte[] contentBytes = text.getBytes("UTF-8");
+//                contents = ByteBuffer.wrap(contentBytes);
+//            } catch (UnsupportedEncodingException e) {
+//                // Not going to happen
+//            }
+//        }
 
         void deleteFile(){
             if(!(this.fileState == STATE.USED)){
@@ -360,7 +361,7 @@ public class ApexFS extends FuseStubFS {
                     try{
                         b = ApexFS.unusedBlocks.poll();
                     }
-                    catch (){
+                    catch (Exception e){
                         System.out.println("Memory full, no more unused blocks");
                         return -1;
                     }
@@ -378,7 +379,7 @@ public class ApexFS extends FuseStubFS {
                     try{
                         b = ApexFS.unusedBlocks.poll();
                     }
-                    catch (){
+                    catch (Exception e){
                         System.out.println("Memory full, no more unused blocks");
                         return -1;
                     }
@@ -521,6 +522,7 @@ public class ApexFS extends FuseStubFS {
             Block b = this.unusedBlocks.poll();
 
             //Compute lf(linking_factor) by fileinfo fi
+            int lf = 0;
             ApexFile af = new ApexFile(path, (ApexDir) parent, b, lf);
 
 //            //num blocks is calculated by the text, but at time of creation there is no text
@@ -842,6 +844,23 @@ public class ApexFS extends FuseStubFS {
     // Memory Usage percentage
     double memUsage() {
         return mem_util;
+    }
+
+    public static void main(String[] args) {
+        ApexFS fs = new ApexFS();
+        try {
+            String path;
+            switch (Platform.getNativePlatform().getOS()) {
+                case WINDOWS:
+                    path = "J:\\";
+                    break;
+                default:
+                    path = "./mountdir";
+            }
+            fs.mount(Paths.get(path), true, true);
+        } finally {
+            fs.umount();
+        }
     }
 
 }
