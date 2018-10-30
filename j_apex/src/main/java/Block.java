@@ -34,7 +34,7 @@ public class Block {
     int blockSize; //This will be the CHUNK size
 
 
-    Block(int size){
+    Block(int i, int size){
         this.blockSize = size;
 
         this.hf = 0; // History Factor
@@ -46,9 +46,12 @@ public class Block {
         this.pf = 0;
         this.parentFile = null ;
 
-        //we'll change mannually i, j after init
-//        this.i = i_;
-//        this.j = j_;
+        this.index = i;
+//        offset = index * blockSize;
+    }
+
+    public long getOffset(){
+        return this.index * this.blockSize;
     }
 
     void write(String str){

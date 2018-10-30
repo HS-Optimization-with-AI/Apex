@@ -157,9 +157,8 @@ public class ApexFS extends FuseStubFS {
         DELETED, // File deleted and blocks can be overwritten
         OBSOLETE; // No blocks allocated, file ignored
     }
-    // this a file
-    final int CHUNK_SIZE = 1; //size of the chunk in number of bytes
 
+    // this a file
     class ApexFile extends ApexPath{
         public
 
@@ -207,7 +206,8 @@ public class ApexFS extends FuseStubFS {
 
         void deleteFile(){
             if(!(this.fileState == STATE.USED)){
-                System.out.println("Trying to Delete an existing or obsolete file!"); exit();
+                System.out.println("Trying to Delete an existing or obsolete file!");
+                exit();
             }
 
             this.fileState = STATE.DELETED;
@@ -298,7 +298,6 @@ public class ApexFS extends FuseStubFS {
 
             // 10 orig, trunc to 20, inc usage factor factor of all 10
             // 10 orig, trunc to 5, inc usage factor of first 5 and inc HF of last 5 (5 times, 1 each time any  block is deleted), and deallocate them
-
 
             long numBlocks = (size/CHUNK_SIZE);
             int rem = (int)(size - numBlocks*CHUNK_SIZE);
@@ -413,8 +412,10 @@ public class ApexFS extends FuseStubFS {
 
     // MEMBERS OF THE FILESYSTEM ITSELF
     //
+    // this a file
+    static int CHUNK_SIZE = 1; //size of the chunk in number of bytes
 
-    ApexDir rootDir = new ApexDir("");
+    static ApexDir rootDir = new ApexDir("");
     static int MAX_PARAM = 9;
     static int MIN_PARAM = 0;
 
@@ -434,11 +435,55 @@ public class ApexFS extends FuseStubFS {
 
     static ByteBuffer memory;
 
+    public void init(int mem_size, int cs){
+        memSize = mem_size;
+        memory = ByteBuffer.allocate(mem_size);
+        mem_util = 0.0;
+        CHUNK_SIZE = cs;
+
+        lambda = 1;
+        sigma = 1;
+        rho = 1;
+        mu = 1;
+
+        int numBlocks = mem_size/CHUNK_SIZE;// hopint it to be integers
+        blocks = new ArrayList<>(numBlocks);
+        //initialize new blocks etc
+        for(int i = 0; i < numBlocks; i++){
+            Block b = new Block(i, CHUNK_SIZE);
+            blocks.add(b);
+        }
+        // offset of each block is index*CHUNK SIZE;
+
+        currentFileList = new ArrayList<>();
+        deletedFileList = new ArrayList<>();
+
+        usedBlocks = new HashSet<>(numBlocks);
+        unusedBlocks = new PriorityQueue<>(numBlocks, new BlockComparator());
+
+        // We could have done this in 1 loop above, but more structure this way
+        for(int i = 0; i < numBlocks; i++){
+            Block b = blocks.get(i);
+            unusedBlocks.add(b);
+        }
+
+        totalCreatedFiles = 0;
+    }
+
     //constructor
-
-
     ApexFS(){
         // make some new files and diretories
+        init(1024, 1);
+//        rootDirectory.add(new MemoryFile("Sample file.txt", "Hello there, feel free to look around.\n"));
+//        rootDirectory.add(new MemoryDirectory("Sample directory"));
+//        MemoryDirectory dirWithFiles = new MemoryDirectory("Directory with files");
+//        rootDirectory.add(dirWithFiles);
+//        dirWithFiles.add(new MemoryFile("hello.txt", "This is some sample text.\n"));
+//        dirWithFiles.add(new MemoryFile("hello again.txt", "This another file with text in it! Oh my!\n"));
+//        MemoryDirectory nestedDirectory = new MemoryDirectory("Sample nested directory");
+//        dirWithFiles.add(nestedDirectory);
+//        nestedDirectory.add(new MemoryFile("So deep.txt", "Man, I'm like, so deep in this here file structure.\n"));
+
     }
 
     @Override
@@ -451,8 +496,7 @@ public class ApexFS extends FuseStubFS {
         if (parent instanceof ApexDir) {
             Block b = this.unusedBlocks.poll();
 
-            //Compute lf by fileinfo
-
+            //Compute lf(linking_factor) by fileinfo fi
             ApexFile af = new ApexFile(path, (ApexDir) parent, b, lf);
 
 //            //num blocks is calculated by the text, but at time of creation there is no text
@@ -531,6 +575,7 @@ public class ApexFS extends FuseStubFS {
         if (!(p instanceof ApexFile)) {
             return -ErrorCodes.EISDIR();
         }
+        // we read the file here and change all the factors, of the blocks inside the APex File's read function
         return ((ApexFile) p).read(buf, size, offset);
     }
 
@@ -545,12 +590,14 @@ public class ApexFS extends FuseStubFS {
         }
         filter.apply(buf, ".", null, 0);
         filter.apply(buf, "..", null, 0);
+        //Don't have to change the factors here
         ((ApexDir) p).read(buf, filter);
         return 0;
     }
 
     @Override
     public int statfs(String path, Statvfs stbuf) {
+        // todo : understand about this function and then proceed
         if (Platform.getNativePlatform().getOS() == WINDOWS) {
             // statfs needs to be implemented on Windows in order to allow for copying
             // data from other devices because winfsp calculates the volume size based
@@ -581,11 +628,16 @@ public class ApexFS extends FuseStubFS {
         p.delete();
         p.rename(newName.substring(newName.lastIndexOf("/")));
         ((ApexDir) newParent).add(p);
+        // We don't have to change the factors here, do we? todo: ask shreshth
         return 0;
     }
 
     @Override
     public int rmdir(String path) {
+
+        // todo : properly implement this function , with changing the factors,
+        // check where exactly, a FILE's delete function is called
+
         ApexPath p = getPath(path);
         if (p == null) {
             return -ErrorCodes.ENOENT();
@@ -606,6 +658,7 @@ public class ApexFS extends FuseStubFS {
         if (!(p instanceof ApexFile)) {
             return -ErrorCodes.EISDIR();
         }
+        // Handles everthing inside
         ((ApexFile) p).truncate(offset);
         return 0;
     }
@@ -622,6 +675,8 @@ public class ApexFS extends FuseStubFS {
 
     @Override
     public int open(String path, FuseFileInfo fi) {
+        // todo : check pourpose of this method ? Maybe not used in MemfS, but elsewhere?
+        // WHY DIDN'T WE OPEN THE FILE ETC HERE? COPY INTO BUFFER ?
         return 0;
     }
 
@@ -634,6 +689,7 @@ public class ApexFS extends FuseStubFS {
         if (!(p instanceof ApexFile)) {
             return -ErrorCodes.EISDIR();
         }
+        // todo: check this but , mostly alloc/ dealloc is taken care of inside this
         return ((ApexFile) p).write(buf, size, offset);
     }
 }
