@@ -406,6 +406,29 @@ public class ApexFS extends FuseStubFS {
             return (int) bufSize;
         }
 
+        double getRecoveryRatio(){
+            assert fileState == STATE.DELETED;
+
+            //current size
+            int cs = this.blocklist.size();
+            if(cs == 0)
+                return 0;
+
+            double rr = 0;
+            switch (linking_factor){
+                case 0: rr = (double)(cs)/((double)(this.original_size)); break;
+                case 10: rr = (cs < this.original_size) ? 0: 1 ;
+            }
+
+            this.uf = 0;
+            for (Block b: this.blocklist){
+                this.uf += b.uf;
+                break;
+            }
+            this.uf = this.uf / this.blocklist.size();
+            return  rr;
+        }
+
     }
 
 //    Memory a = Memory(5);
@@ -415,7 +438,7 @@ public class ApexFS extends FuseStubFS {
     // this a file
     static int CHUNK_SIZE = 1; //size of the chunk in number of bytes
 
-    static ApexDir rootDir = new ApexDir("");
+    static ApexDir rootDir ;
     static int MAX_PARAM = 9;
     static int MIN_PARAM = 0;
 
@@ -473,6 +496,7 @@ public class ApexFS extends FuseStubFS {
     //constructor
     ApexFS(){
         // make some new files and diretories
+        rootDir = new ApexDir("");
         init(1024, 1);
 //        rootDirectory.add(new MemoryFile("Sample file.txt", "Hello there, feel free to look around.\n"));
 //        rootDirectory.add(new MemoryDirectory("Sample directory"));
@@ -692,4 +716,132 @@ public class ApexFS extends FuseStubFS {
         // todo: check this but , mostly alloc/ dealloc is taken care of inside this
         return ((ApexFile) p).write(buf, size, offset);
     }
+    // auxillary functions
+
+    void updateSF() {
+        // neighbouring blocks's pf's avg in sf of this block
+
+        int count = 0;
+        double sum = 0.0;
+
+        int newi = 0;
+        int newj = 0;
+
+        //todo : linearize below function
+//        for (int i = 0; i < width; i++) {
+//            for (int j = 0; j < height; j++) {
+//
+//                sum = 0.0;
+//                count = 0;
+//
+//                for (int t = 0; t < directions.size(); t++) {
+//                    newi = i + directions.get(t).getKey();
+//                    newj = i + directions.get(t).getValue();
+//
+//                    if (newi >= 0 && newi < width && newj >= 0 && newj < height) {
+//                        sum += blocks[newi][newj].pf;
+//                        count++;
+//                    }
+//                }
+//                blocks[j][i].setSF((int) (sum / count));
+//
+//            }
+//        }
+
+    }
+
+    void printMemory() {
+
+        //todo : proper linearization
+        for(int i = 0; i < blocks.size(); i++){
+            Block b = blocks.get(i);
+                if (!b.used) {
+                    System.out.print("(-,");
+                }
+                else{
+                    System.out.print("(" + currentFileList.indexOf(b.parentFile) + ",");
+                }
+                System.out.print(b.hf + "," + b.uf + "," + b.sf + "," + b.lf + ":" + b.pf + ")\t");
+        }
+//        for (int i = 0; i < width; i++) {
+//            for (int j = 0; j < height; j++) {
+//                Block b = blocks[i][j];
+//                if (!b.used) {
+//                    System.out.print("(-,");
+//                }
+//                else{
+//                    System.out.print("(" + currentFileList.indexOf(b.parentFile) + ",");
+//                }
+//                System.out.print(b.hf + "," + b.uf + "," + b.sf + "," + b.lf + ":" + b.pf + ")\t");
+//            }
+//            System.out.println();
+//        }
+
+        System.out.println("Number of current files : " + currentFileList.size());
+        System.out.println("Number of deleted files : " + deletedFileList.size());
+
+        int obsolete = 0;
+        for(ApexFile file : deletedFileList){
+            if (file.fileState == STATE.OBSOLETE){
+                obsolete+=1;
+            }
+        }
+
+        System.out.println("Number of obselete files out of deleted files : " + obsolete);
+        System.out.println("Memory Utilization : " + mem_util);
+        System.out.println("Recovery ratios of the deleted (not obsolete) files : " + (deletedFileList.size() - obsolete));
+        double sumrr = 0;
+        for(int i = 0; i < deletedFileList.size(); i++){
+            System.out.print(deletedFileList.get(i).getRecoveryRatio() + ", ");
+            sumrr += deletedFileList.get(i).getRecoveryRatio();
+        }
+        System.out.println("\nSum of recovery ratios : " + sumrr);
+    }
+
+    void refresh() {
+        updateSF();
+
+        int numBlocks = memSize/CHUNK_SIZE;
+        PriorityQueue<Block> newHeap = new PriorityQueue<>(numBlocks, new BlockComparator());
+
+//        for (int i = 0; i < width; i++) {
+//            for (int j = 0; j < height; j++) {
+//                Block b = blocks[i][j];
+//                b.updatepf(lambda, sigma, rho, mu);
+//                if (b.used == false) {
+//                    newHeap.add(blocks[i][j]);
+//                }
+//            }
+//        }
+        for (int i = 0; i < blocks.size(); i++){
+            Block b = blocks.get(i);
+            b.updatepf(lambda, sigma, rho , mu);
+            if (b.used == false){
+                newHeap.add(b);
+            }
+        }
+        unusedBlocks = newHeap;
+
+        mem_util = ((double) (usedBlocks.size())) * 100 / (numBlocks);
+
+    }
+
+    void updateParams(int lambda, int sigma, int rho, int mu) {
+        assert (lambda <= MAX_PARAM) && (lambda >= MIN_PARAM);
+        assert (sigma <= MAX_PARAM) && (sigma >= MIN_PARAM);
+        assert (rho <= MAX_PARAM) && (rho >= MIN_PARAM);
+        assert (mu <= MAX_PARAM) && (mu >= MIN_PARAM);
+
+        lambda = lambda;
+        sigma = sigma;
+        rho = rho;
+        mu = mu;
+
+    }
+
+    // Memory Usage percentage
+    double memUsage() {
+        return mem_util;
+    }
+
 }
