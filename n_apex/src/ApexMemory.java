@@ -257,12 +257,13 @@ public class ApexMemory implements java.io.Serializable{
             for (int j = 0; j < this.height; j++) {
                 ApexBlock b = this.blocks[i][j];
                 if (!b.used) {
-                    System.out.print("(-,");
+                    System.out.print("-");
                 }
                 else{
-                    System.out.print("(" + this.currentFileList.indexOf(b.parentFile) + ",");
+                    System.out.print(this.currentFileList.indexOf(b.parentFile));
                 }
-                System.out.print(b.hf + "," + b.uf + "," + b.sf + "," + b.lf + ":" + b.pf + ")\t");
+                System.out.print(" ");
+//                System.out.print(b.hf + "," + b.uf + "," + b.sf + "," + b.lf + ":" + b.pf + ")\t");
             }
             System.out.println();
         }
