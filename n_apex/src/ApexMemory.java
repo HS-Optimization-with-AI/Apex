@@ -154,6 +154,15 @@ public class ApexMemory implements java.io.Serializable{
         }
     }
 
+    String[] getCurFiles(){
+        String[] files = new String[this.currentFileList.size()];
+        int i = 0;
+        for (ApexFile f : this.currentFileList){
+            files[i++] = f.filename;
+        }
+        return files;
+    }
+
     void printDelFile(){
         for (ApexFile f : this.deletedFileList){
             if(f.fileState != ApexFile.STATE.OBSOLETE)
@@ -161,11 +170,31 @@ public class ApexMemory implements java.io.Serializable{
         }
     }
 
+    String[] getDelFile(){
+        String[] files = new String[this.deletedFileList.size()];
+        int i = 0;
+        for (ApexFile f : this.deletedFileList){
+            if(f.fileState != ApexFile.STATE.OBSOLETE)
+                files[i++] = f.filename;
+        }
+        return files;
+    }
+
     void printObsFile(){
         for (ApexFile f : this.deletedFileList){
             if(f.fileState == ApexFile.STATE.OBSOLETE)
                 System.out.println(f.filename);
         }
+    }
+
+    String[] getObsFile(){
+        String[] files = new String[this.deletedFileList.size()];
+        int i = 0;
+        for (ApexFile f : this.deletedFileList){
+            if(f.fileState == ApexFile.STATE.OBSOLETE)
+                files[i++] = f.filename;
+        }
+        return files;
     }
 
     boolean checkFile(String name){
@@ -249,6 +278,31 @@ public class ApexMemory implements java.io.Serializable{
             }
         }
 
+    }
+
+    int[][] getMemory() {
+        int[][] mem = new int[this.width][this.height];
+        for (int i = 0; i < this.width; i++) {
+            for (int j = 0; j < this.height; j++) {
+                ApexBlock b = this.blocks[i][j];
+                if (!b.used) {
+                    mem[i][j] = 0;
+                }
+                else{
+                    this.currentFileList.indexOf(b.parentFile);
+                }
+            }
+        }
+        return mem;
+    }
+
+    String[] getLegend() {
+        String[] leg = new String[this.currentFileList.size()];
+        int i = 0;
+        for(ApexFile f : this.deletedFileList){
+            leg[i++] = this.currentFileList.indexOf(f) + ":" + f.filename;
+        }
+        return leg;
     }
 
     void printMemory() {
