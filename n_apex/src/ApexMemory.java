@@ -163,6 +163,15 @@ public class ApexMemory implements java.io.Serializable{
         return files;
     }
 
+    int[] getCurFilesColors(){
+        int[] files = new int[this.currentFileList.size()];
+        int i = 0;
+        for (ApexFile f : this.currentFileList){
+            files[i++] = this.currentFileList.indexOf(f);
+        }
+        return files;
+    }
+
     void printDelFile(){
         for (ApexFile f : this.deletedFileList){
             if(f.fileState != ApexFile.STATE.OBSOLETE)

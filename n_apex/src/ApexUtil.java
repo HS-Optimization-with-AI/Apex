@@ -21,13 +21,13 @@ public class ApexUtil {
     // ApexMemory
     static ApexMemory memory;
 
-    private static void reset(){
+    public static void reset(){
         if (!mount.exists()) {
             mount.mkdir();
         }
     }
 
-    private static void dumpMemory() throws Exception{
+    public static void dumpMemory() throws Exception{
         // Delete old Apex directory
         File oldDir = new File("./ApexDir.ser");
         oldDir.delete();
@@ -39,7 +39,7 @@ public class ApexUtil {
         fos.close();
     }
 
-    private static void loadMemory()throws Exception{
+    public static void loadMemory()throws Exception{
         ApexMemory temp;
         FileInputStream fis = new FileInputStream("./ApexDir.ser");
         ObjectInputStream in = new ObjectInputStream(fis);
@@ -49,7 +49,7 @@ public class ApexUtil {
         memory = temp;
     }
 
-    private static boolean checkFile(String filename){
+    public static boolean checkFile(String filename){
         String[]entries = mount.list();
         for(String s: entries){
             if (filename.equals(mount.getPath() + "\\" + s))
@@ -58,40 +58,44 @@ public class ApexUtil {
         return false;
     }
 
-    private static String[] printFiles(){
+    public static String[] printFiles(){
         System.out.println("Files in Apex Mount Directory : ");
         String[]entries = mount.list();
         return entries;
     }
 
-    private static String[] printMemoryFiles(){
+    public static String[] printMemoryFiles(){
         System.out.println("File in Apex Directory : ");
         return memory.getCurFiles();
     }
 
-    private static int[][] getMem(){
+    public static int[] printMemoryFilesColors(){
+        return memory.getCurFilesColors();
+    }
+
+    public static int[][] getMem(){
         return memory.getMemory();
     }
 
-    private static String[] getLegend() { return  memory.getLegend(); }
+    public static String[] getLegend() { return  memory.getLegend(); }
 
-    private static String[] getDelMemFiles(){
+    public static String[] getDelMemFiles(){
         System.out.println("Recoverable deleted files in Apex Directory : ");
         return memory.getDelFile();
     }
 
-    private static String[] getObsMemFiles(){
+    public static String[] getObsMemFiles(){
         System.out.println("Non recoverable deleted files in Apex Directory : ");
         return memory.getObsFile();
     }
 
-    private static int getResponse(){
+    public static int getResponse(){
         System.out.print("\n\nEnter the following options :\n1 = create file\n2 = delete file\n3 = read file\n4 = list mount dir files\n5 = list Apex dir files\n6 = list deleted files\n7 = recover deleted file\n8 = flush\n9 = print full memory\n10 = exit\noption : ");
         int a = input.nextInt();
         System.out.println();
         return a;
     }
-    private static void create(String path, String name) throws Exception{
+    public static void create(String path, String name) throws Exception{
         if(memory.checkFile(name)) {
             System.out.println("File already in Apex dir!");
         }
@@ -106,7 +110,7 @@ public class ApexUtil {
         }
     }
 
-    private static void delete(String name){
+    public static void delete(String name){
         if(!memory.checkFile(name)){
             System.out.println("No such file in Apex dir!");
         }
@@ -115,7 +119,7 @@ public class ApexUtil {
         }
     }
 
-    private static void read(String path, String name) throws Exception{
+    public static void read(String path, String name) throws Exception{
         if(!memory.checkFile(name)){
             System.out.println("No such file in Apex dir!");
         }
@@ -129,7 +133,7 @@ public class ApexUtil {
         }
     }
 
-    private static void recover(String path, String name) throws Exception{
+    public static void recover(String path, String name) throws Exception{
         if(!memory.checkDelFile(name)){
             System.out.println("No such deleted file in Apex dir!");
         }
@@ -146,6 +150,11 @@ public class ApexUtil {
 
         // Reset Apex mount directory
 //        reset();
+        // Initializing 4GB memory
+        System.out.println("Initialising 4GB contiguous space on disk...\n");
+        memory = new ApexMemory(64  , 64);
+        memory.updateParams(4, 7, 1, 9);
+        System.out.println("Formatting complete.");
     }
 }
 
