@@ -1,5 +1,7 @@
 import java.io.*;
 import java.util.Scanner;
+import java.awt.Desktop;
+import java.io.File;
 
 import static javafx.application.Platform.exit;
 
@@ -73,6 +75,15 @@ public class ApexUtil {
         return memory.getCurFilesColors();
     }
 
+    public static String[] printDeletedFiles(){
+        System.out.println("File in Apex Directory : ");
+        return memory.getDelFile();
+    }
+
+    public static int[] printDeletedFilesColors(){
+        return memory.getDelFilesColors();
+    }
+
     public static int[][] getMem(){
         return memory.getMemory();
     }
@@ -123,14 +134,18 @@ public class ApexUtil {
         if(!memory.checkFile(name)){
             System.out.println("No such file in Apex dir!");
         }
-        else{
+        else {
             memory.readWriteFile(name);
             byte[] fileData = memory.getFileBytes(name);
-            File file = new File(path+name);
+            File file = new File(path + name);
             DataOutputStream dos = new DataOutputStream(new FileOutputStream(file));
             dos.write(fileData);
             dos.close();
         }
+        System.out.println(path+name);
+        Desktop desktop = Desktop.getDesktop();
+        File file = new File(path+name);
+        desktop.open(file);
     }
 
     public static void recover(String path, String name) throws Exception{

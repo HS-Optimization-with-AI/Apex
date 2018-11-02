@@ -1,7 +1,10 @@
 import javafx.util.Pair;
+import jdk.nashorn.internal.ir.Block;
 
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class ApexMemory implements java.io.Serializable{
 
@@ -107,6 +110,7 @@ public class ApexMemory implements java.io.Serializable{
 
         //if enough blocks
         ApexFile f = new ApexFile(filename, block_list, link_factor, bytes.length);
+        f.randIndex = ThreadLocalRandom.current().nextInt(1, 64 + 1);
 
         this.currentFileList.add(f);
 
@@ -125,6 +129,7 @@ public class ApexMemory implements java.io.Serializable{
             }
             fileIndex++;
         }
+        cf.randIndex = -1 * ThreadLocalRandom.current().nextInt(10, 60 + 1);
         this.mem_util = this.mem_util -= cf.fileSize();
         assert !cf.filename.equals("");
         this.deletedFileList.add(cf);
@@ -167,7 +172,7 @@ public class ApexMemory implements java.io.Serializable{
         int[] files = new int[this.currentFileList.size()];
         int i = 0;
         for (ApexFile f : this.currentFileList){
-            files[i++] = this.currentFileList.indexOf(f);
+            files[i++] = f.randIndex;
         }
         return files;
     }
@@ -185,6 +190,16 @@ public class ApexMemory implements java.io.Serializable{
         for (ApexFile f : this.deletedFileList){
             if(f.fileState != ApexFile.STATE.OBSOLETE)
                 files[i++] = f.filename;
+        }
+        return files;
+    }
+
+    int[] getDelFilesColors(){
+        int[] files = new int[this.deletedFileList.size()];
+        int i = 0;
+        for (ApexFile f : this.deletedFileList){
+            if(f.fileState != ApexFile.STATE.OBSOLETE)
+                files[i++] = f.randIndex;
         }
         return files;
     }
@@ -298,8 +313,13 @@ public class ApexMemory implements java.io.Serializable{
                     mem[i][j] = 0;
                 }
                 else{
-                    this.currentFileList.indexOf(b.parentFile);
+                    mem[i][j] = b.parentFile.randIndex;
                 }
+            }
+        }
+        for(ApexFile f : this.deletedFileList){
+            for(ApexBlock b : f.blockList){
+                mem[b.i][b.j] = f.randIndex;
             }
         }
         return mem;
