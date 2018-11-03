@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bdf4e28d-4654-4747-a37a-2810d4846111" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Apex-Utility/Apex_Util.mlapp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Apex-Utility/Apex_Util.mlapp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Apex-Utility/MemHeatmap.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Apex-Utility/MemHeatmap.png" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,7 +15,7 @@
     <session id="882918996">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
+          <entry key="project.closed" value="8" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.4" value="6" />
           <entry key="project.open.time.5" value="2" />
@@ -357,12 +355,18 @@
       <option name="project" value="LOCAL" />
       <updated>1541267174359</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="bug fixed in memory utilization">
+      <created>1541270048889</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1541270048889</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="2575" height="1415" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15864812" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />

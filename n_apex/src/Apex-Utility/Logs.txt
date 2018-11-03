@@ -1,0 +1,119 @@
+a = []
+
+a =
+
+     []
+
+a = [1, 2, 4]
+
+a =
+
+     1     2     4
+
+Apex_Util.dumpMemory
+{The class Apex_Util has no Constant property or Static method named 'dumpMemory'.
+} 
+diary on
+Apex_Util.dumpMemory
+{The class Apex_Util has no Constant property or Static method named 'dumpMemory'.
+} 
+ApexUtil.dumpMemory
+ApexUtil.create
+{No method 'create' with matching signature found for class 'ApexUtil'.
+} 
+ApexUtil.create()
+{No method 'create' with matching signature found for class 'ApexUtil'.
+} 
+[file, path] = uigetfile('*.*', 'Select file to create in Apex Directory');
+          ApexUtil.create(strcat(path, file), file);
+{Java exception occurred:
+java.lang.NullPointerException
+	at ApexUtil.create(ApexUtil.java:110)
+} 
+[Warning: File not found or permission denied] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Apex_Util/startupFcn', 'C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility\Apex_Util.mlapp', 67)" style="font-weight:bold">Apex_Util/startupFcn</a> (<a href="matlab: opentoline('C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility\Apex_Util.mlapp',67,0)">line 67</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('appdesigner.internal.service.AppManagementService/tryCallback', 'C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\runtime\+appdesigner\+internal\+service\AppManagementService.m', 333)" style="font-weight:bold">appdesigner.internal.service.AppManagementService/tryCallback</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\runtime\+appdesigner\+internal\+service\AppManagementService.m',333,0)">line 333</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.apps.AppBase/runStartupFcn', 'C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\runtime\+matlab\+apps\AppBase.m', 24)" style="font-weight:bold">matlab.apps.AppBase/runStartupFcn</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\runtime\+matlab\+apps\AppBase.m',24,0)">line 24</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Apex_Util', 'C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility\Apex_Util.mlapp', 269)" style="font-weight:bold">Apex_Util</a> (<a href="matlab: opentoline('C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility\Apex_Util.mlapp',269,0)">line 269</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('appdesigner.internal.service.AppManagementService/runAppWithTryCatch', 'C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\runtime\+appdesigner\+internal\+service\AppManagementService.m', 161)" style="font-weight:bold">appdesigner.internal.service.AppManagementService/runAppWithTryCatch</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\runtime\+appdesigner\+internal\+service\AppManagementService.m',161,0)">line 161</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('appdesigner.internal.service.AppManagementService/runDesktopApp', 'C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\runtime\+appdesigner\+internal\+service\AppManagementService.m', 89)" style="font-weight:bold">appdesigner.internal.service.AppManagementService/runDesktopApp</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\runtime\+appdesigner\+internal\+service\AppManagementService.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('appdesigner.internal.model.AppModel.runAppHelper', 'C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\+appdesigner\+internal\+model\AppModel.m', 751)" style="font-weight:bold">appdesigner.internal.model.AppModel.runAppHelper</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\+appdesigner\+internal\+model\AppModel.m',751,0)">line 751</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('appdesigner.internal.model.AppModel>@()appdesigner.internal.model.AppModel.runAppHelper(obj,appArguments)', 'C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\+appdesigner\+internal\+model\AppModel.m', 514)" style="font-weight:bold">appdesigner.internal.model.AppModel>@()appdesigner.internal.model.AppModel.runAppHelper(obj,appArguments)</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\+appdesigner\+internal\+model\AppModel.m',514,0)">line 514</a>)] 
+Initialising 4GB contiguous space on disk...
+
+Formatting complete.
+delete('C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility\Logs.txt');
+[Warning: File not found or permission denied] 
+delete('C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility\Logs.txt');
+[Warning: File not found or permission denied] 
+pwd
+
+ans =
+
+    'C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility'
+
+fclose('all')
+
+ans =
+
+     0
+
+delete('C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility\Logs.txt');
+[Warning: File not found or permission denied] 
+Exception "java.lang.ClassNotFoundException: com/intellij/codeInsight/editorActions/FoldingData"while constructing DataFlavor for: application/x-java-jvm-local-objectref; class=com.intellij.codeInsight.editorActions.FoldingData
+Exception "java.lang.ClassNotFoundException: com/intellij/codeInsight/editorActions/FoldingData"while constructing DataFlavor for: application/x-java-jvm-local-objectref; class=com.intellij.codeInsight.editorActions.FoldingData
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Apex_Util/startupFcn', 'C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility\Apex_Util.mlapp', 71)" style="font-weight:bold">Apex_Util/startupFcn</a> (<a href="matlab: opentoline('C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility\Apex_Util.mlapp',71,0)">line 71</a>)
+Java exception occurred:
+java.lang.OutOfMemoryError: Java heap space
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Apex_Util', 'C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility\Apex_Util.mlapp', 268)" style="font-weight:bold">Apex_Util</a> (<a href="matlab: opentoline('C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility\Apex_Util.mlapp',268,0)">line 268</a>)
+            runStartupFcn(app, @startupFcn)
+} 
+delete('C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility\ApexDir.ser')
+[Warning: File 'C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility\ApexDir.ser' not found.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Apex_Util/startupFcn', 'C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility\Apex_Util.mlapp', 38)" style="font-weight:bold">Apex_Util/startupFcn</a> (<a href="matlab: opentoline('C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility\Apex_Util.mlapp',38,0)">line 38</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('appdesigner.internal.service.AppManagementService/tryCallback', 'C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\runtime\+appdesigner\+internal\+service\AppManagementService.m', 333)" style="font-weight:bold">appdesigner.internal.service.AppManagementService/tryCallback</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\runtime\+appdesigner\+internal\+service\AppManagementService.m',333,0)">line 333</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.apps.AppBase/runStartupFcn', 'C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\runtime\+matlab\+apps\AppBase.m', 24)" style="font-weight:bold">matlab.apps.AppBase/runStartupFcn</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\runtime\+matlab\+apps\AppBase.m',24,0)">line 24</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Apex_Util', 'C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility\Apex_Util.mlapp', 269)" style="font-weight:bold">Apex_Util</a> (<a href="matlab: opentoline('C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility\Apex_Util.mlapp',269,0)">line 269</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('appdesigner.internal.service.AppManagementService/runAppWithTryCatch', 'C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\runtime\+appdesigner\+internal\+service\AppManagementService.m', 161)" style="font-weight:bold">appdesigner.internal.service.AppManagementService/runAppWithTryCatch</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\runtime\+appdesigner\+internal\+service\AppManagementService.m',161,0)">line 161</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('appdesigner.internal.service.AppManagementService/runDesktopApp', 'C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\runtime\+appdesigner\+internal\+service\AppManagementService.m', 89)" style="font-weight:bold">appdesigner.internal.service.AppManagementService/runDesktopApp</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\runtime\+appdesigner\+internal\+service\AppManagementService.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('appdesigner.internal.model.AppModel.runAppHelper', 'C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\+appdesigner\+internal\+model\AppModel.m', 751)" style="font-weight:bold">appdesigner.internal.model.AppModel.runAppHelper</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\+appdesigner\+internal\+model\AppModel.m',751,0)">line 751</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('appdesigner.internal.model.AppModel>@()appdesigner.internal.model.AppModel.runAppHelper(obj,appArguments)', 'C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\+appdesigner\+internal\+model\AppModel.m', 514)" style="font-weight:bold">appdesigner.internal.model.AppModel>@()appdesigner.internal.model.AppModel.runAppHelper(obj,appArguments)</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018b\toolbox\matlab\appdesigner\appdesigner\+appdesigner\+internal\+model\AppModel.m',514,0)">line 514</a>)] 
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.control.TextArea/set.Value', 'C:\Program Files\MATLAB\R2018b\toolbox\matlab\uicomponents\uicomponents\+matlab\+ui\+control\TextArea.m', 91)" style="font-weight:bold">matlab.ui.control.TextArea/set.Value</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018b\toolbox\matlab\uicomponents\uicomponents\+matlab\+ui\+control\TextArea.m',91,0)">line 91</a>)
+'Value' must be a character vector, a 1-D cell array of character vectors or a string array.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Apex_Util/startupFcn', 'C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility\Apex_Util.mlapp', 75)" style="font-weight:bold">Apex_Util/startupFcn</a> (<a href="matlab: opentoline('C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility\Apex_Util.mlapp',75,0)">line 75</a>)
+            app.LogsTextArea.Value = app.o.Logs;
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Apex_Util', 'C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility\Apex_Util.mlapp', 269)" style="font-weight:bold">Apex_Util</a> (<a href="matlab: opentoline('C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility\Apex_Util.mlapp',269,0)">line 269</a>)
+            runStartupFcn(app, @startupFcn)
+} 
+File in Apex Directory : 
+File in Apex Directory : 
+File in Apex Directory : 
+File in Apex Directory : 
+File in Apex Directory : 
+path = uigetdir('Select Apex Java Code Directory');
+            cd path;
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('cd')" style="font-weight:bold">cd</a>
+Cannot CD to C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility\path (Name is nonexistent or not a directory).
+} 
+path
+
+path =
+
+    'C:\Users\user\Desktop\Apex\n_apex\out\production\Apex'
+
+pwd
+
+ans =
+
+    'C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility'
+
+cd path
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('cd')" style="font-weight:bold">cd</a>
+Cannot CD to C:\Users\user\Desktop\Apex\n_apex\src\Apex-Utility\path (Name is nonexistent or not a directory).
+} 
+p = uigetdir('Select Apex Java Code Directory');
+cd p
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('cd')" style="font-weight
