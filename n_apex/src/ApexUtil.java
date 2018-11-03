@@ -130,7 +130,7 @@ public class ApexUtil {
             DataInputStream dis = new DataInputStream(new FileInputStream(file));
             dis.readFully(fileData);
             dis.close();
-            updateLogs("Created new file in Apex Dir - path : " + path + ", filename : " + name);
+            updateLogs("Created new file in Apex Dir :\npath : " + path + "\nfilename : " + name);
             memory.createFile(name, 0, fileData);
             updateLogs("Memory Utilization = " + memory.memUsage());
         }
@@ -142,6 +142,7 @@ public class ApexUtil {
         }
         else{
             updateLogs("Deleted file with name : " + name);
+            updateLogs("Memory Utilization = " + memory.memUsage());
             memory.deleteFile(name);
         }
     }
@@ -154,7 +155,7 @@ public class ApexUtil {
             memory.readWriteFile(name);
             byte[] fileData = memory.getFileBytes(name);
             File file = new File(path + name);
-            updateLogs("Reading file : name : " + name + ", to directory : " + path);
+            updateLogs("Reading file :\nname : " + name + "\nto directory : " + path);
             DataOutputStream dos = new DataOutputStream(new FileOutputStream(file));
             dos.write(fileData);
             dos.close();
@@ -171,7 +172,7 @@ public class ApexUtil {
         else{
             byte[] fileData = memory.recoverFile(name);
             File file = new File(path+name);
-            updateLogs("Recovering file : name : " + name + ", to directory : " + path);
+            updateLogs("Recovering file : \nname : " + name + "\nto directory : " + path);
             DataOutputStream dos = new DataOutputStream(new FileOutputStream(file));
             dos.write(fileData);
             dos.close();

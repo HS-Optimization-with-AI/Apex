@@ -411,7 +411,16 @@ public class ApexMemory implements java.io.Serializable{
 
     // Memory Usage percentage
     double memUsage() {
-        return this.mem_util / (4* 1024 * mega);
+        int used = 0;
+        int unused = this.width * this.height;
+        for (int i = 0; i < this.width; i++) {
+            for (int j = 0; j < this.height; j++) {
+                ApexBlock b = this.blocks[i][j];
+                if(b.used)
+                    used ++;
+            }
+        }
+        return 100*((double)used/unused);
     }
 
 }
