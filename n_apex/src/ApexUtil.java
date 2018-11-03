@@ -1,3 +1,5 @@
+import sun.java2d.ScreenUpdateManager;
+
 import java.io.*;
 import java.util.Scanner;
 import java.awt.Desktop;
@@ -23,6 +25,9 @@ public class ApexUtil {
     // ApexMemory
     static ApexMemory memory;
 
+    // Log string
+    static String logs;
+
     public static void reset(){
         if (!mount.exists()) {
             mount.mkdir();
@@ -39,6 +44,15 @@ public class ApexUtil {
         out.writeObject(memory);
         out.close();
         fos.close();
+        updateLogs("Memory dumped to disk");
+    }
+
+    public static void updateLogs(String s){
+        logs = ">> " + s + "\n" + logs;
+    }
+
+    public static String Logs(){
+        return logs;
     }
 
     public static void loadMemory()throws Exception{
@@ -108,7 +122,7 @@ public class ApexUtil {
     }
     public static void create(String path, String name) throws Exception{
         if(memory.checkFile(name)) {
-            System.out.println("File already in Apex dir!");
+            updateLogs("File already in Apex dir!");
         }
         else{
             File file = new File(path);
@@ -116,33 +130,35 @@ public class ApexUtil {
             DataInputStream dis = new DataInputStream(new FileInputStream(file));
             dis.readFully(fileData);
             dis.close();
+            updateLogs("Created new file in Apex Dir - path : " + path + ", filename : " + name);
             memory.createFile(name, 0, fileData);
-            System.out.println("Memory Utilization = " + memory.memUsage());
+            updateLogs("Memory Utilization = " + memory.memUsage());
         }
     }
 
     public static void delete(String name){
         if(!memory.checkFile(name)){
-            System.out.println("No such file in Apex dir!");
+            updateLogs("No such file in Apex dir!");
         }
         else{
+            updateLogs("Deleted file with name : " + name);
             memory.deleteFile(name);
         }
     }
 
     public static void read(String path, String name) throws Exception{
         if(!memory.checkFile(name)){
-            System.out.println("No such file in Apex dir!");
+            updateLogs("No such file in Apex dir!");
         }
         else {
             memory.readWriteFile(name);
             byte[] fileData = memory.getFileBytes(name);
             File file = new File(path + name);
+            updateLogs("Reading file : name : " + name + ", to directory : " + path);
             DataOutputStream dos = new DataOutputStream(new FileOutputStream(file));
             dos.write(fileData);
             dos.close();
         }
-        System.out.println(path+name);
         Desktop desktop = Desktop.getDesktop();
         File file = new File(path+name);
         desktop.open(file);
@@ -150,11 +166,12 @@ public class ApexUtil {
 
     public static void recover(String path, String name) throws Exception{
         if(!memory.checkDelFile(name)){
-            System.out.println("No such deleted file in Apex dir!");
+            updateLogs("No such deleted file in Apex dir!");
         }
         else{
             byte[] fileData = memory.recoverFile(name);
             File file = new File(path+name);
+            updateLogs("Recovering file : name : " + name + ", to directory : " + path);
             DataOutputStream dos = new DataOutputStream(new FileOutputStream(file));
             dos.write(fileData);
             dos.close();
@@ -166,10 +183,11 @@ public class ApexUtil {
         // Reset Apex mount directory
 //        reset();
         // Initializing 4GB memory
-        System.out.println("Initialising 4GB contiguous space on disk...\n");
+        logs = new String();
+        updateLogs("Initialising 4GB contiguous space on disk...");
         memory = new ApexMemory(64  , 64);
         memory.updateParams(4, 7, 1, 9);
-        System.out.println("Formatting complete.");
+        updateLogs("Formatting complete.");
     }
 }
 
