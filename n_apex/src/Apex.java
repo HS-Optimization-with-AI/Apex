@@ -114,7 +114,7 @@ public class Apex {
             DataInputStream dis = new DataInputStream(new FileInputStream(file));
             dis.readFully(fileData);
             dis.close();
-            memory.createFile(name, 0, fileData);
+            memory.createFile(name, 0, fileData, 1);
             System.out.println("Memory Utilization = " + memory.memUsage());
         }
     }
@@ -127,7 +127,7 @@ public class Apex {
             System.out.println("No such file in Apex dir!");
         }
         else{
-            memory.deleteFile(name);
+            memory.deleteFile(name, -10);
         }
     }
 

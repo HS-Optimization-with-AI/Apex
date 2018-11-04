@@ -13,7 +13,7 @@ public class ApexMemory implements java.io.Serializable{
     static int MAX_PARAM = 9;
     static int MIN_PARAM = 0;
 
-    static int mega = 1024 * 1024;
+    static int mega = 1024 * 256;
 
     int width;
     int height;
@@ -85,7 +85,7 @@ public class ApexMemory implements java.io.Serializable{
         this.totalCreatedFiles = 0;
     }
 
-    void createFile(String filename, int link_factor, byte[] bytes) {
+    void createFile(String filename, int link_factor, byte[] bytes, int randInd) {
 
         int num_blocks = (int) Math.ceil((double)bytes.length / mega);
         ArrayList<ApexBlock> block_list = new ArrayList<>(num_blocks);
@@ -110,7 +110,7 @@ public class ApexMemory implements java.io.Serializable{
 
         //if enough blocks
         ApexFile f = new ApexFile(filename, block_list, link_factor, bytes.length);
-        f.randIndex = ThreadLocalRandom.current().nextInt(1, 64 + 1);
+        f.randIndex = randInd;
 
         this.currentFileList.add(f);
 
@@ -120,7 +120,7 @@ public class ApexMemory implements java.io.Serializable{
         this.refresh();
     }
 
-    void deleteFile(String name) {
+    void deleteFile(String name, int newcolor) {
         ApexFile cf = new ApexFile("", new ArrayList(), 0, 0);
         int fileIndex = 0;
         for(ApexFile f : this.currentFileList){
@@ -129,7 +129,7 @@ public class ApexMemory implements java.io.Serializable{
             }
             fileIndex++;
         }
-        cf.randIndex = -1 * ThreadLocalRandom.current().nextInt(10, 60 + 1);
+        cf.randIndex = newcolor;
         this.mem_util = this.mem_util -= cf.fileSize();
         assert !cf.filename.equals("");
         this.deletedFileList.add(cf);

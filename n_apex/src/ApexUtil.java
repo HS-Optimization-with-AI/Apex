@@ -1,9 +1,11 @@
 import sun.java2d.ScreenUpdateManager;
 
+import javax.rmi.CORBA.Stub;
 import java.io.*;
 import java.util.Scanner;
 import java.awt.Desktop;
 import java.io.File;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static javafx.application.Platform.exit;
 
@@ -25,6 +27,9 @@ public class ApexUtil {
     // ApexMemory
     static ApexMemory memory;
 
+    // StubMemory
+    static StubMemory stub;
+
     // Log string
     static String logs;
 
@@ -44,7 +49,20 @@ public class ApexUtil {
         out.writeObject(memory);
         out.close();
         fos.close();
-        updateLogs("Memory dumped to disk");
+        updateLogs("Apex Memory dumped to disk");
+    }
+
+    public static void dumpStubMemory() throws Exception{
+        // Delete old Stub directory
+        File oldDir = new File("./StubDir.ser");
+        oldDir.delete();
+
+        FileOutputStream fos = new FileOutputStream("./StubDir.ser");
+        ObjectOutputStream out = new ObjectOutputStream(fos);
+        out.writeObject(stub);
+        out.close();
+        fos.close();
+        updateLogs("Stub Memory dumped to disk");
     }
 
     public static void updateLogs(String s){
@@ -89,6 +107,10 @@ public class ApexUtil {
         return memory.getCurFilesColors();
     }
 
+    public static int[] printStubFilesColors(){
+        return stub.getCurFilesColors();
+    }
+
     public static String[] printDeletedFiles(){
         System.out.println("File in Apex Directory : ");
         return memory.getDelFile();
@@ -98,9 +120,15 @@ public class ApexUtil {
         return memory.getDelFilesColors();
     }
 
+    public static int[] printDeletedStubFilesColors(){
+        return stub.getDelFilesColors();
+    }
+
     public static int[][] getMem(){
         return memory.getMemory();
     }
+
+    public static int[][] getStub() {return stub.getMemory(); }
 
     public static String[] getLegend() { return  memory.getLegend(); }
 
@@ -125,13 +153,15 @@ public class ApexUtil {
             updateLogs("File already in Apex dir!");
         }
         else{
+            int color = ThreadLocalRandom.current().nextInt(1, 64 + 1);
             File file = new File(path);
             byte[] fileData = new byte[(int) file.length()];
             DataInputStream dis = new DataInputStream(new FileInputStream(file));
             dis.readFully(fileData);
             dis.close();
             updateLogs("Created new file in Apex Dir :\npath : " + path + "\nfilename : " + name);
-            memory.createFile(name, 0, fileData);
+            memory.createFile(name, 0, fileData, color);
+            stub.createFile(name, 0, fileData, color);
             updateLogs("Memory Utilization = " + memory.memUsage());
         }
     }
@@ -141,9 +171,11 @@ public class ApexUtil {
             updateLogs("No such file in Apex dir!");
         }
         else{
+            int color = -1 * ThreadLocalRandom.current().nextInt(10, 60 + 1);
             updateLogs("Deleted file with name : " + name);
             updateLogs("Memory Utilization = " + memory.memUsage());
-            memory.deleteFile(name);
+            memory.deleteFile(name, color);
+            stub.deleteFile(name, color);
         }
     }
 
@@ -165,6 +197,7 @@ public class ApexUtil {
         desktop.open(file);
     }
 
+
     public static void recover(String path, String name) throws Exception{
         if(!memory.checkDelFile(name)){
             updateLogs("No such deleted file in Apex dir!");
@@ -172,7 +205,21 @@ public class ApexUtil {
         else{
             byte[] fileData = memory.recoverFile(name);
             File file = new File(path+name);
-            updateLogs("Recovering file : \nname : " + name + "\nto directory : " + path);
+            updateLogs("Recovering Apex file : \nname : " + name + "\nto directory : " + path);
+            DataOutputStream dos = new DataOutputStream(new FileOutputStream(file));
+            dos.write(fileData);
+            dos.close();
+        }
+    }
+
+    public static void recoverStub(String path, String name) throws Exception{
+        if(!stub.checkDelFile(name)){
+            updateLogs("No such deleted file in Apex dir!");
+        }
+        else{
+            byte[] fileData = stub.recoverFile(name);
+            File file = new File(path+name);
+            updateLogs("Recovering Stub file : \nname : " + name + "\nto directory : " + path);
             DataOutputStream dos = new DataOutputStream(new FileOutputStream(file));
             dos.write(fileData);
             dos.close();
@@ -185,9 +232,11 @@ public class ApexUtil {
 //        reset();
         // Initializing 4GB memory
         logs = new String();
-        updateLogs("Initialising 4GB contiguous space on disk...");
+        updateLogs("Initialising 1GB contiguous space on disk for each File System...");
         memory = new ApexMemory(64  , 64);
+        stub = new StubMemory(64, 64);
         memory.updateParams(4, 7, 1, 9);
+        stub.updateParams(4, 7, 1, 9);
         updateLogs("Formatting complete.");
     }
 }

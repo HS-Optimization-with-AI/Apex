@@ -110,7 +110,7 @@ public class ApexIO {
                 numBlocks = rand.nextInt(FILE_SIZE_LIMIT) + 10; //10;
                 lf = (rand.nextInt(100/PERCENTAGE_LINKED_FILES) > 0) ? 0: 1; //(counter == 0) ? 1 : 0;
                 //counter = (counter +1)%5;
-                ApexMemory.createFile("", lf, new byte[0]);
+                ApexMemory.createFile("", lf, new byte[0], 0);
                 //System.out.println("Action : Create file, Num Blocks : " + numBlocks + ", LF : " + lf);
                 break;
             case 2 :
@@ -122,7 +122,7 @@ public class ApexIO {
             case 3 :
                 a = ACTION.DELETE;
                 fileIndex = rand.nextInt(ApexMemory.currentFileList.size()); //0;
-                ApexMemory.deleteFile("");
+                ApexMemory.deleteFile("", -10);
                 //System.out.println("Action : Delete File");
                 break;
         }

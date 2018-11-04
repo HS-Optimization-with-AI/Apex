@@ -42,7 +42,7 @@ public class ApexBlock implements java.io.Serializable{
         this.pf = 0;
         this.parentFile = null ;
 
-        this.bytes = new byte[1024*1024];
+        this.bytes = new byte[ApexMemory.mega];
 
         //we'll change mannually i, j after init
 //        this.i = i_;
