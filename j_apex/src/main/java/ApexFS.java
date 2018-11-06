@@ -246,7 +246,7 @@ public class ApexFS extends FuseStubFS {
         }
 
         private int read(Pointer buffer, long size, long offset) {
-            // change factors of the blocks and the sourrounding blocks too ?
+            // change factors of the blocks and the surrounding blocks too ?
             // ONLY INCREASE USAGE FACTOR OF THE FILE
             long capacity = this.blocklist.size() * CHUNK_SIZE;
             int bytesToRead = (int) Math.min(capacity - offset, size);
