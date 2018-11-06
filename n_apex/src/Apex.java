@@ -81,6 +81,10 @@ public class Apex {
         memory.printCurFiles();
     }
 
+    private static void printFullMemory(){
+        memory.printMemory();
+    }
+
     private static void printDelMemFiles(){
         System.out.println("Recoverable deleted files in Apex Directory : ");
         memory.printDelFile();
@@ -89,7 +93,7 @@ public class Apex {
     }
 
     private static int getResponse(){
-        System.out.print("\n\nEnter the following options :\n1 = create file\n2 = delete file\n3 = read file\n4 = list mount dir files\n5 = list Apex dir files\n6 = list deleted files\n7 = recover deleted file\n8 = flush\n9 = exit\noption : ");
+        System.out.print("\n\nEnter the following options :\n1 = create file\n2 = delete file\n3 = read file\n4 = list mount dir files\n5 = list Apex dir files\n6 = list deleted files\n7 = recover deleted file\n8 = flush\n9 = print full memory\n10 = exit\noption : ");
         int a = input.nextInt();
         System.out.println();
         return a;
@@ -220,6 +224,9 @@ public class Apex {
             }
             else if(response == 8){
                 dumpMemory();
+            }
+            else if(response == 9){
+                printFullMemory();
             }
             else{
                 exit();

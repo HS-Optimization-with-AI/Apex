@@ -1,7 +1,10 @@
 import javafx.util.Pair;
+import jdk.nashorn.internal.ir.Block;
 
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class ApexMemory implements java.io.Serializable{
 
@@ -107,6 +110,7 @@ public class ApexMemory implements java.io.Serializable{
 
         //if enough blocks
         ApexFile f = new ApexFile(filename, block_list, link_factor, bytes.length);
+        f.randIndex = ThreadLocalRandom.current().nextInt(1, 64 + 1);
 
         this.currentFileList.add(f);
 
@@ -125,6 +129,7 @@ public class ApexMemory implements java.io.Serializable{
             }
             fileIndex++;
         }
+        cf.randIndex = -1 * ThreadLocalRandom.current().nextInt(10, 60 + 1);
         this.mem_util = this.mem_util -= cf.fileSize();
         assert !cf.filename.equals("");
         this.deletedFileList.add(cf);
@@ -154,6 +159,24 @@ public class ApexMemory implements java.io.Serializable{
         }
     }
 
+    String[] getCurFiles(){
+        String[] files = new String[this.currentFileList.size()];
+        int i = 0;
+        for (ApexFile f : this.currentFileList){
+            files[i++] = f.filename;
+        }
+        return files;
+    }
+
+    int[] getCurFilesColors(){
+        int[] files = new int[this.currentFileList.size()];
+        int i = 0;
+        for (ApexFile f : this.currentFileList){
+            files[i++] = f.randIndex;
+        }
+        return files;
+    }
+
     void printDelFile(){
         for (ApexFile f : this.deletedFileList){
             if(f.fileState != ApexFile.STATE.OBSOLETE)
@@ -161,11 +184,41 @@ public class ApexMemory implements java.io.Serializable{
         }
     }
 
+    String[] getDelFile(){
+        String[] files = new String[this.deletedFileList.size()];
+        int i = 0;
+        for (ApexFile f : this.deletedFileList){
+            if(f.fileState != ApexFile.STATE.OBSOLETE)
+                files[i++] = f.filename;
+        }
+        return files;
+    }
+
+    int[] getDelFilesColors(){
+        int[] files = new int[this.deletedFileList.size()];
+        int i = 0;
+        for (ApexFile f : this.deletedFileList){
+            if(f.fileState != ApexFile.STATE.OBSOLETE)
+                files[i++] = f.randIndex;
+        }
+        return files;
+    }
+
     void printObsFile(){
         for (ApexFile f : this.deletedFileList){
             if(f.fileState == ApexFile.STATE.OBSOLETE)
                 System.out.println(f.filename);
         }
+    }
+
+    String[] getObsFile(){
+        String[] files = new String[this.deletedFileList.size()];
+        int i = 0;
+        for (ApexFile f : this.deletedFileList){
+            if(f.fileState == ApexFile.STATE.OBSOLETE)
+                files[i++] = f.filename;
+        }
+        return files;
     }
 
     boolean checkFile(String name){
@@ -251,18 +304,49 @@ public class ApexMemory implements java.io.Serializable{
 
     }
 
+    int[][] getMemory() {
+        int[][] mem = new int[this.width][this.height];
+        for (int i = 0; i < this.width; i++) {
+            for (int j = 0; j < this.height; j++) {
+                ApexBlock b = this.blocks[i][j];
+                if (!b.used) {
+                    mem[i][j] = 0;
+                }
+                else{
+                    mem[i][j] = b.parentFile.randIndex;
+                }
+            }
+        }
+        for(ApexFile f : this.deletedFileList){
+            for(ApexBlock b : f.blockList){
+                mem[b.i][b.j] = f.randIndex;
+            }
+        }
+        return mem;
+    }
+
+    String[] getLegend() {
+        String[] leg = new String[this.currentFileList.size()];
+        int i = 0;
+        for(ApexFile f : this.deletedFileList){
+            leg[i++] = this.currentFileList.indexOf(f) + ":" + f.filename;
+        }
+        return leg;
+    }
+
     void printMemory() {
 
         for (int i = 0; i < this.width; i++) {
             for (int j = 0; j < this.height; j++) {
                 ApexBlock b = this.blocks[i][j];
                 if (!b.used) {
-                    System.out.print("(-,");
+                    System.out.print("-");
                 }
                 else{
-                    System.out.print("(" + this.currentFileList.indexOf(b.parentFile) + ",");
+                    System.out.print(this.currentFileList.indexOf(b.parentFile));
                 }
-                System.out.print(b.hf + "," + b.uf + "," + b.sf + "," + b.lf + ":" + b.pf + ")\t");
+                System.out.print(" ");
+//                System.out.print(b.hf + "," + b.uf + "," + b.sf + "," + b.lf + ":" + b.pf + ")\t");
             }
             System.out.println();
         }
@@ -327,7 +411,16 @@ public class ApexMemory implements java.io.Serializable{
 
     // Memory Usage percentage
     double memUsage() {
-        return this.mem_util / (4* 1024 * mega);
+        int used = 0;
+        int unused = this.width * this.height;
+        for (int i = 0; i < this.width; i++) {
+            for (int j = 0; j < this.height; j++) {
+                ApexBlock b = this.blocks[i][j];
+                if(b.used)
+                    used ++;
+            }
+        }
+        return 100*((double)used/unused);
     }
 
 }

@@ -33,6 +33,7 @@ public class ApexFile implements java.io.Serializable{
     double slm;
 
     String filename;
+    int randIndex;
     int byteLen;
 
     ApexFile(String name, ArrayList<ApexBlock> block_list, int lf, int bl){
