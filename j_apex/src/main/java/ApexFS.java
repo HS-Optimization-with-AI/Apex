@@ -545,7 +545,9 @@ public class ApexFS extends FuseStubFS {
             this.refresh();
 
             //This just adds, file to the directory
+            System.out.println("Create function Line 548");
             ((ApexDir) parent).mkfile(getLastComponent(path));
+            System.out.println("Create function Line 550");
             return 0;
         }
         return -ErrorCodes.ENOENT();
