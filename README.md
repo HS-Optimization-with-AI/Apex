@@ -1,3 +1,6 @@
-<div style="width:50%">![drawing](https://github.com/HS-Optimization-with-AI/Apex/blob/master/n_apex/src/Apex-Utility/APEX%20logo.png)</div>
+<div align="center">
+  <img src="https://www.tensorflow.org/images/tf_logo_transp.png"><br><br>
+</div>
+
 # Apex
 Adaptive Ex-FAT for data recovery optimisation using reinforcement learning .
