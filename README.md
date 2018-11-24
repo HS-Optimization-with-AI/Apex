@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://www.tensorflow.org/images/tf_logo_transp.png"><br><br>
+  <img src="https://github.com/HS-Optimization-with-AI/Apex/blob/master/n_apex/src/Apex-Utility/APEX%20logo.png"><br><br>
 </div>
 
 # Apex
