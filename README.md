@@ -1,6 +1,5 @@
 {:.foo}
-![Alt text](n_apex/git_logo.PNG?raw=true "Title")
-
+![drawing](n_apex/git_logo.PNG)
 .foo {
   text-align: center;
   width: 100px;
