@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56c7735c-edb1-4611-a3e6-91091137485a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ApexFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ApexFS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Block.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/MemoryFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/MemoryFS.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -41,14 +37,39 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ApexFS.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="388" column="43" selection-start-line="388" selection-start-column="43" selection-end-line="388" selection-end-column="43" />
+            <state relative-caret-position="343">
+              <caret line="664" column="11" selection-start-line="664" selection-start-column="10" selection-end-line="664" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2097#4847#0" />
-                <element signature="e#2726#3812#0" />
+                <element signature="e#5590#6198#0" />
+                <element signature="e#6751#7261#0" />
                 <element signature="e#7271#7654#0" />
+                <element signature="e#7663#8170#0" />
+                <element signature="e#8180#10089#0" />
+                <element signature="e#10099#12111#0" />
+                <element signature="e#14599#15247#0" />
+                <element signature="e#18009#19529#0" />
+                <element signature="e#19535#19762#0" />
+                <element signature="e#20220#20221#0" expanded="true" />
+                <element signature="e#20261#20262#0" expanded="true" />
+                <element signature="e#20268#20645#0" />
+                <element signature="e#21146#21662#0" />
+                <element signature="e#21668#22530#0" />
+                <element signature="e#22536#23170#0" />
+                <element signature="e#23176#23617#0" />
+                <element signature="e#23623#23988#0" />
+                <element signature="e#23994#24196#0" />
+                <element signature="e#24202#24445#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/HelloFuse.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-431">
+              <caret line="21" column="51" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -56,8 +77,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/MemoryFS.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="113" column="26" selection-start-line="113" selection-start-column="26" selection-end-line="113" selection-end-column="26" />
+            <state relative-caret-position="109">
+              <caret line="146" selection-start-line="146" selection-end-line="146" />
               <folding>
                 <element signature="class#MemoryDirectory#0;class#MemoryFS#0" />
                 <element signature="class#MemoryPath#0;class#MemoryFS#0" />
@@ -99,7 +120,6 @@
       <find>memSize</find>
       <find>this.</find>
       <find>blockList</find>
-      <find>read</find>
       <find>memory</find>
       <find>this.blocklist</find>
       <find>getxattr</find>
@@ -108,6 +128,11 @@
       <find>create</find>
       <find>write</find>
       <find>this.name</find>
+      <find>System.out.println</find>
+      <find>761</find>
+      <find>760</find>
+      <find>read</find>
+      <find>read func</find>
     </findStrings>
     <replaceStrings>
       <replace>blocklist</replace>
@@ -120,10 +145,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/test/java/MemoryFS.java" />
         <option value="$PROJECT_DIR$/src/main/java/Apex.java" />
         <option value="$PROJECT_DIR$/src/test/java/HelloFuse.java" />
         <option value="$PROJECT_DIR$/src/main/java/Block.java" />
+        <option value="$PROJECT_DIR$/src/test/java/MemoryFS.java" />
         <option value="$PROJECT_DIR$/src/main/java/ApexFS.java" />
       </list>
     </option>
@@ -188,7 +213,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544615020595" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544618176409" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -265,16 +290,15 @@
       <workItem from="1541420254795" duration="4528000" />
       <workItem from="1544053666748" duration="1861000" />
       <workItem from="1544259952927" duration="1806000" />
-      <workItem from="1544612198524" duration="2641000" />
+      <workItem from="1544612198524" duration="5998000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18531000" />
+    <option name="totallyTimeSpent" value="21888000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="44" y="18" width="661" height="750" extended-state="4" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.24077046" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -284,7 +308,7 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32972136" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.38235295" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -347,8 +371,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/MemoryFS.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="113" column="26" selection-start-line="113" selection-start-column="26" selection-end-line="113" selection-end-column="26" />
+        <state relative-caret-position="109">
+          <caret line="146" selection-start-line="146" selection-end-line="146" />
           <folding>
             <element signature="class#MemoryDirectory#0;class#MemoryFS#0" />
             <element signature="class#MemoryPath#0;class#MemoryFS#0" />
@@ -356,15 +380,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/HelloFuse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-431">
+          <caret line="21" column="51" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ApexFS.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="388" column="43" selection-start-line="388" selection-start-column="43" selection-end-line="388" selection-end-column="43" />
+        <state relative-caret-position="343">
+          <caret line="664" column="11" selection-start-line="664" selection-start-column="10" selection-end-line="664" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2097#4847#0" />
-            <element signature="e#2726#3812#0" />
+            <element signature="e#5590#6198#0" />
+            <element signature="e#6751#7261#0" />
             <element signature="e#7271#7654#0" />
+            <element signature="e#7663#8170#0" />
+            <element signature="e#8180#10089#0" />
+            <element signature="e#10099#12111#0" />
+            <element signature="e#14599#15247#0" />
+            <element signature="e#18009#19529#0" />
+            <element signature="e#19535#19762#0" />
+            <element signature="e#20220#20221#0" expanded="true" />
+            <element signature="e#20261#20262#0" expanded="true" />
+            <element signature="e#20268#20645#0" />
+            <element signature="e#21146#21662#0" />
+            <element signature="e#21668#22530#0" />
+            <element signature="e#22536#23170#0" />
+            <element signature="e#23176#23617#0" />
+            <element signature="e#23623#23988#0" />
+            <element signature="e#23994#24196#0" />
+            <element signature="e#24202#24445#0" />
           </folding>
         </state>
       </provider>

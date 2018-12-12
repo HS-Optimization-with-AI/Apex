@@ -144,6 +144,7 @@ public class MemoryFS extends FuseStubFS {
         private int write(Pointer buffer, long bufSize, long writeOffset) {
             int maxWriteIndex = (int) (writeOffset + bufSize);
             byte[] bytesToWrite = new byte[(int) bufSize];
+
             synchronized (this) {
                 if (maxWriteIndex > contents.capacity()) {
                     // Need to create a new, larger buffer

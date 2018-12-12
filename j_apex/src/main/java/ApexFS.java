@@ -102,23 +102,38 @@ public class ApexFS extends FuseStubFS {
         @Override
         ApexPath find(String path) {
             // We don't have to increase usage factors here
+            System.out.println("LINE 106 : " + path);
             if (super.find(path) != null) {
                 return super.find(path);
             }
+
+//            System.out.println("LINE 111 : " + path);
+
             while (path.startsWith("/")) {
                 path = path.substring(1);
             }
+
+            System.out.println("LINE 117 : " + path);
+
+
             synchronized (this) {
                 if (!path.contains("/")) {
+                    // tingting
+                    System.out.println("LINE 122 : " + path);
                     for (ApexPath p : contents) {
+                        System.out.println("LINE 124 : " + p);
+                        System.out.println("LINE 125 : " + p.name);
+
                         if (p.name.equals(path)) {
                             return p;
                         }
                     }
                     return null;
                 }
+
                 String nextName = path.substring(0, path.indexOf("/"));
                 String rest = path.substring(path.indexOf("/"));
+//                System.out.println("LINE 128 -----: " + path + " : " + nextName + " : " + rest);
                 for (ApexPath p : contents) {
                     if (p.name.equals(nextName)) {
                         return p.find(rest);
@@ -366,12 +381,14 @@ public class ApexFS extends FuseStubFS {
             int maxWriteIndex = (int) (writeOffset + bufSize);
             System.out.println("IN WRITE FUNCTION : LINE 366");
 
+
+
             synchronized (this) {
                 long numBlocks = bufSize/CHUNK_SIZE;
                 int rem = (int)(bufSize - numBlocks * CHUNK_SIZE);
                 long i;
                 System.out.println("IN WRITE FUNCTION : LINE 372");
-
+                this.blocklist = new ArrayList<Block>();
 
                 for(i = 0 ; i < numBlocks; i++){
                     //get a block from unused block
@@ -433,6 +450,7 @@ public class ApexFS extends FuseStubFS {
             }
 
             System.out.println("END WRITE FUNCTION : LINE 421 ");
+
 
             return (int) bufSize;
         }
@@ -641,6 +659,18 @@ public class ApexFS extends FuseStubFS {
     @Override
     public int read(String path, Pointer buf, @size_t long size, @off_t long offset, FuseFileInfo fi) {
         ApexPath p = getPath(path);
+        ApexFile returnFile = null;
+
+        System.out.println("LINE 664 : IN READ FUNC " + p.name);
+        for(ApexFile file : this.currentFileList){
+            System.out.println("LINE 664.5 : " + file.name);
+            if(file.name.equals("/" + p.name)){
+                returnFile = file;
+            }
+        }
+        p =  ( returnFile == null ? null :(ApexPath) returnFile) ;
+        System.out.println("LINE 671 : " + p);
+        System.out.println("LINE 672 : " + p.name);
         if (p == null) {
             return -ErrorCodes.ENOENT();
         }
@@ -755,6 +785,19 @@ public class ApexFS extends FuseStubFS {
     @Override
     public int write(String path, Pointer buf, @size_t long size, @off_t long offset, FuseFileInfo fi) {
         ApexPath p = getPath(path);
+        ApexFile returnFile = null;
+
+        System.out.println("LINE 760 : " + p.name);
+        for(ApexFile file : this.currentFileList){
+            System.out.println("LINE 760.5 : " + file.name);
+            if(file.name.equals("/" + p.name)){
+                returnFile = file;
+            }
+        }
+        p =  ( returnFile == null ? null :(ApexPath) returnFile) ;
+        System.out.println("LINE 761 : " + path);
+        System.out.println("LINE 762 : " + p);
+        System.out.println("LINE 763 : " + p.name);
         if (p == null) {
             return -ErrorCodes.ENOENT();
         }
