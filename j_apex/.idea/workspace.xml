@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56c7735c-edb1-4611-a3e6-91091137485a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ApexFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ApexFS.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -23,8 +24,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Block.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="66" column="18" lean-forward="true" selection-start-line="66" selection-start-column="18" selection-end-line="66" selection-end-column="18" />
+            <state relative-caret-position="450">
+              <caret line="65" column="38" selection-start-line="65" selection-start-column="38" selection-end-line="65" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -35,19 +36,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ApexFS.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="406" column="60" selection-start-line="406" selection-start-column="60" selection-end-line="406" selection-end-column="60" />
+            <state relative-caret-position="298">
+              <caret line="646" column="29" selection-start-line="646" selection-start-column="29" selection-end-line="646" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5590#6198#0" />
                 <element signature="e#6751#7261#0" />
                 <element signature="e#7271#7654#0" />
-                <element signature="e#7663#8170#0" />
-                <element signature="e#8180#10089#0" />
                 <element signature="e#10099#12111#0" />
                 <element signature="e#14599#15247#0" />
-                <element signature="e#18009#19529#0" />
-                <element signature="e#19535#19762#0" />
                 <element signature="e#20220#20221#0" expanded="true" />
                 <element signature="e#20261#20262#0" expanded="true" />
                 <element signature="e#20268#20645#0" />
@@ -59,6 +55,15 @@
                 <element signature="e#23994#24196#0" />
                 <element signature="e#24202#24445#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-ffi/2.1.7/fcfbbd43511d5db516c84d49ba1d2983ba84f04b/jnr-ffi-2.1.7-sources.jar!/jnr/ffi/Struct.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="131">
+              <caret line="917" column="29" selection-start-line="917" selection-start-column="29" selection-end-line="917" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -105,35 +110,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>main</find>
-      <find>size</find>
-      <find>size_t</find>
-      <find>.find</find>
-      <find>getPath</find>
-      <find>MemoryFile</find>
-      <find>contents</find>
-      <find>mkfile</find>
-      <find>truncate</find>
       <find>deleteBlock</find>
       <find>memSize</find>
       <find>this.</find>
       <find>blockList</find>
-      <find>memory</find>
       <find>this.blocklist</find>
       <find>getxattr</find>
       <find>getxatt</find>
-      <find>getattr</find>
-      <find>create</find>
       <find>this.name</find>
       <find>System.out.println</find>
       <find>761</find>
       <find>760</find>
       <find>read</find>
-      <find>write</find>
       <find>read func</find>
       <find>maxWriteIndex</find>
       <find>BYTESTO</find>
       <find>BYTESTOWRITE</find>
+      <find>Memory</find>
+      <find>allocate</find>
+      <find>memory</find>
+      <find>Block</find>
+      <find>new Block</find>
+      <find>.allocate</find>
+      <find>BYTEST</find>
+      <find>wri</find>
+      <find>memsize</find>
+      <find>init</find>
+      <find>write</find>
+      <find>create</find>
+      <find>Memor</find>
+      <find>getattr</find>
     </findStrings>
     <replaceStrings>
       <replace>blocklist</replace>
@@ -154,11 +160,11 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="4">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="44" />
-    <option name="y" value="18" />
-    <option name="width" value="661" />
-    <option name="height" value="750" />
+    <option name="y" value="-3" />
+    <option name="width" value="1322" />
+    <option name="height" value="771" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -214,7 +220,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544619346295" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544621935047" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -291,18 +297,18 @@
       <workItem from="1541420254795" duration="4528000" />
       <workItem from="1544053666748" duration="1861000" />
       <workItem from="1544259952927" duration="1806000" />
-      <workItem from="1544612198524" duration="7018000" />
+      <workItem from="1544612198524" duration="9707000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22908000" />
+    <option name="totallyTimeSpent" value="25597000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="44" y="18" width="661" height="750" extended-state="4" />
+    <frame x="44" y="-3" width="1322" height="771" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.24077046" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11682243" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -311,7 +317,7 @@
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32972136" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.38235295" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.37031484" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -321,7 +327,7 @@
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32882884" />
-      <window_info active="true" anchor="bottom" id="Messages" order="12" visible="true" weight="0.32817337" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32817337" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -344,13 +350,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-264">
           <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-ffi/2.1.7/fcfbbd43511d5db516c84d49ba1d2983ba84f04b/jnr-ffi-2.1.7-sources.jar!/jnr/ffi/Struct.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="1288" column="17" selection-start-line="1288" selection-start-column="17" selection-end-line="1288" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -379,10 +378,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-ffi/2.1.7/fcfbbd43511d5db516c84d49ba1d2983ba84f04b/jnr-ffi-2.1.7-sources.jar!/jnr/ffi/Struct.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="917" column="29" selection-start-line="917" selection-start-column="29" selection-end-line="917" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Block.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="66" column="18" lean-forward="true" selection-start-line="66" selection-start-column="18" selection-end-line="66" selection-end-column="18" />
+        <state relative-caret-position="450">
+          <caret line="65" column="38" selection-start-line="65" selection-start-column="38" selection-end-line="65" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -391,19 +397,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ApexFS.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="406" column="60" selection-start-line="406" selection-start-column="60" selection-end-line="406" selection-end-column="60" />
+        <state relative-caret-position="298">
+          <caret line="646" column="29" selection-start-line="646" selection-start-column="29" selection-end-line="646" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5590#6198#0" />
             <element signature="e#6751#7261#0" />
             <element signature="e#7271#7654#0" />
-            <element signature="e#7663#8170#0" />
-            <element signature="e#8180#10089#0" />
             <element signature="e#10099#12111#0" />
             <element signature="e#14599#15247#0" />
-            <element signature="e#18009#19529#0" />
-            <element signature="e#19535#19762#0" />
             <element signature="e#20220#20221#0" expanded="true" />
             <element signature="e#20261#20262#0" expanded="true" />
             <element signature="e#20268#20645#0" />

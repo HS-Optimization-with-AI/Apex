@@ -70,7 +70,7 @@ public class ApexFS extends FuseStubFS {
         }
 
         // This was supposed to be abstract class therefore it's implementation was left right now
-        abstract void getattr(FileStat stat);
+        abstract void getattr(FileStat stat, int size);
 
         void rename(String newName){
             while (newName.startsWith("/")) {
@@ -145,7 +145,7 @@ public class ApexFS extends FuseStubFS {
         }
 
         @Override
-        public void getattr(FileStat stat){
+        public void getattr(FileStat stat, int size){
             // Don't have to increase the usage factor here?
             stat.st_mode.set(FileStat.S_IFDIR | 0777);
             stat.st_uid.set(getContext().uid.get());
@@ -265,15 +265,16 @@ public class ApexFS extends FuseStubFS {
         }
         // IDK yet what exactly is this doing ..
         @Override
-        protected void getattr(FileStat stat) {
+        protected void getattr(FileStat stat, int size_) {
             // todo increase usage, history factor etc if required
             stat.st_mode.set(FileStat.S_IFREG | 0777);
 
             // size might be the Total number of bytes and that can be taken from number of chunks into size of each chunk
-            stat.st_size.set(memSize);
+            stat.st_size.set(size_);
             stat.st_uid.set(getContext().uid.get());
             stat.st_gid.set(getContext().gid.get());
         }
+
 
         private int read(Pointer buffer, long size, long offset) {
             // change factors of the blocks and the surrounding blocks too ?
@@ -619,11 +620,34 @@ public class ApexFS extends FuseStubFS {
     @Override
     public int getattr(String path, FileStat stat) {
         ApexPath p = getPath(path);
-        System.out.println("LINE 582");
+
+        if(p instanceof ApexFile){
+
+            ApexFile returnFile = null;
+
+            System.out.println("LINE 760 : " + p.name);
+            for(ApexFile file : this.currentFileList){
+                System.out.println("LINE 760.5 : " + file.name);
+                if(file.name.equals("/" + p.name)){
+                    returnFile = file;
+                }
+            }
+            p =  ( returnFile == null ? null :(ApexPath) returnFile) ;
+            System.out.println("LINE 761 : " + path);
+            System.out.println("LINE 762 : " + p);
+            System.out.println("LINE 763 : " + p.name);
+            System.out.println("LINE 582");
+            if (p != null) {
+                p.getattr(stat, returnFile.blocklist.size());
+                return 0;
+            }
+        }
+
         if (p != null) {
-            p.getattr(stat);
+            p.getattr(stat, 0);
             return 0;
         }
+
         return -ErrorCodes.ENOENT();
     }
 
