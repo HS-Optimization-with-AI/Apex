@@ -16,6 +16,7 @@ import ru.serce.jnrfuse.struct.Statvfs;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -388,7 +389,6 @@ public class ApexFS extends FuseStubFS {
                 int rem = (int)(bufSize - numBlocks * CHUNK_SIZE);
                 long i;
                 System.out.println("IN WRITE FUNCTION : LINE 372");
-                this.blocklist = new ArrayList<Block>();
 
                 for(i = 0 ; i < numBlocks; i++){
                     //get a block from unused block
@@ -403,6 +403,8 @@ public class ApexFS extends FuseStubFS {
                     }
                     byte[] bytesToWrite = new byte[(int) CHUNK_SIZE];
                     buffer.get((i*CHUNK_SIZE), bytesToWrite, 0, CHUNK_SIZE);
+                    String str  = new String(bytesToWrite, StandardCharsets.UTF_8);
+                    System.out.println("BYTESTOWRITE " + str);
                     System.out.println(this);
                     System.out.println(this.name);
                     System.out.println("Line 389 : " + this.blocklist);
