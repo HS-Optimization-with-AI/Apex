@@ -38,6 +38,22 @@ public class benchmark{
 		System.out.println("Total write time : " + (end - start) + " milliseconds");
 
 
+		// READ TEST
+
+		start = System.currentTimeMillis();
+
+		for(int i = 1; i <= fileNumbers; i++){
+
+			File file = new File(absoluteFilePath + i);
+			FileInputStream fis = new FileInputStream(file);
+			byte[] data = new byte[(int) file.length()];
+			fis.read(data);
+			fis.close();
+		}
+
+		end = System.currentTimeMillis();
+		System.out.println("Total read time : " + (end - start) + " milliseconds");
+
 
 		// DELETE TEST
 
