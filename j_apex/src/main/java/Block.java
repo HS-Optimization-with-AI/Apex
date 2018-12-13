@@ -80,6 +80,9 @@ public class Block {
         //delete the block from parent file
 
         // CHECK THAT IF THE PARENT FILE IS NULL THEN DO NOT DO THE DELETE BLOCK STEP
+        System.out.println("IN BLOCK ALLOCATE");
+        System.out.println(this.parentFile);
+
         if(this.parentFile != null){
             this.parentFile.deleteBlock(this);
         }
@@ -89,6 +92,8 @@ public class Block {
         this.hf = 1;//reset
         this.uf = 1;//reset
         this.lf = link_factor;//binaries or non binaries
+        System.out.println("END BLOCK ALLOCATE");
+
     }
 
     //allocate this block to a file (USED TO UNUSED TRANSITION)

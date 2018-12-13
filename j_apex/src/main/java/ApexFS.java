@@ -16,11 +16,13 @@ import ru.serce.jnrfuse.struct.Statvfs;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.PriorityQueue;
+import java.util.stream.StreamSupport;
 
 import static javafx.application.Platform.exit;
 import static jnr.ffi.Platform.OS.LINUX;
@@ -42,6 +44,8 @@ public class ApexFS extends FuseStubFS {
         }
 
         ApexPath(String name, ApexDir parent){
+            System.out.println("IN APEX PATH CONSTURCTOR");
+            System.out.println("LINE 47 " + name);
             this.name = name;
             this.parent = parent;
         }
@@ -66,7 +70,7 @@ public class ApexFS extends FuseStubFS {
         }
 
         // This was supposed to be abstract class therefore it's implementation was left right now
-        abstract void getattr(FileStat stat);
+        abstract void getattr(FileStat stat, int size);
 
         void rename(String newName){
             while (newName.startsWith("/")) {
@@ -99,23 +103,38 @@ public class ApexFS extends FuseStubFS {
         @Override
         ApexPath find(String path) {
             // We don't have to increase usage factors here
+            System.out.println("LINE 106 : " + path);
             if (super.find(path) != null) {
                 return super.find(path);
             }
+
+//            System.out.println("LINE 111 : " + path);
+
             while (path.startsWith("/")) {
                 path = path.substring(1);
             }
+
+            System.out.println("LINE 117 : " + path);
+
+
             synchronized (this) {
                 if (!path.contains("/")) {
+                    // tingting
+                    System.out.println("LINE 122 : " + path);
                     for (ApexPath p : contents) {
+                        System.out.println("LINE 124 : " + p);
+                        System.out.println("LINE 125 : " + p.name);
+
                         if (p.name.equals(path)) {
                             return p;
                         }
                     }
                     return null;
                 }
+
                 String nextName = path.substring(0, path.indexOf("/"));
                 String rest = path.substring(path.indexOf("/"));
+//                System.out.println("LINE 128 -----: " + path + " : " + nextName + " : " + rest);
                 for (ApexPath p : contents) {
                     if (p.name.equals(nextName)) {
                         return p.find(rest);
@@ -126,7 +145,7 @@ public class ApexFS extends FuseStubFS {
         }
 
         @Override
-        public void getattr(FileStat stat){
+        public void getattr(FileStat stat, int size){
             // Don't have to increase the usage factor here?
             stat.st_mode.set(FileStat.S_IFDIR | 0777);
             stat.st_uid.set(getContext().uid.get());
@@ -177,16 +196,27 @@ public class ApexFS extends FuseStubFS {
         ApexFile(String name){ super(name); }
         ApexFile(String name, ApexDir parent) { super(name, parent); }
         ApexFile(String name, ApexDir parent, Block b, int linking_factor) {
+
             super(name, parent);
+            System.out.println("L--L");
             assert(b.used == false);
             b.allocate(this, linking_factor);
+            System.out.println("Line 187");
+            this.blocklist = new ArrayList<Block>();
+//            System.out.println(this.blocklist);
+
             this.blocklist.add(b);
+            System.out.println("Line 189");
+
             this.fileState = STATE.USED;
             this.linking_factor = linking_factor;
+            System.out.println("Line 190");
+
 //            this.computeSlm();
             this.uf = 1;
             this.original_size = 1;
 
+            System.out.println("Line 194");
             //Todo : Write FIILENAME ON THIS 1 BLOCK
             b.write(this.name + " " + this.parent.name);
             // increase block's usage factor
@@ -235,18 +265,19 @@ public class ApexFS extends FuseStubFS {
         }
         // IDK yet what exactly is this doing ..
         @Override
-        protected void getattr(FileStat stat) {
+        protected void getattr(FileStat stat, int size_) {
             // todo increase usage, history factor etc if required
             stat.st_mode.set(FileStat.S_IFREG | 0777);
 
             // size might be the Total number of bytes and that can be taken from number of chunks into size of each chunk
-            stat.st_size.set(memSize);
+            stat.st_size.set(size_);
             stat.st_uid.set(getContext().uid.get());
             stat.st_gid.set(getContext().gid.get());
         }
 
+
         private int read(Pointer buffer, long size, long offset) {
-            // change factors of the blocks and the sourrounding blocks too ?
+            // change factors of the blocks and the surrounding blocks too ?
             // ONLY INCREASE USAGE FACTOR OF THE FILE
             long capacity = this.blocklist.size() * CHUNK_SIZE;
             int bytesToRead = (int) Math.min(capacity - offset, size);
@@ -350,14 +381,20 @@ public class ApexFS extends FuseStubFS {
 
         int write(Pointer buffer, long bufSize, long writeOffset) {
             int maxWriteIndex = (int) (writeOffset + bufSize);
+            System.out.println("IN WRITE FUNCTION : LINE 366");
+
+
 
             synchronized (this) {
                 long numBlocks = bufSize/CHUNK_SIZE;
                 int rem = (int)(bufSize - numBlocks * CHUNK_SIZE);
                 long i;
+                System.out.println("IN WRITE FUNCTION : LINE 372");
+
                 for(i = 0 ; i < numBlocks; i++){
-                    //get a block from unused blocks
+                    //get a block from unused block
                     Block b;
+                    System.out.println(i);
                     try{
                         b = ApexFS.unusedBlocks.poll();
                     }
@@ -367,13 +404,23 @@ public class ApexFS extends FuseStubFS {
                     }
                     byte[] bytesToWrite = new byte[(int) CHUNK_SIZE];
                     buffer.get((i*CHUNK_SIZE), bytesToWrite, 0, CHUNK_SIZE);
+                    String str  = new String(bytesToWrite, StandardCharsets.UTF_8);
+                    System.out.println("BYTESTOWRITE " + str);
+                    System.out.println(this);
+                    System.out.println(this.name);
+                    System.out.println("Line 389 : " + this.blocklist);
+
                     b.write(bytesToWrite);
 //                    for(int j = 0; j < CHUNK_SIZE; j++){
 //                        b.write();
 //                    }
+                    System.out.println("Line 395");
+
                     this.blocklist.add(b);
                     b.allocate(this, this.linking_factor);
                 }
+                System.out.println("IN WRITE FUNCTION : LINE 391");
+
                 if(rem>0){
                     Block b;
                     try{
@@ -404,6 +451,10 @@ public class ApexFS extends FuseStubFS {
             for (Block block: this.blocklist) {
                 block.increaseUF();
             }
+
+            System.out.println("END WRITE FUNCTION : LINE 421 ");
+
+
             return (int) bufSize;
         }
 
@@ -499,6 +550,7 @@ public class ApexFS extends FuseStubFS {
         // make some new files and diretories
         rootDir = new ApexDir("");
         init(1024, 1);
+        System.out.println("LINE : 502 : INIT FUNCTION COMPLETED ");
 //        rootDirectory.add(new MemoryFile("Sample file.txt", "Hello there, feel free to look around.\n"));
 //        rootDirectory.add(new MemoryDirectory("Sample directory"));
 //        MemoryDirectory dirWithFiles = new MemoryDirectory("Directory with files");
@@ -513,18 +565,28 @@ public class ApexFS extends FuseStubFS {
 
     @Override
     public int create(String path, @mode_t long mode, FuseFileInfo fi) {
+        System.out.println("LINE : 517 : CREATE FUNCTION STARTED");
+
         if (getPath(path) != null) {
             return -ErrorCodes.EEXIST();
         }
+
         ApexPath parent = getParentPath(path);
+
+        System.out.println("LINE : 525: CREATE FUNCTION GOT PARENT");
+
 
         if (parent instanceof ApexDir) {
             Block b = this.unusedBlocks.poll();
 
             //Compute lf(linking_factor) by fileinfo fi
             int lf = 0;
+            System.out.println("Create function Line 533");
             ApexFile af = new ApexFile(path, (ApexDir) parent, b, lf);
+            System.out.println(af);
+            System.out.println(af.name);
 
+            System.out.println("Create function Line 535");
 //            //num blocks is calculated by the text, but at time of creation there is no text
 //            HashSet<Block> block_list = new HashSet<>(num_blocks);
 //
@@ -545,19 +607,47 @@ public class ApexFS extends FuseStubFS {
             this.refresh();
 
             //This just adds, file to the directory
+            System.out.println("Create function Line 548");
             ((ApexDir) parent).mkfile(getLastComponent(path));
+            System.out.println("Create function Line 550");
             return 0;
         }
+        System.out.println("LINE : 556 : CREATE FUNCTION ENDED");
         return -ErrorCodes.ENOENT();
+
     }
 
     @Override
     public int getattr(String path, FileStat stat) {
         ApexPath p = getPath(path);
+
+        if(p instanceof ApexFile){
+
+            ApexFile returnFile = null;
+
+            System.out.println("LINE 760 : " + p.name);
+            for(ApexFile file : this.currentFileList){
+                System.out.println("LINE 760.5 : " + file.name);
+                if(file.name.equals("/" + p.name)){
+                    returnFile = file;
+                }
+            }
+            p =  ( returnFile == null ? null :(ApexPath) returnFile) ;
+            System.out.println("LINE 761 : " + path);
+            System.out.println("LINE 762 : " + p);
+            System.out.println("LINE 763 : " + p.name);
+            System.out.println("LINE 582");
+            if (p != null) {
+                p.getattr(stat, returnFile.blocklist.size());
+                return 0;
+            }
+        }
+
         if (p != null) {
-            p.getattr(stat);
+            p.getattr(stat, 0);
             return 0;
         }
+
         return -ErrorCodes.ENOENT();
     }
 
@@ -595,6 +685,18 @@ public class ApexFS extends FuseStubFS {
     @Override
     public int read(String path, Pointer buf, @size_t long size, @off_t long offset, FuseFileInfo fi) {
         ApexPath p = getPath(path);
+        ApexFile returnFile = null;
+
+        System.out.println("LINE 664 : IN READ FUNC " + p.name);
+        for(ApexFile file : this.currentFileList){
+            System.out.println("LINE 664.5 : " + file.name);
+            if(file.name.equals("/" + p.name)){
+                returnFile = file;
+            }
+        }
+        p =  ( returnFile == null ? null :(ApexPath) returnFile) ;
+        System.out.println("LINE 671 : " + p);
+        System.out.println("LINE 672 : " + p.name);
         if (p == null) {
             return -ErrorCodes.ENOENT();
         }
@@ -709,6 +811,19 @@ public class ApexFS extends FuseStubFS {
     @Override
     public int write(String path, Pointer buf, @size_t long size, @off_t long offset, FuseFileInfo fi) {
         ApexPath p = getPath(path);
+        ApexFile returnFile = null;
+
+        System.out.println("LINE 760 : " + p.name);
+        for(ApexFile file : this.currentFileList){
+            System.out.println("LINE 760.5 : " + file.name);
+            if(file.name.equals("/" + p.name)){
+                returnFile = file;
+            }
+        }
+        p =  ( returnFile == null ? null :(ApexPath) returnFile) ;
+        System.out.println("LINE 761 : " + path);
+        System.out.println("LINE 762 : " + p);
+        System.out.println("LINE 763 : " + p.name);
         if (p == null) {
             return -ErrorCodes.ENOENT();
         }
