@@ -16,12 +16,11 @@
       <change beforePath="$PROJECT_DIR$/../c_apex/log.c" beforeDir="false" afterPath="$PROJECT_DIR$/../c_apex/log.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../c_apex/log.h" beforeDir="false" afterPath="$PROJECT_DIR$/../c_apex/log.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../c_apex/params.h" beforeDir="false" afterPath="$PROJECT_DIR$/../c_apex/params.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.attach_pid5548" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.attach_pid6996" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ApexFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ApexFS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Block.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../n_apex/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../n_apex/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../n_apex/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/.idea/modules.xml" afterDir="false" />
@@ -63,8 +62,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Block.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1387">
-              <caret line="78" column="36" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="60" />
+            <state relative-caret-position="663">
+              <caret line="73" column="26" selection-start-line="73" selection-start-column="19" selection-end-line="73" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -75,8 +74,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ApexFS.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1100">
-              <caret line="589" column="28" selection-start-line="589" selection-start-column="28" selection-end-line="589" selection-end-column="28" />
+            <state relative-caret-position="768">
+              <caret line="583" column="5" lean-forward="true" selection-start-line="583" selection-start-column="5" selection-end-line="583" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -117,9 +116,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>this.</find>
-      <find>blockList</find>
-      <find>this.blocklist</find>
       <find>getxattr</find>
       <find>getxatt</find>
       <find>this.name</find>
@@ -147,6 +143,9 @@
       <find>Memor</find>
       <find>stat</find>
       <find>getattr</find>
+      <find>println</find>
+      <find>updates</find>
+      <find>updatepf</find>
     </findStrings>
     <replaceStrings>
       <replace>blocklist</replace>
@@ -178,19 +177,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="apex" type="b2602c69:ProjectViewProjectNode" />
-              <item name="j_apex" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -320,8 +309,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1887" height="1978" extended-state="4" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20586638" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2080391" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -414,16 +404,6 @@
     <entry file="file://$PROJECT_DIR$/gradlew.bat">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Block.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1387">
-          <caret line="78" column="36" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/benchmark.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
@@ -442,10 +422,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Block.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="73" column="26" selection-start-line="73" selection-start-column="19" selection-end-line="73" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ApexFS.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1100">
-          <caret line="589" column="28" selection-start-line="589" selection-start-column="28" selection-end-line="589" selection-end-column="28" />
+        <state relative-caret-position="768">
+          <caret line="583" column="5" lean-forward="true" selection-start-line="583" selection-start-column="5" selection-end-line="583" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
