@@ -283,7 +283,7 @@ public class ApexFS extends FuseStubFS {
             int bytesToRead = (int) Math.min(capacity - offset, size);
 //            byte[] bytesRead = new byte[bytesToRead];
             int maxIdx = (int)size/CHUNK_SIZE;
-            int rem = (int)size - maxIdx*CHUNK_SIZE;
+            int rem = 0; //(int)size - maxIdx*CHUNK_SIZE;
 
             synchronized (this) {
 //                contents.position((int) offset);

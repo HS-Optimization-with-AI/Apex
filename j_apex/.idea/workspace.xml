@@ -2,8 +2,65 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56c7735c-edb1-4611-a3e6-91091137485a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/../LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../c_apex/Makefile.am" beforeDir="false" afterPath="$PROJECT_DIR$/../c_apex/Makefile.am" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../c_apex/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/../c_apex/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../c_apex/apex.c" beforeDir="false" afterPath="$PROJECT_DIR$/../c_apex/apex.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../c_apex/apexopt.c" beforeDir="false" afterPath="$PROJECT_DIR$/../c_apex/apexopt.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../c_apex/apexopt.h" beforeDir="false" afterPath="$PROJECT_DIR$/../c_apex/apexopt.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../c_apex/apexparams.h" beforeDir="false" afterPath="$PROJECT_DIR$/../c_apex/apexparams.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../c_apex/bbfs.c" beforeDir="false" afterPath="$PROJECT_DIR$/../c_apex/bbfs.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../c_apex/config.h.in" beforeDir="false" afterPath="$PROJECT_DIR$/../c_apex/config.h.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../c_apex/log.c" beforeDir="false" afterPath="$PROJECT_DIR$/../c_apex/log.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../c_apex/log.h" beforeDir="false" afterPath="$PROJECT_DIR$/../c_apex/log.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../c_apex/params.h" beforeDir="false" afterPath="$PROJECT_DIR$/../c_apex/params.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileChanges/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileChanges/last-build.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/vcsWorkingDirs/gc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/vcsWorkingDirs/gc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/j_apex.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/j_apex.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" afterPath="$PROJECT_DIR$/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.buildship.core.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/.settings/org.eclipse.buildship.core.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ApexFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ApexFS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Block.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/benchmark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/benchmark.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/HelloFuse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/HelloFuse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/MemoryFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/MemoryFS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../n_apex/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../n_apex/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../n_apex/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../n_apex/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../n_apex/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../n_apex/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../n_apex/Apex.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/Apex.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../n_apex/src/Apex-Utility/APEX logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/src/Apex-Utility/APEX logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../n_apex/src/Apex-Utility/ApexUtility.prj" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/src/Apex-Utility/ApexUtility.prj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../n_apex/src/Apex-Utility/Apex_Util.mlapp" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/src/Apex-Utility/Apex_Util.mlapp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../n_apex/src/Apex-Utility/Logs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/src/Apex-Utility/Logs.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../n_apex/src/Apex-Utility/MemGen.m" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/src/Apex-Utility/MemGen.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../n_apex/src/Apex-Utility/MemHeatmap.png" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/src/Apex-Utility/MemHeatmap.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../n_apex/src/Apex-Utility/Tmp/sample4.avi" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/src/Apex-Utility/Tmp/sample4.avi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../n_apex/src/Apex.java" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/src/Apex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../n_apex/src/ApexBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/src/ApexBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../n_apex/src/ApexFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/src/ApexFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../n_apex/src/ApexIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/src/ApexIO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../n_apex/src/ApexMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/src/ApexMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../n_apex/src/ApexUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/src/ApexUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../n_apex/src/StubMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/src/StubMemory.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -24,8 +81,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Block.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="65" column="38" selection-start-line="65" selection-start-column="38" selection-end-line="65" selection-end-column="38" />
+            <state relative-caret-position="-8">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -36,65 +93,35 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ApexFS.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="646" column="29" selection-start-line="646" selection-start-column="29" selection-end-line="646" selection-end-column="29" />
+            <state relative-caret-position="624">
+              <caret line="297" column="31" lean-forward="true" selection-start-line="297" selection-start-column="31" selection-end-line="297" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#6751#7261#0" />
-                <element signature="e#7271#7654#0" />
-                <element signature="e#10099#12111#0" />
-                <element signature="e#14599#15247#0" />
-                <element signature="e#20220#20221#0" expanded="true" />
-                <element signature="e#20261#20262#0" expanded="true" />
-                <element signature="e#20268#20645#0" />
-                <element signature="e#21146#21662#0" />
-                <element signature="e#21668#22530#0" />
-                <element signature="e#22536#23170#0" />
-                <element signature="e#23176#23617#0" />
-                <element signature="e#23623#23988#0" />
-                <element signature="e#23994#24196#0" />
-                <element signature="e#24202#24445#0" />
+                <element signature="e#893#2293#0" />
+                <element signature="e#2299#5554#0" />
+                <element signature="e#5560#5739#0" />
+                <element signature="e#12566#12594#0" />
+                <element signature="e#17790#18823#0" />
+                <element signature="e#18829#19797#0" />
+                <element signature="e#19803#21729#0" />
+                <element signature="e#21735#22761#0" />
+                <element signature="e#22767#23063#0" />
+                <element signature="e#23267#23644#0" />
+                <element signature="e#23650#24626#0" />
+                <element signature="e#24632#25148#0" />
+                <element signature="e#25154#26016#0" />
+                <element signature="e#26022#26656#0" />
+                <element signature="e#26662#27103#0" />
+                <element signature="e#27109#27474#0" />
+                <element signature="e#27480#27682#0" />
+                <element signature="e#27688#27931#0" />
+                <element signature="e#27937#28925#0" />
+                <element signature="e#28958#29840#0" />
+                <element signature="e#29846#31793#0" />
+                <element signature="e#31799#32638#0" />
+                <element signature="e#32644#33031#0" />
+                <element signature="e#33124#33581#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-ffi/2.1.7/fcfbbd43511d5db516c84d49ba1d2983ba84f04b/jnr-ffi-2.1.7-sources.jar!/jnr/ffi/Struct.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="917" column="29" selection-start-line="917" selection-start-column="29" selection-end-line="917" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/HelloFuse.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-431">
-              <caret line="21" column="51" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/MemoryFS.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="146" selection-start-line="146" selection-end-line="146" />
-              <folding>
-                <element signature="class#MemoryDirectory#0;class#MemoryFS#0" />
-                <element signature="class#MemoryPath#0;class#MemoryFS#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.serceman/jnr-fuse/0.5.2.1/9eb1e054783f3cc6af8b7bc8396bd4452550bb30/jnr-fuse-0.5.2.1-sources.jar!/ru/serce/jnrfuse/struct/FuseFileInfo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="47" column="22" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -160,18 +187,17 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="44" />
-    <option name="y" value="-3" />
-    <option name="width" value="1322" />
-    <option name="height" value="771" />
+  <component name="ProjectFrameBounds" extendedState="4">
+    <option name="x" value="67" />
+    <option name="y" value="25" />
+    <option name="width" value="1887" />
+    <option name="height" value="1980" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -182,45 +208,41 @@
             <path>
               <item name="apex" type="b2602c69:ProjectViewProjectNode" />
               <item name="j_apex" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="apex" type="b2602c69:ProjectViewProjectNode" />
+              <item name="j_apex" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="apex" type="b2602c69:ProjectViewProjectNode" />
+              <item name="j_apex" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="apex" type="b2602c69:ProjectViewProjectNode" />
               <item name="j_apex" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="apex" type="b2602c69:ProjectViewProjectNode" />
-              <item name="j_apex" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="apex" type="b2602c69:ProjectViewProjectNode" />
-              <item name="j_apex" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="apex" type="b2602c69:ProjectViewProjectNode" />
-              <item name="j_apex" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544621935047" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544772332918" />
+    <property name="external.system.task.project.file.to.start" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -236,6 +258,7 @@
   </component>
   <component name="RunManager" selected="Application.ApexFS">
     <configuration name="ApexFS" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
       <option name="MAIN_CLASS_NAME" value="ApexFS" />
       <module name="apex_main" />
       <method v="2">
@@ -266,16 +289,50 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Unnamed" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="j_apex" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Application.MemoryFS" />
       <item itemvalue="Application.ApexFS" />
-      <item itemvalue="Cucumber java.All Features in: bin" />
+      <item itemvalue="Gradle.Unnamed" />
+      <item itemvalue="Gradle.j_apex" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ApexFS" />
         <item itemvalue="Application.MemoryFS" />
-        <item itemvalue="Cucumber java.All Features in: bin" />
       </list>
     </recent_temporary>
   </component>
@@ -305,10 +362,10 @@
     <option name="totallyTimeSpent" value="25597000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="44" y="-3" width="1322" height="771" extended-state="6" />
+    <frame x="67" y="25" width="1887" height="1980" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11682243" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20152092" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -317,17 +374,17 @@
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32972136" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.37031484" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2481081" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32882884" />
-      <window_info anchor="bottom" id="Build" order="7" weight="0.32882884" />
+      <window_info anchor="bottom" id="Build" order="7" weight="0.23770934" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32882884" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32882884" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.32817337" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.3281081" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -353,16 +410,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.serceman/jnr-fuse/0.5.2.1/9eb1e054783f3cc6af8b7bc8396bd4452550bb30/jnr-fuse-0.5.2.1-sources.jar!/ru/serce/jnrfuse/struct/FuseFileInfo.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-ffi/2.1.7/fcfbbd43511d5db516c84d49ba1d2983ba84f04b/jnr-ffi-2.1.7-sources.jar!/jnr/ffi/Struct.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="47" column="22" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
+        <state relative-caret-position="11760">
+          <caret line="917" column="29" selection-start-line="917" selection-start-column="29" selection-end-line="917" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/HelloFuse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="21" column="51" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/MemoryFS.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
+        <state relative-caret-position="840">
           <caret line="146" selection-start-line="146" selection-end-line="146" />
           <folding>
             <element signature="class#MemoryDirectory#0;class#MemoryFS#0" />
@@ -371,50 +435,76 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/HelloFuse.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.serceman/jnr-fuse/0.5.2.1/9eb1e054783f3cc6af8b7bc8396bd4452550bb30/jnr-fuse-0.5.2.1-sources.jar!/ru/serce/jnrfuse/struct/FuseFileInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-431">
-          <caret line="21" column="51" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
+        <state relative-caret-position="675">
+          <caret line="47" column="22" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-ffi/2.1.7/fcfbbd43511d5db516c84d49ba1d2983ba84f04b/jnr-ffi-2.1.7-sources.jar!/jnr/ffi/Struct.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="917" column="29" selection-start-line="917" selection-start-column="29" selection-end-line="917" selection-end-column="29" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Block.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="65" column="38" selection-start-line="65" selection-start-column="38" selection-end-line="65" selection-end-column="38" />
+        <state relative-caret-position="-8">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/out/production/classes/ApexFS.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4409">
+          <caret line="52" column="16" lean-forward="true" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#26364#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradlew.bat">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ApexFS.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="646" column="29" selection-start-line="646" selection-start-column="29" selection-end-line="646" selection-end-column="29" />
+        <state relative-caret-position="624">
+          <caret line="297" column="31" lean-forward="true" selection-start-line="297" selection-start-column="31" selection-end-line="297" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#6751#7261#0" />
-            <element signature="e#7271#7654#0" />
-            <element signature="e#10099#12111#0" />
-            <element signature="e#14599#15247#0" />
-            <element signature="e#20220#20221#0" expanded="true" />
-            <element signature="e#20261#20262#0" expanded="true" />
-            <element signature="e#20268#20645#0" />
-            <element signature="e#21146#21662#0" />
-            <element signature="e#21668#22530#0" />
-            <element signature="e#22536#23170#0" />
-            <element signature="e#23176#23617#0" />
-            <element signature="e#23623#23988#0" />
-            <element signature="e#23994#24196#0" />
-            <element signature="e#24202#24445#0" />
+            <element signature="e#893#2293#0" />
+            <element signature="e#2299#5554#0" />
+            <element signature="e#5560#5739#0" />
+            <element signature="e#12566#12594#0" />
+            <element signature="e#17790#18823#0" />
+            <element signature="e#18829#19797#0" />
+            <element signature="e#19803#21729#0" />
+            <element signature="e#21735#22761#0" />
+            <element signature="e#22767#23063#0" />
+            <element signature="e#23267#23644#0" />
+            <element signature="e#23650#24626#0" />
+            <element signature="e#24632#25148#0" />
+            <element signature="e#25154#26016#0" />
+            <element signature="e#26022#26656#0" />
+            <element signature="e#26662#27103#0" />
+            <element signature="e#27109#27474#0" />
+            <element signature="e#27480#27682#0" />
+            <element signature="e#27688#27931#0" />
+            <element signature="e#27937#28925#0" />
+            <element signature="e#28958#29840#0" />
+            <element signature="e#29846#31793#0" />
+            <element signature="e#31799#32638#0" />
+            <element signature="e#32644#33031#0" />
+            <element signature="e#33124#33581#0" />
           </folding>
         </state>
       </provider>
