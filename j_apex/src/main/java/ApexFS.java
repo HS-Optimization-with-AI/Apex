@@ -284,7 +284,7 @@ public class ApexFS extends FuseStubFS {
             // change factors of the blocks and the surrounding blocks too ?
             // ONLY INCREASE USAGE FACTOR OF THE FILE
             long capacity = this.blocklist.size() * CHUNK_SIZE;
-            int bytesToRead = (int) Math.min(capacity - offset, 1);
+            int bytesToRead = (int) Math.min(capacity - offset, size);
 
 //            byte[] bytesRead = new byte[bytesToRead];
             int maxIdx = (int)size/CHUNK_SIZE;
@@ -587,7 +587,7 @@ public class ApexFS extends FuseStubFS {
     ApexFS(){
         // make some new files and diretories
         rootDir = new ApexDir("");
-        init(1024, 1);
+        init(1024 * 1024 * 2, 1);
         System.out.println("LINE : 502 : INIT FUNCTION COMPLETED ");
 //        rootDirectory.add(new MemoryFile("Sample file.txt", "Hello there, feel free to look around.\n"));
 //        rootDirectory.add(new MemoryDirectory("Sample directory"));
@@ -676,7 +676,7 @@ public class ApexFS extends FuseStubFS {
             System.out.println("LINE 763 : " + p.name);
             System.out.println("LINE 582");
             if (p != null) {
-                p.getattr(stat, returnFile.blocklist.size());
+                p.getattr(stat, returnFile.blocklist.size() - 2);
                 return 0;
             }
         }
