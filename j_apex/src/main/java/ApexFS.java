@@ -4,6 +4,9 @@ import jnr.ffi.Pointer;
 import jnr.ffi.types.mode_t;
 import jnr.ffi.types.off_t;
 import jnr.ffi.types.size_t;
+import java.nio.charset.Charset;
+import java.io.*;
+import java.nio.*;
 
 import jnr.ffi.Memory;
 
@@ -18,6 +21,7 @@ import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
+import java.rmi.server.ExportException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -276,40 +280,70 @@ public class ApexFS extends FuseStubFS {
         }
 
 
-        private int read(Pointer buffer, long size, long offset) {
+        int read(Pointer buffer, long size, long offset) {
             // change factors of the blocks and the surrounding blocks too ?
             // ONLY INCREASE USAGE FACTOR OF THE FILE
             long capacity = this.blocklist.size() * CHUNK_SIZE;
-            int bytesToRead = (int) Math.min(capacity - offset, size);
+            int bytesToRead = (int) Math.min(capacity - offset, 1);
+
 //            byte[] bytesRead = new byte[bytesToRead];
             int maxIdx = (int)size/CHUNK_SIZE;
             int rem = 0; //(int)size - maxIdx*CHUNK_SIZE;
+            System.out.println("LINE 290 : Reading file");
 
             synchronized (this) {
 //                contents.position((int) offset);
 //                contents.get(bytesRead, 0, bytesToRead);
 //                buffer.put(0, bytesRead, 0, bytesToRead);
 //                contents.position(0); // Rewind
-                int i = 0;
-                for(i = 0; (i < this.blocklist.size()) && (i < maxIdx); i++){
-                    Block b_ = this.blocklist.get(i);
-                    byte[] nb = b_.read();
-//                    b_.increaseUF();
-                    buffer.put(offset+i*CHUNK_SIZE, nb, 0, CHUNK_SIZE);
+                System.out.println("LINE 298 : Reading file with offset = " + offset);
+                System.out.println("Line 299 : " + this.blocklist);
+
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream( );
+
+                for(int i = 1; i < this.blocklist.size(); i++){
+                    Block b_ = this.blocklist.get((int) i);
+                    byte[] bytesRead = new byte[1];
+                    System.out.println("Reading index : " + b_.index);
+                    ApexFS.memory.position(b_.index);
+                    ApexFS.memory.get(bytesRead, 0, 1);
+                    String s = new String(bytesRead, StandardCharsets.UTF_8);
+                    System.out.println(s);
+                    try {
+                        outputStream.write(bytesRead);
+                    }
+                    catch(Exception e){}
+                    ApexFS.memory.position(0);
                 }
 
+                String p = new String(outputStream.toByteArray(), StandardCharsets.UTF_8);
+                System.out.println(p);
+                buffer.put(0, outputStream.toByteArray(), 0, this.blocklist.size() - 1);
+
+                System.out.println("LINE 300 : Reading file");
+//                byte[] nb = b_.read();
+                System.out.println("MEMORY: ");
+                String s = StandardCharsets.UTF_8.decode(ApexFS.memory).toString();
+                System.out.println(s);
+
+//              b_.increaseUF();
+//                buffer.put(offset+i*CHUNK_SIZE, nb, 0, CHUNK_SIZE);
+
+
+
+
                 //Getting the first 'rem' bytes of next block
-                if (rem > 0){
-                    Block b_ = this.blocklist.get(i);
-                    byte[] nb = b_.read();
-//                    b_.increaseUF();
-                    //get first rem bytes of nb
-                    byte[] nbf = new byte[rem];
-                    for(int k = 0; k < rem; k++) {
-                        nbf[k] = nb[k];
-                    }
-                    buffer.put(offset+i*CHUNK_SIZE, nbf, 0, rem);
-                }
+//                if (rem > 0){
+//                    Block b_ = this.blocklist.get(i);
+//                    byte[] nb = b_.read();
+////                    b_.increaseUF();
+//                    //get first rem bytes of nb
+//                    byte[] nbf = new byte[rem];
+//                    for(int k = 0; k < rem; k++) {
+//                        nbf[k] = nb[k];
+//                    }
+//                    buffer.put(offset+i*CHUNK_SIZE, nbf, 0, rem);
+//                }
 
             }
 
@@ -405,6 +439,7 @@ public class ApexFS extends FuseStubFS {
                     byte[] bytesToWrite = new byte[(int) CHUNK_SIZE];
                     buffer.get((i*CHUNK_SIZE), bytesToWrite, 0, CHUNK_SIZE);
                     String str  = new String(bytesToWrite, StandardCharsets.UTF_8);
+                    System.out.println("Index  : " + b.index);
                     System.out.println("BYTESTOWRITE " + str);
                     System.out.println(this);
                     System.out.println(this.name);
@@ -454,6 +489,9 @@ public class ApexFS extends FuseStubFS {
 
             System.out.println("END WRITE FUNCTION : LINE 421 ");
 
+            System.out.println("MEMORY: ");
+            String s = StandardCharsets.UTF_8.decode(ApexFS.memory).toString();
+            System.out.println(s);
 
             return (int) bufSize;
         }
@@ -508,7 +546,7 @@ public class ApexFS extends FuseStubFS {
 //    ArrayList<Pair<Integer, Integer>> directions = new ArrayList<Pair<Integer, Integer>>(8);
     static int totalCreatedFiles;
 
-    static ByteBuffer memory;
+    public static ByteBuffer memory;
 
     public void init(int mem_size, int cs){
         memSize = mem_size;
@@ -683,7 +721,7 @@ public class ApexFS extends FuseStubFS {
     }
 
     @Override
-    public int read(String path, Pointer buf, @size_t long size, @off_t long offset, FuseFileInfo fi) {
+    public int read(String path, Pointer buf, @size_t long size, @off_t long offset, FuseFileInfo fi)  {
         ApexPath p = getPath(path);
         ApexFile returnFile = null;
 

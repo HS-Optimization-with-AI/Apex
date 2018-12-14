@@ -16,30 +16,9 @@
       <change beforePath="$PROJECT_DIR$/../c_apex/log.c" beforeDir="false" afterPath="$PROJECT_DIR$/../c_apex/log.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../c_apex/log.h" beforeDir="false" afterPath="$PROJECT_DIR$/../c_apex/log.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../c_apex/params.h" beforeDir="false" afterPath="$PROJECT_DIR$/../c_apex/params.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileChanges/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileChanges/last-build.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/vcsWorkingDirs/gc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/vcsWorkingDirs/gc.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/j_apex.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/j_apex.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" afterPath="$PROJECT_DIR$/.project" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.buildship.core.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/.settings/org.eclipse.buildship.core.prefs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ApexFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ApexFS.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Block.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/benchmark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/benchmark.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/HelloFuse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/HelloFuse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/MemoryFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/MemoryFS.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../n_apex/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../n_apex/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../n_apex/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../n_apex/.idea/modules.xml" afterDir="false" />
@@ -81,8 +60,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Block.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="29" selection-start-line="29" selection-end-line="29" />
+            <state relative-caret-position="589">
+              <caret line="78" column="36" lean-forward="true" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -93,34 +72,23 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ApexFS.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="624">
-              <caret line="297" column="31" lean-forward="true" selection-start-line="297" selection-start-column="31" selection-end-line="297" selection-end-column="50" />
+            <state relative-caret-position="529">
+              <caret line="320" column="58" lean-forward="true" selection-start-line="320" selection-start-column="58" selection-end-line="320" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#893#2293#0" />
-                <element signature="e#2299#5554#0" />
-                <element signature="e#5560#5739#0" />
-                <element signature="e#12566#12594#0" />
-                <element signature="e#17790#18823#0" />
-                <element signature="e#18829#19797#0" />
-                <element signature="e#19803#21729#0" />
-                <element signature="e#21735#22761#0" />
-                <element signature="e#22767#23063#0" />
-                <element signature="e#23267#23644#0" />
-                <element signature="e#23650#24626#0" />
-                <element signature="e#24632#25148#0" />
-                <element signature="e#25154#26016#0" />
-                <element signature="e#26022#26656#0" />
-                <element signature="e#26662#27103#0" />
-                <element signature="e#27109#27474#0" />
-                <element signature="e#27480#27682#0" />
-                <element signature="e#27688#27931#0" />
-                <element signature="e#27937#28925#0" />
-                <element signature="e#28958#29840#0" />
-                <element signature="e#29846#31793#0" />
-                <element signature="e#31799#32638#0" />
-                <element signature="e#32644#33031#0" />
-                <element signature="e#33124#33581#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/MemoryFS.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="380">
+              <caret line="122" column="12" lean-forward="true" selection-start-line="122" selection-start-column="12" selection-end-line="122" selection-end-column="53" />
+              <folding>
+                <element signature="class#MemoryDirectory#0;class#MemoryFS#0" />
+                <element signature="class#MemoryPath#0;class#MemoryFS#0" />
               </folding>
             </state>
           </provider>
@@ -137,7 +105,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>deleteBlock</find>
       <find>memSize</find>
       <find>this.</find>
       <find>blockList</find>
@@ -153,7 +120,6 @@
       <find>maxWriteIndex</find>
       <find>BYTESTO</find>
       <find>BYTESTOWRITE</find>
-      <find>Memory</find>
       <find>allocate</find>
       <find>memory</find>
       <find>Block</find>
@@ -165,8 +131,10 @@
       <find>init</find>
       <find>write</find>
       <find>create</find>
-      <find>Memor</find>
       <find>getattr</find>
+      <find>Memo</find>
+      <find>Memory</find>
+      <find>Memor</find>
     </findStrings>
     <replaceStrings>
       <replace>blocklist</replace>
@@ -181,8 +149,8 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/java/Apex.java" />
         <option value="$PROJECT_DIR$/src/test/java/HelloFuse.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Block.java" />
         <option value="$PROJECT_DIR$/src/test/java/MemoryFS.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Block.java" />
         <option value="$PROJECT_DIR$/src/main/java/ApexFS.java" />
       </list>
     </option>
@@ -191,7 +159,7 @@
     <option name="x" value="67" />
     <option name="y" value="25" />
     <option name="width" value="1887" />
-    <option name="height" value="1980" />
+    <option name="height" value="1978" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -228,18 +196,44 @@
               <item name="j_apex" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="apex" type="b2602c69:ProjectViewProjectNode" />
+              <item name="j_apex" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="apex" type="b2602c69:ProjectViewProjectNode" />
+              <item name="j_apex" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="apex" type="b2602c69:ProjectViewProjectNode" />
+              <item name="j_apex" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="apex" type="b2602c69:ProjectViewProjectNode" />
+              <item name="j_apex" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544772332918" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544778485635" />
     <property name="external.system.task.project.file.to.start" value="$PROJECT_DIR$" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
@@ -362,10 +356,10 @@
     <option name="totallyTimeSpent" value="25597000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1887" height="1980" extended-state="4" />
+    <frame x="67" y="25" width="1887" height="1978" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20152092" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20369364" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -374,7 +368,7 @@
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32972136" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2481081" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2478355" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -384,23 +378,27 @@
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32882884" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.3281081" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32792208" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Database" order="5" />
-      <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info anchor="right" id="Gradle" order="7" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
-      <window_info anchor="right" id="Theme Preview" order="9" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="1" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="2" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="Maven Projects" order="5" />
+      <window_info anchor="right" id="Gradle" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Ant Build" order="9" weight="0.14720261" />
       <window_info anchor="right" id="Maven" order="10" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-ffi/2.1.7/fcfbbd43511d5db516c84d49ba1d2983ba84f04b/jnr-ffi-2.1.7-sources.jar!/jnr/ffi/Memory.java">
@@ -424,17 +422,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/MemoryFS.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="146" selection-start-line="146" selection-end-line="146" />
-          <folding>
-            <element signature="class#MemoryDirectory#0;class#MemoryFS#0" />
-            <element signature="class#MemoryPath#0;class#MemoryFS#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.serceman/jnr-fuse/0.5.2.1/9eb1e054783f3cc6af8b7bc8396bd4452550bb30/jnr-fuse-0.5.2.1-sources.jar!/ru/serce/jnrfuse/struct/FuseFileInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="675">
@@ -444,16 +431,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/settings.gradle">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Block.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/out/production/classes/ApexFS.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -475,36 +452,33 @@
     <entry file="file://$PROJECT_DIR$/gradlew.bat">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ApexFS.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Block.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="297" column="31" lean-forward="true" selection-start-line="297" selection-start-column="31" selection-end-line="297" selection-end-column="50" />
+        <state relative-caret-position="589">
+          <caret line="78" column="36" lean-forward="true" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="60" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#893#2293#0" />
-            <element signature="e#2299#5554#0" />
-            <element signature="e#5560#5739#0" />
-            <element signature="e#12566#12594#0" />
-            <element signature="e#17790#18823#0" />
-            <element signature="e#18829#19797#0" />
-            <element signature="e#19803#21729#0" />
-            <element signature="e#21735#22761#0" />
-            <element signature="e#22767#23063#0" />
-            <element signature="e#23267#23644#0" />
-            <element signature="e#23650#24626#0" />
-            <element signature="e#24632#25148#0" />
-            <element signature="e#25154#26016#0" />
-            <element signature="e#26022#26656#0" />
-            <element signature="e#26662#27103#0" />
-            <element signature="e#27109#27474#0" />
-            <element signature="e#27480#27682#0" />
-            <element signature="e#27688#27931#0" />
-            <element signature="e#27937#28925#0" />
-            <element signature="e#28958#29840#0" />
-            <element signature="e#29846#31793#0" />
-            <element signature="e#31799#32638#0" />
-            <element signature="e#32644#33031#0" />
-            <element signature="e#33124#33581#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/MemoryFS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="122" column="12" lean-forward="true" selection-start-line="122" selection-start-column="12" selection-end-line="122" selection-end-column="53" />
+          <folding>
+            <element signature="class#MemoryDirectory#0;class#MemoryFS#0" />
+            <element signature="class#MemoryPath#0;class#MemoryFS#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ApexFS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="320" column="58" lean-forward="true" selection-start-line="320" selection-start-column="58" selection-end-line="320" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
