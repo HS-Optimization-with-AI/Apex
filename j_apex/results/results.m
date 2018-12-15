@@ -84,13 +84,13 @@ disp(stub_err(:,:));
 for p=1:3
     figure
     for i=1:3
-        s(i) = subplot(1, 3, i)
-        ax = gca
-        ax.XTick = [1 2]
-        ax.FontSize = 16
+        s(i) = subplot(1, 3, i);
+        ax = gca;
+        ax.XTick = [1 2];
+        ax.FontSize = 16;
         hold on
-        b1 = bar([0, stub_fps(p, i)], 0.5, 'FaceColor', [0.502 0.502 0.502])
-        b2 = bar([apex_fps(p, i), 0], 0.5, 'FaceColor', [0.85 0.33 0.01])
+        b1 = bar([0, stub_fps(p, i)], 0.5, 'FaceColor', [0.502 0.502 0.502]);
+        b2 = bar([apex_fps(p, i), 0], 0.5, 'FaceColor', [0.85 0.33 0.01]);
         errorbar([apex_fps(p, i), stub_fps(p, i)],[apex_err(p, i), stub_err(p, i)] ,'.', 'Color', [0 0 0], 'LineWidth', 1.5)
         set(gca, 'xticklabel', {'Apex', 'Base'});
         title(names(i))
