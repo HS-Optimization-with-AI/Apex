@@ -83,10 +83,13 @@ disp(apex_err(:,:));
 disp(stub_err(:,:));
 
 
-figure
-hold on
-bar(1:2,[apex_fps(1, 1), stub_fps(1, 1)])
-errorbar([apex_fps(1, 1), stub_fps(1, 1)],[apex_err(1, 1), stub_err(1, 1)] ,'.')
+for i=1:3
+    figure
+    hold on
+    bar([apex_fps(1, i), stub_fps(1, i)])
+    errorbar([apex_fps(1, i), stub_fps(1, i)],[apex_err(1, i), stub_err(1, i)] ,'.')
+    set(gca, 'xticklabel', {'Apex', 'Base'});
+end
 
 
 
