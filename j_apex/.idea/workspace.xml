@@ -91,7 +91,6 @@
       <find>System.out.println</find>
       <find>761</find>
       <find>760</find>
-      <find>read</find>
       <find>read func</find>
       <find>maxWriteIndex</find>
       <find>BYTESTO</find>
@@ -299,12 +298,12 @@
       <workItem from="1541420254795" duration="4528000" />
       <workItem from="1544053666748" duration="1861000" />
       <workItem from="1544259952927" duration="1806000" />
-      <workItem from="1544612198524" duration="9707000" />
+      <workItem from="1544612198524" duration="10652000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25597000" />
+    <option name="totallyTimeSpent" value="26542000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1887" height="1978" extended-state="4" />
