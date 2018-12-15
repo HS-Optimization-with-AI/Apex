@@ -1,12 +1,11 @@
 close all;
 clear all;
 
-f2 = fopen('./test-results/0.12-0.08(1-4)/8.1', 'rt');
-
 apex = zeros(3, 10, 3, 'double');
 stub = zeros(3, 10, 3, 'double');
 
 list = [2, 10, 100];
+names = {'Write', 'Read', 'Delete'};
 temp = '';
 
 for i = 1:3
@@ -18,7 +17,7 @@ for i = 1:3
     full_file = zeros(10, 3, 'double');
     
     for j = 1:10      
-        while(contains(temp, "Total write") == 0)
+        while(contains(temp, 'Total write') == 0)
             temp = fgetl(f1);
         end
         a = strsplit((temp), ' ');
@@ -45,7 +44,7 @@ for i = 1:3
     full_file = zeros(10, 3, 'double');
     
     for j = 1:10      
-        while(contains(temp, "Total write") == 0)
+        while(contains(temp, 'Total write') == 0)
             temp = fgetl(f1);
         end
         a = strsplit((temp), ' ');
@@ -82,15 +81,21 @@ disp(stub_fps(:,:));
 disp(apex_err(:,:));
 disp(stub_err(:,:));
 
-
+figure
 for i=1:3
-    figure
+    s(i) = subplot(1, 3, i)
+    ax = gca
+    ax.XTick = [1 2]
+    ax.FontSize = 16
     hold on
-    bar([apex_fps(1, i), stub_fps(1, i)])
-    errorbar([apex_fps(1, i), stub_fps(1, i)],[apex_err(1, i), stub_err(1, i)] ,'.')
+    b1 = bar([0, stub_fps(3, i)], 0.5, 'FaceColor', [0.502 0.502 0.502])
+    b2 = bar([apex_fps(3, i), 0], 0.5, 'FaceColor', [0.85 0.33 0.01])
+    errorbar([apex_fps(3, i), stub_fps(3, i)],[apex_err(3, i), stub_err(3, i)] ,'.', 'Color', [0 0 0], 'LineWidth', 1.5)
     set(gca, 'xticklabel', {'Apex', 'Base'});
+    title(names(i))
 end
 
+ylabel(s(1), 'Files per second');
 
 
     
