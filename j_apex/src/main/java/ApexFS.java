@@ -299,26 +299,23 @@ public class ApexFS extends FuseStubFS {
 //                System.out.println("LINE 298 : Reading file with offset = " + offset);
 //                System.out.println("Line 299 : " + this.blocklist);
 
-                ByteArrayOutputStream outputStream = new ByteArrayOutputStream( );
+                byte[] output = new byte[this.blocklist.size()];
+                Block b_;
 
                 for(int i = 1; i < this.blocklist.size(); i++){
-                    Block b_ = this.blocklist.get((int) i);
-                    byte[] bytesRead = new byte[1];
+                    b_ = this.blocklist.get(i);
+                    // Increase USAGE FACTOR OF ALL BLOCKS BECAUSE file level concept
+                    b_.increaseUF();
 //                    System.out.println("Reading index : " + b_.index);
                     ApexFS.memory.position(b_.index);
-                    ApexFS.memory.get(bytesRead, 0, 1);
-                    String s = new String(bytesRead, StandardCharsets.UTF_8);
+                    ApexFS.memory.get(output, i-1, 1);
+//                    String s = new String(bytesRead, StandardCharsets.UTF_8);
 //                    System.out.println(s);
-                    try {
-                        outputStream.write(bytesRead);
-                    }
-                    catch(Exception e){}
-                    ApexFS.memory.position(0);
                 }
 
 //                String p = new String(outputStream.toByteArray(), StandardCharsets.UTF_8);
 //                System.out.println(p);
-                buffer.put(0, outputStream.toByteArray(), 0, this.blocklist.size() - 1);
+                buffer.put(0, output, 0, this.blocklist.size() - 1);
 
 //                System.out.println("LINE 300 : Reading file");
 ////                byte[] nb = b_.read();
@@ -345,12 +342,6 @@ public class ApexFS extends FuseStubFS {
 //                    buffer.put(offset+i*CHUNK_SIZE, nbf, 0, rem);
 //                }
 
-            }
-
-            //Don't increase usage factor of all blocks just the ones which were read
-            // Increase USAGE FACTOR OF ALL BLOCKS BECAUSE file level concept
-            for (Block block: this.blocklist) {
-                block.increaseUF();
             }
 
             return bytesToRead;
