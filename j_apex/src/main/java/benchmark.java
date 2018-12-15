@@ -28,7 +28,7 @@ public class benchmark{
         	for(int j = 0; j < fileSize; j++){
         		fos.write('0');
         	}
-			
+
 			fos.flush();
 			fos.close();
 
@@ -61,7 +61,7 @@ public class benchmark{
 
 		for(int i = 1; i <= fileNumbers; i++){
 
-			File file = new File(absoluteFilePath + i); 
+			File file = new File(absoluteFilePath + i);
 
         	file.delete();
 		}

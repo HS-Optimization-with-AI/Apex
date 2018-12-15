@@ -1,4 +1,5 @@
 import com.sun.xml.internal.fastinfoset.util.CharArray;
+import java.nio.charset.StandardCharsets;
 
 import java.util.*;
 
@@ -70,7 +71,13 @@ public class Block {
     byte[] read(){
         int start = index * blockSize;
         byte[] b = new byte[(int) blockSize];
-        ApexFS.memory.get(b, start, blockSize);
+        System.out.println("MEMORY: ");
+        String s = StandardCharsets.UTF_8.decode(ApexFS.memory).toString();
+        System.out.println(s);
+        System.out.println("BLOCK LINE 73 : Getting from memory at start : " + start);
+        ApexFS.memory.get(b, start, 1);
+        String string = new String(b, StandardCharsets.UTF_8);
+        System.out.println(string);
         return b;
     }
     //allocate this block to a file (UNUSED TO USED TRANSITION)
@@ -80,8 +87,8 @@ public class Block {
         //delete the block from parent file
 
         // CHECK THAT IF THE PARENT FILE IS NULL THEN DO NOT DO THE DELETE BLOCK STEP
-        System.out.println("IN BLOCK ALLOCATE");
-        System.out.println(this.parentFile);
+//        System.out.println("IN BLOCK ALLOCATE");
+//        System.out.println(this.parentFile);
 
         if(this.parentFile != null){
             this.parentFile.deleteBlock(this);
@@ -92,7 +99,7 @@ public class Block {
         this.hf = 1;//reset
         this.uf = 1;//reset
         this.lf = link_factor;//binaries or non binaries
-        System.out.println("END BLOCK ALLOCATE");
+//        System.out.println("END BLOCK ALLOCATE");
 
     }
 
