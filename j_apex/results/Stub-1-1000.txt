@@ -1,0 +1,61 @@
+shreshth@shreshth:~/Desktop/GitHub/Apex/j_apex$ java benchmark 1024 1000
+Number of files :  1000
+File size in bytes : 1024
+Total write time : 45979 milliseconds
+Total read time : 191 milliseconds
+Total delete time : 62 milliseconds
+shreshth@shreshth:~/Desktop/GitHub/Apex/j_apex$ java benchmark 2048 500
+Number of files :  500
+File size in bytes : 2048
+Total write time : 35978 milliseconds
+Total read time : 183 milliseconds
+Total delete time : 67 milliseconds
+shreshth@shreshth:~/Desktop/GitHub/Apex/j_apex$ java benchmark 2048 500
+Number of files :  500
+File size in bytes : 2048
+Total write time : 45931 milliseconds
+Total read time : 206 milliseconds
+Total delete time : 68 milliseconds
+shreshth@shreshth:~/Desktop/GitHub/Apex/j_apex$ java benchmark 2048 500
+Number of files :  500
+File size in bytes : 2048
+Total write time : 45828 milliseconds
+Total read time : 191 milliseconds
+Total delete time : 68 milliseconds
+shreshth@shreshth:~/Desktop/GitHub/Apex/j_apex$ java benchmark 2048 500
+Number of files :  500
+File size in bytes : 2048
+Total write time : 45967 milliseconds
+Total read time : 199 milliseconds
+Total delete time : 68 milliseconds
+shreshth@shreshth:~/Desktop/GitHub/Apex/j_apex$ java benchmark 2048 500
+Number of files :  500
+File size in bytes : 2048
+Total write time : 46044 milliseconds
+Total read time : 191 milliseconds
+Total delete time : 67 milliseconds
+shreshth@shreshth:~/Desktop/GitHub/Apex/j_apex$ java benchmark 2048 500
+Number of files :  500
+File size in bytes : 2048
+Total write time : 46023 milliseconds
+Total read time : 196 milliseconds
+Total delete time : 67 milliseconds
+shreshth@shreshth:~/Desktop/GitHub/Apex/j_apex$ java benchmark 2048 500
+Number of files :  500
+File size in bytes : 2048
+Total write time : 46884 milliseconds
+Total read time : 196 milliseconds
+Total delete time : 68 milliseconds
+shreshth@shreshth:~/Desktop/GitHub/Apex/j_apex$ java benchmark 2048 500
+Number of files :  500
+File size in bytes : 2048
+Total write time : 46046 milliseconds
+Total read time : 195 milliseconds
+Total delete time : 69 milliseconds
+shreshth@shreshth:~/Desktop/GitHub/Apex/j_apex$ java benchmark 2048 500
+Number of files :  500
+File size in bytes : 2048
+Total write time : 46064 milliseconds
+Total read time : 199 milliseconds
+Total delete time : 68 milliseconds
+

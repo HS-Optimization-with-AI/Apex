@@ -4,7 +4,7 @@ clear all;
 apex = zeros(3, 10, 3, 'double');
 stub = zeros(3, 10, 3, 'double');
 
-list = [2, 10, 100];
+list = [1, 2, 10];
 names = {'Write', 'Read', 'Delete'};
 temp = '';
 
