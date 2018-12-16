@@ -302,7 +302,7 @@ public class ApexFS extends FuseStubFS {
                 byte[] output = new byte[this.blocklist.size()];
                 Block b_;
 
-                for(int i = 1; i < this.blocklist.size(); i++){
+                for(int i = this.blocklist.size()-1; i > 0; i--){
                     b_ = this.blocklist.get(i);
                     // Increase USAGE FACTOR OF ALL BLOCKS BECAUSE file level concept
                     b_.increaseUF();
