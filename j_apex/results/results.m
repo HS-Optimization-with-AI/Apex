@@ -87,7 +87,7 @@ for p=1:3
         s(i) = subplot(1, 3, i);
         ax = gca;
         ax.XTick = [1 2];
-        ax.FontSize = 16;
+        ax.FontSize = 24;
         hold on
         b1 = bar([0, stub_fps(p, i)], 0.5, 'FaceColor', [0.502 0.502 0.502]);
         b2 = bar([apex_fps(p, i), 0], 0.5, 'FaceColor', [0.85 0.33 0.01]);
