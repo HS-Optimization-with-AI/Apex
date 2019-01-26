@@ -95,7 +95,7 @@ for p=1:3
         set(gca, 'xticklabel', {'Apex', 'Base'});
         title(names(i))
     end
-    ylabel(s(1), 'Files per second');
+    ylabel(s(1), 'kiloBytes per second');
 end
 
 
