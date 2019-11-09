@@ -21,17 +21,17 @@ Recently Edge Computing paradigm has gained significant popularity both in indus
 ![Alt text](https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/uml.png?raw=true)
 
 ## Recovery Performance
-![Alt text](https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/recovery1.pdf?raw=true)
-![Alt text](https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/recovery2.pdf?raw=true)
+![Alt text](https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/recovery1.png?raw=true)
+![Alt text](https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/recovery2.png?raw=true)
 
 ## File I/O Performance
-![Alt text](https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/read.pdf?raw=true)
-![Alt text](https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/write.pdf?raw=true)
-![Alt text](https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/delete.pdf?raw=true)
+![Alt text](https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/read.png?raw=true)
+![Alt text](https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/write.png?raw=true)
+![Alt text](https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/delete.png?raw=true)
 
 ## CPU/RAM Overhead comparison
-![Alt text](https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/cpu.pdf?raw=true)
-![Alt text](https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/ram.pdf?raw=true)
+![Alt text](https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/cpu.png?raw=true)
+![Alt text](https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/ram.png?raw=true)
 
 ## References
 
