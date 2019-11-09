@@ -24,23 +24,23 @@ Recently Edge Computing paradigm has gained significant popularity both in indus
 
 ## Recovery Performance
 <p float="left">
-  <img src="https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/recovery1.png" width="450" />
-  <img src="https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/recovery2.png" width="450" /> 
+  <img src="https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/recovery1.png" width="300" />
+  <img src="https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/recovery2.png" width="300" /> 
 </p>
 
 
 ## File I/O Performance
 <p float="left">
-  <img src="https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/read.png" width="300" />
-  <img src="https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/write.png" width="300" /> 
-  <img src="https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/delete.png" width="300" /> 
+  <img src="https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/read.png" width="200" />
+  <img src="https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/write.png" width="200" /> 
+  <img src="https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/delete.png" width="200" /> 
 </p>
 
 
 ## CPU/RAM Overhead comparison
 <p float="left">
-  <img src="https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/cpu.png" width="450" />
-  <img src="https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/ram.png" width="450" /> 
+  <img src="https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/cpu.png" width="300" />
+  <img src="https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/ram.png" width="300" /> 
 </p>
 
 ## References
