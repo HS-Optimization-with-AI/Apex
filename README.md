@@ -23,11 +23,13 @@ Recently Edge Computing paradigm has gained significant popularity both in indus
 </div>
 
 ## Recovery Performance
+<div class="row">
 <div class="column">
   <img src="https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/recovery1.png" height="300"><br><br>
 </div>
 <div class="column">
   <img src="https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/recovery2.png" height="300"><br><br>
+</div>
 </div>
 
 ## File I/O Performance
