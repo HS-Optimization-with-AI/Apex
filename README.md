@@ -7,14 +7,14 @@ Recently Edge Computing paradigm has gained significant popularity both in indus
 
 ## Comparison baselines
 
-* Ext4: Base Ext4 file system
-* AFS (Andrew File System): provides  a  backup  mechanism  torecover deleted or lost files for a limited period of time. This is not suitable for Fog nodes due to limited disk space available(there is high storage-to-compute cost ratio in Fog framework deployment  and  other  communication  limitations  across  Fog network). 
+* **Ext4**: Base Ext4 file system
+* **AFS** (Andrew File System): provides  a  backup  mechanism  torecover deleted or lost files for a limited period of time. This is not suitable for Fog nodes due to limited disk space available(there is high storage-to-compute cost ratio in Fog framework deployment  and  other  communication  limitations  across  Fog network). 
 [AFS] J. H. Howard, Kazar, M. L., Menees, S. G., Nichols, D. A., Satya-narayanan, M., Sidebotham, R. N., and West, M. J. Scale and performance in a distributed file system. ACM Transactions on Computer Systems, 6(1):5181, February 1988
-* FFS (Forensic File System): provides forensic fileidentifiers at cluster-level file allocation to provide information needed for file types to be recovered after deletion. As they are only limited to file cluster identification and the identification of file  types,  the amount of recover-ability of data is limited because they completely ignore the file usage characteristics and temporal locality. 
+* **FFS** (Forensic File System): provides forensic fileidentifiers at cluster-level file allocation to provide information needed for file types to be recovered after deletion. As they are only limited to file cluster identification and the identification of file  types,  the amount of recover-ability of data is limited because they completely ignore the file usage characteristics and temporal locality. 
 [FFS] M. Alhussein, A. Srinivasan and D. Wijesekera, “Forensics filesystemwith cluster-level identifiers for efficient data recovery,” 2012 International Conference for Internet Technology and Secured Transactions.
-* ShieldFS: provides a self-healing ransomware-aware filesystem which is capable of both detection and the recovery from ransomware attacks. It works by analyzing the I/O data trace of various processes and uses aclassifier to detect if the process is maliciously deleting data. Ifsuch a process is discovered, it uses a recovery approach usedby copy-on-write filesystems.
+* **ShieldFS**: provides a self-healing ransomware-aware filesystem which is capable of both detection and the recovery from ransomware attacks. It works by analyzing the I/O data trace of various processes and uses aclassifier to detect if the process is maliciously deleting data. Ifsuch a process is discovered, it uses a recovery approach usedby copy-on-write filesystems.
 [ShieldFS] A. Continella, A. Guagnelli, G. Zingaro, G. De Pasquale, A. Barenghi,. Zanero, and F. Maggi. “ShieldFS: a self-healing, ransomware-awarefilesystem,” Proceedings of the 32nd Conference on Computer SecurityApplications, 2016
-* ExtSFR: uses  files’  metadata  to  identify  and  recover  them,  but ignores file usage and access characteristics which limit recoverability
+* **ExtSFR**: uses  files’  metadata  to  identify  and  recover  them,  but ignores file usage and access characteristics which limit recoverability
 [ExtSFR] S. Lee, W. Jo, S. Eo, and Taeshik Shon. “ExtSFR: scalable filerecovery framework based on an Ext file system.” Multimedia  Tools and Applications (2019): 1-19
 
 ## Class Diagram
