@@ -3,7 +3,7 @@
 </div>
 
 # Apex
-Adaptive Ex-FAT for data recovery optimisation using reinforcement learning .
+Recently Edge Computing paradigm has gained significant popularity both in industry and academia. With its increased usage in real-life scenarios, security, privacy and integrity of data in such environments have become critical. Malicious deletion of mission-critical data due to ransomware, trojans and viruses has been a huge menace and recovering such lost data is an active field of research. As most of Edge computing devices have compute and storage limitations, difficult constraints arise in providing an optimal scheme for data protection. These devices mostly use Linux/Unix based operating systems. Hence, this work focuses on extending the Ext4 file system to **APEX** (Adaptive Ext4): a file system based on novel on-the-fly learning model that provides an Adaptive Recover-ability Aware file allocation platform for efficient post-deletion data recovery and therefore maintaining data integrity. Our recovery model and its lightweight implementation allow significant improvement in recover-ability of lost data with lower compute, space, time, and cost overheads compared to other methods. We demonstrate the effectiveness of APEX through a case study of overwriting surveillance videos by CryPy malware on Raspberry-Pi based Edge deployment and show 678\% and 32\% higher recovery than Ext4 and current state-of-the-art File Systems. We also evaluate the overhead characteristics and experimentally show that they are lower than other related works.
 
 ## References
 
