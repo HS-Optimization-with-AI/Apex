@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/HS-Optimization-with-AI/Apex/blob/master/n_apex/src/Apex-Utility/APEX%20logo.png" height="500"><br><br>
+  <img src="https://github.com/HS-Optimization-with-AI/Apex/blob/master/n_apex/src/Apex-Utility/APEX%20logo.png" height="400"><br><br>
 </div>
 
 # Apex
@@ -18,7 +18,9 @@ Recently Edge Computing paradigm has gained significant popularity both in indus
 [ExtSFR] S. Lee, W. Jo, S. Eo, and Taeshik Shon. “ExtSFR: scalable filerecovery framework based on an Ext file system.” Multimedia  Tools and Applications (2019): 1-19
 
 ## Class Diagram
-![Alt text](https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/uml.png?raw=true)
+<div align="center">
+  <img src="https://github.com/HS-Optimization-with-AI/Apex/blob/master/n_apex/images\uml.png"><br><br>
+</div>
 
 ## Recovery Performance
 ![Alt text](https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/recovery1.png?raw=true)
