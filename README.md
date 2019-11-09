@@ -26,7 +26,7 @@ Recently Edge Computing paradigm has gained significant popularity both in indus
 <div class="leftdiv">
   <img src="https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/recovery1.png" height="300"><br><br>
 </div>
-<div class="rightdiv">
+<div class="middlediv">
   <img src="https://github.com/HS-Optimization-with-AI/Apex/blob/master/images/recovery2.png" height="300"><br><br>
 </div>
 
